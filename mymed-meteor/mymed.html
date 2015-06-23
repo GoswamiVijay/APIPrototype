@@ -1,0 +1,64 @@
+<head>
+  <title>prototype</title>
+  <style type="text/css">
+	.navbar{
+		margin-top: 20px;
+	}
+</style>
+</head>
+<body>
+  {{> main}}
+</body>
+
+<template name="main">
+  	<div class="container">
+	 	<div class="row">
+		 	<div class="col-md-9">
+		 		<h1>My Medication List</h1>
+		 	</div>
+		 	<div class="col-md-3">
+				<button id="btnhelp" type="submit" class="btn btn-primary" style="float:right; margin-top:15px;">Help</button>
+		 	</div>
+	 	</div>
+  		<div class="row">
+			<p>My medication list allows you to keep a list of all the medication you are currently taking and share it with your medical provider using a hyperlink.The hyper link is located at the bottom of the page and is available after you have created a list of your medicatuions and clicked the save button.You can access additional help  associated with this application by clicking on the help button or sending us an email at support@xfinion.com You can also call us at 301.801.4897 Monday to Friday between the hours of 8am and 6pm.Thank you using My Medication List.</p>
+		</div>  
+    	<div class="row">
+	  		<form class="form-inline">
+			    <div class="form-group">				   
+			        <input type="text" placeholder="Search" id="input-search" class="form-control" style="width:350px;">
+		        <!-- <label for="email" class="glyphicon glyphicon-search" rel="tooltip" title="email"></label> -->
+			    </div>
+			    <button id="btnSearch" type="submit" class="btn btn-primary">Lookup</button>
+			   <!--<button id="btnReset" type="submit" class="btn btn-primary">Clear</button> -->
+			</form>
+		</div>
+		<div class="row"></div>
+    	<div class="row">
+	  		<div class="col-md-6">
+		  		<section style="height:300px; margin-top:20px;">		  		
+				 	{{search}}
+					{{#each SearchResult}}
+						<p>{{this.openfda.substance_name}} <a class="hladd" 
+							style="float:right; cursor:pointer;">Add</a></p>
+						<hr/>
+					{{/each}}
+				</section>
+	  		</div>
+	  		<div class="col-md-6">
+	  			<section style="height:300px; margin-top:20px;">
+					{{#each SelectedResult}}
+						<p>{{this.openfda.substance_name}} <a class="hlremove" 
+							style="float:right; cursor:pointer;">Remove</a></p>
+					{{/each}}
+	  		 	</section>
+	  		</div>
+			<div class="row"></div>
+	  			<div class="col-md-6">
+	  			<button id="btnSave" type="submit" class="btn btn-primary" style="margin-left:650px;">Save</button><br><br>
+				<a>http://www.mymedlookup.org/1234567</a>
+				<br><br>
+	  		</div>
+		</div>
+	</div>
+</template>
