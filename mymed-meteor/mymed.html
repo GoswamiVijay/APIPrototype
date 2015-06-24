@@ -4,6 +4,22 @@
 	.navbar{
 		margin-top: 20px;
 	}
+	.result-container
+	{
+	  height:300px; 
+	  max-height: 300px; 
+	  margin-top:30px;
+	}
+	.selected-result-container
+	{
+	  height:300px; 
+	  max-height: 300px; 
+	  margin-top:30px;
+	}
+	.vr
+	{
+		border-left:1px solid #dcdcdc;height:500px;margin-top:30px;
+	}
 </style>
 </head>
 <body>
@@ -27,16 +43,14 @@
 	  		<form class="form-inline">
 			    <div class="form-group">				   
 			        <input type="text" placeholder="Search" id="input-search" class="form-control" style="width:350px;">
-		        <!-- <label for="email" class="glyphicon glyphicon-search" rel="tooltip" title="email"></label> -->
 			    </div>
 			    <button id="btnSearch" type="submit" class="btn btn-primary">Lookup</button>
-			   <!--<button id="btnReset" type="submit" class="btn btn-primary">Clear</button> -->
 			</form>
 		</div>
 		<div class="row"></div>
     	<div class="row">
 	  		<div class="col-md-6">
-		  		<section style="height:300px; margin-top:20px;">		  		
+		  		<section class="result-container">		  		
 				 	{{search}}
 					{{#each SearchResult}}
 						<p>{{this.openfda.substance_name}} <a class="hladd" 
@@ -45,20 +59,28 @@
 					{{/each}}
 				</section>
 	  		</div>
-	  		<div class="col-md-6">
-	  			<section style="height:300px; margin-top:20px;">
+	  		<div class="col-md-1">
+		  		<center><div class="vr"></div></center>
+		  	</div>
+	  		<div class="col-md-5">
+	  			<section class="selected-result-container">
 					{{#each SelectedResult}}
 						<p>{{this.openfda.substance_name}} <a class="hlremove" 
 							style="float:right; cursor:pointer;">Remove</a></p>
+						<hr/>
 					{{/each}}
 	  		 	</section>
 	  		</div>
-			<div class="row"></div>
-	  			<div class="col-md-6">
-	  			<button id="btnSave" type="submit" class="btn btn-primary" style="margin-left:650px;">Save</button><br><br>
-				<a>http://www.mymedlookup.org/1234567</a>
-				<br><br>
 	  		</div>
+		<hr />
+		<section class="col-md-12">
+			<div class="col-md-8">
+				<p><a id="mymedurl" href="http://localhost:3000/1234567">http://localhost:3000/1234567</a></p>
+			</div>
+			<div class="col-md-4">
+				<button id="btnSave" type="submit" class="btn btn-primary">Save</button>
 		</div>
+  		</section>
+  		<br /><br />
 	</div>
 </template>
