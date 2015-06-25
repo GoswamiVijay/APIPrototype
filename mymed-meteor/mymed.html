@@ -54,7 +54,7 @@
 		  		<section class="result-container">		  		
 				 	{{search}}
 					{{#each SearchResult}}
-						<p>{{this.openfda.substance_name}} <a class="hladd" 
+						<p>{{this.openfda.substance_name}} <br/> {{this.openfda.brand_name}}<a class="hladd" 
 							style="float:right; cursor:pointer;">Add</a></p>
 						<hr/>
 					{{/each}}
@@ -66,8 +66,7 @@
 	  		<div class="col-md-5">
 	  			<section class="selected-result-container">
 					{{#each SelectedResult}}
-						<p>{{this.openfda.substance_name}} <a class="hlremove" 
-							style="float:right; cursor:pointer;">Remove</a></p>
+						<p>{{this.openfda.substance_name}} <br/> {{this.openfda.brand_name}} <a class="hlremove" style="float:right; cursor:pointer;">Remove</a></p>
 						<hr/>
 					{{/each}}
 	  		 	</section>

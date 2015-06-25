@@ -7,13 +7,6 @@ if (Meteor.isClient) {
   Session.setDefault('ResultToSave', []);
   Template.main.helpers({
     search: function () {
-      var id = getParameterID();
-      if(id){
-        var mdata = mymeddata.findOne({_id: id});
-        if(mdata){
-          Session.set('ResultToSave', mdata.data);
-        }
-      }
       if(Session.get('query') != ""){
         var q = Session.get('query');
         Meteor.apply("getSearchResults", [q], true, function(err,response){
@@ -47,12 +40,18 @@ if (Meteor.isClient) {
 
   Template.main.rendered = function(){
     code = '';
-    var id = getParameterID();   
     var resultToSave = []; 
     var protocol = window.location.protocol;
     var hostname = window.location.host;
     var mmurl = protocol +"//" + hostname + "/";
-    if(!id){
+    setTimeout(function(){
+      var id = getParameterID();
+      if(id){
+        var mdata = mymeddata.findOne({_id: id});
+        if(mdata){
+          Session.set('ResultToSave', mdata.data);
+        }
+      }
       Meteor.apply('saveMyMedData', [resultToSave], true, function(e,r){
         if(r){
           code = r;
@@ -61,13 +60,7 @@ if (Meteor.isClient) {
           $("#mymedurl").text(mmurl);
         }
       })
-    }
-    else{
-      code = id;
-      mmurl = mmurl + code;
-      $("#mymedurl").attr('href', mmurl);
-      $("#mymedurl").text(mmurl);
-    }
+    },1000);
   };
 
   Template.main.events({
@@ -89,18 +82,24 @@ if (Meteor.isClient) {
       var oldResult = Session.get('SearchResult');
       var resultToSave = Session.get('ResultToSave');
       if(oldResult.length > 0){
+        var r = $.grep(resultToSave, function (e) {
+          return e.id === obj.id;
+        });
+        if(r.length == 0){
         var newArray = oldResult.filter(function (el) {
                           return el.id !== obj.id;
                        });
+
         resultToSave.push(obj);
         Session.set('SearchResult', newArray);
         Session.set('ResultToSave', resultToSave)
       }
+      }
     },
     'click .hlremove': function(event, template){
       var obj = this;
-      var oldResult = Session.get('SearchResult');
-      var resultToSave = Session.get('ResultToSave');
+      var oldResult = (Session.get('SearchResult') ? Session.get('SearchResult') : []);
+      var resultToSave = (Session.get('ResultToSave') ? Session.get('ResultToSave') : []);
       if(resultToSave.length > 0){
         var newArray = resultToSave.filter(function (el) {
                           return el.id !== obj.id;
