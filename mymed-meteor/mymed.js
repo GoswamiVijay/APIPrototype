@@ -19,9 +19,13 @@ if (Meteor.isClient) {
         Meteor.apply("getSearchResults", [q], true, function(err,response){
           if(response && response.data && response.data.results.length > 0){
             Session.set('SearchResult', response.data.results);
+            $(".img-group").hide();
+            $("#btnSearch").removeAttr('disabled','disabled');
           }
           else{
             Session.set('SearchResult', []);
+            $(".img-group").hide();
+            $("#btnSearch").removeAttr('disabled','disabled');
           }
         });
       }
@@ -71,6 +75,8 @@ if (Meteor.isClient) {
       event.preventDefault();
       var search = template.find("#input-search").value;
       Session.set('query', search);
+      $(".img-group").show();
+      $("#btnSearch").attr('disabled','disabled');
     },
     'click #btnReset': function(event, template) {
       event.preventDefault();
