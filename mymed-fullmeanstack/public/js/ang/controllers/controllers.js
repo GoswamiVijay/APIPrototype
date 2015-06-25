@@ -23,18 +23,11 @@ var app=angular.module('myApp.controllers', ['uiGmapgoogle-maps','ui-rangeSlider
         console.log(error)
       });
     }
-    $http.post('/saveData',{data : []})
-    .success(function(data){
-      if (data.success){
-        $scope.currentid = data.id;
-        var url = $scope.protocol+"//"+$scope.hostname+"/?"+data.id;
+    var url = $scope.protocol+"//"+$scope.hostname+"/";
         $("#mymedurl").attr('href', url);
         $("#mymedurl").text(url);
-      }
-    })
-    .error(function(error){
-      console.log(error)
-    });
+
+
   }
 
   $scope.getParameterID = function () {
@@ -90,12 +83,17 @@ var app=angular.module('myApp.controllers', ['uiGmapgoogle-maps','ui-rangeSlider
   }
 
   $scope.saveData = function(){
-    $http.post('/updateData',{id: $scope.currentid, data: $scope.selectedresults})
+    
+    $http.post('/saveData',{id: $scope.currentid, data: $scope.selectedresults})
     .success(function(data){
       if(data.success){
+         $scope.currentid = data.id;
+        var url = $scope.protocol+"//"+$scope.hostname+"/?"+data.id;
+        $("#mymedurl").attr('href', url);
+        $("#mymedurl").text(url);
         $scope.results = [];
         $scope.search.query = '';
-        alert('Data saved successfully');
+        //alert('Data saved successfully');
       }
       else{
         alert('Error occured');

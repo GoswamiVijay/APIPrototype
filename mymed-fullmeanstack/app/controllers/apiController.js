@@ -18,29 +18,31 @@ apiController.getSearchResults = function(res,req) {
 }
 
 apiController.saveData = function(res,req) {
-  var th = this;
-  var data = th.req.body.mydata;
+ var th = this;
+  var data = th.req.body.data;
   var newmymed = new mymed(th.req.body); 
-  newmymed.save(function (err) {
+  newmymed.save(function (err, medListObject) {
       if(err) {
           return th.res.json({success: false, id: ''});
+
       } else {
-        th.res.json({success: true, id: newmymed._id});
+        th.res.json({success: true, id: medListObject._id});
       }
     });
 }
 
 apiController.updateData = function(res,req) {
   var th = this;
-  var id = th.req.body.id;
   var data = th.req.body.data;
-  mymed.update({_id: ObjectId(id)}, {$set: {data: data}}, function(e,r){
-    if(r){
-      return th.res.json({success: true});      
-    } else {
-      return th.res.json({success: false});     
-    }
-  });
+  var newmymed = new mymed(th.req.body); 
+  newmymed.save(function (err, medListObject) {
+      if(err) {
+          return th.res.json({success: false, id: ''});
+
+      } else {
+        th.res.json({success: true, id: medListObject._id});
+      }
+    });
 }
 
 apiController.getData = function(res,req) {
