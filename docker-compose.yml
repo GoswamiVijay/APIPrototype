@@ -1,12 +1,51 @@
-db:
-  image: mongo
-  ports:
-    - "27017:27017"
-web:
+mymedlookupdb:
   build: .
+  dockerfile: Dockerfile-db
   ports:
-   - "4000:4000"
+   - "27017:27017"
+mymedlookupweb1:
+  build: .
+  dockerfile: Dockerfile-web
+  ports:
+   - "4000"
   volumes:
    - .:/src
   links:
-   - db
+   - mymedlookupdb
+mymedlookupweb2:
+  build: .
+  dockerfile: Dockerfile-web
+  ports:
+   - "4000"
+  volumes:
+   - .:/src
+  links:
+   - mymedlookupdb
+mymedlookupweb3:
+  build: .
+  dockerfile: Dockerfile-web
+  ports:
+   - "4000"
+  volumes:
+   - .:/src
+  links:
+   - mymedlookupdb
+mymedlookupweb4:
+  build: .
+  dockerfile: Dockerfile-web
+  ports:
+   - "4000"
+  volumes:
+   - .:/src
+  links:
+   - mymedlookupdb
+nginx:
+  build: .
+  dockerfile: Dockerfile-nginx
+  links:
+    - mymedlookupweb1:mymedlookupweb1
+    - mymedlookupweb2:mymedlookupweb2
+    - mymedlookupweb3:mymedlookupweb3
+    - mymedlookupweb4:mymedlookupweb4
+  ports:
+    - "8090:8090"
