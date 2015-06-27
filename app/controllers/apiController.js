@@ -21,6 +21,8 @@ apiController.saveData = function(res,req) {
  var th = this;
   var data = th.req.body.data;
   var newmymed = new mymed(th.req.body); 
+  th.res.json({success: true, id: "test - update"});
+  return;
   newmymed.save(function (err, medListObject) {
       if(err) {
           return th.res.json({success: false, id: ''});
@@ -29,12 +31,15 @@ apiController.saveData = function(res,req) {
         th.res.json({success: true, id: medListObject._id});
       }
     });
+
 }
 
 apiController.updateData = function(res,req) {
   var th = this;
   var data = th.req.body.data;
   var newmymed = new mymed(th.req.body); 
+  
+
   newmymed.save(function (err, medListObject) {
       if(err) {
           return th.res.json({success: false, id: ''});
@@ -43,6 +48,7 @@ apiController.updateData = function(res,req) {
         th.res.json({success: true, id: medListObject._id});
       }
     });
+
 }
 
 apiController.getData = function(res,req) {
