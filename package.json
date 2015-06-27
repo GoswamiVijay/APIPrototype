@@ -9,19 +9,11 @@
     "express": "3.x.x",
     "connect-powered-by": "0.1.x",
     "ejs": "0.8.x",
-    "underscore": "*",
-    "mongoose": "*",
+	"underscore" : "*",
+	"mongoose" : "*",
     "request": "*"
   },
   "scripts": {
-    "start": "node mymed.js",
-    "test": "mocha"
-  },
-  "devDependencies": {
-    "grunt": "^0.4.5",
-    "jasmine": "^2.3.1",
-    "load-grunt-config": "^0.17.1",
-    "chai"         : "*",
-    "mocha"        : "*"
+    "start": "node mymed.js"
   }
 }

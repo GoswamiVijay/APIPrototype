@@ -9,7 +9,7 @@
 <link rel="shortcut icon" href="images/favicon.png">
 <link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
 <link href="css/bootstrap.min.css" rel="stylesheet">
-<script src="js/jquery-1.11.0.min.js"></script>
+<script src="js/jquery-v1.11.0.js"></script>
 
 <script src="js/bootstrap.min.js"></script>
 
@@ -25,29 +25,15 @@
 <script src="js/ang/ui-bootstrap-tpls-0.11.2.js"></script>
 <script src="js/ang/filters.js"></script>
 <script src="js/ang/services.js"></script>  
-<script src="js/ang/factories.js"></script> 
-<script src="https://www.google.com/jsapi" type="text/javascript"></script>
-
-
-
-
-  
-   <script src="Angular_lib/lib1.js"></script>
-     <script src="Angular_lib/lib2.js"></script>
-    
-   
-    
-   
-     <script src="https://maps.googleapis.com/maps/api/js"></script>
-
-     <script src='js/lodash.js'></script>
-        <script src='js/angular-google-maps.js'></script>
-
-        <!-- scripts for slider -->
-     <link href="css/angular.rangeSlider.css" rel="stylesheet">
-
-      <!-- and out directive code -->
-      <script src="js/angular.rangeSlider.js"></script>
+<script src="js/ang/factories.js"></script>
+<script src="Angular_lib/lib1.js"></script>
+<script src="Angular_lib/lib2.js"></script>
+<script src='js/lodash.js'></script>
+<script src='js/angular-google-maps.js'></script>
+<!-- scripts for slider -->
+<link href="css/angular.rangeSlider.css" rel="stylesheet">
+<!-- and out directive code -->
+<script src="js/angular.rangeSlider.js"></script>
 <style type="text/css">
   .navbar{
     margin-top: 20px;
@@ -72,17 +58,10 @@
     border-bottom:1px solid #dcdcdc; padding:5px;
   }
 </style>
-
-
-
-
 </head>
 <body ng-controller="MainCtrl" ng-app="myApp">
   <div class="wrapper">    
     <div ui-view="" autoscroll="false"></div>
-    <div ng-if="showLoading" class="loader">
-      <img src="images/ajax-loader.gif">
-    </div>
   </div><!--wrapper end-->
 </body>
 </html>

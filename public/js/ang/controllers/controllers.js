@@ -8,6 +8,7 @@ var app=angular.module('myApp.controllers', ['uiGmapgoogle-maps','ui-rangeSlider
   $scope.results = [];
   $scope.selectedresults = [];
   $scope.currentid = '';
+  $scope.message = '';
   $scope.hostname = $window.location.host;
   $scope.protocol = $window.location.protocol;
   $scope.init = function(){
@@ -23,11 +24,6 @@ var app=angular.module('myApp.controllers', ['uiGmapgoogle-maps','ui-rangeSlider
         console.log(error)
       });
     }
-    var url = $scope.protocol+"//"+$scope.hostname+"/";
-        $("#mymedurl").attr('href', url);
-        $("#mymedurl").text(url);
-
-
   }
 
   $scope.getParameterID = function () {
@@ -37,13 +33,19 @@ var app=angular.module('myApp.controllers', ['uiGmapgoogle-maps','ui-rangeSlider
   }
    
   $scope.performsearch = function(){
-     $rootScope.showLoading = true;
+    $rootScope.showLoading = true;
+    $scope.message = "";
     $http.get('/getSearchResults?q='+$scope.search.query)
     .success(function(data){
       if(data.success){
         var response = data.data;
-         $rootScope.showLoading = false;
+        $rootScope.showLoading = false;
         $scope.results = response;
+        $scope.message = '';
+      }
+      else{
+        $scope.message = "No matching results found.";
+        $rootScope.showLoading = false;
       }
     })
     .error(function(err){
@@ -83,17 +85,17 @@ var app=angular.module('myApp.controllers', ['uiGmapgoogle-maps','ui-rangeSlider
   }
 
   $scope.saveData = function(){
-    
-    $http.post('/saveData',{id: $scope.currentid, data: $scope.selectedresults})
+    $http.post('/saveData',{data: $scope.selectedresults})
     .success(function(data){
       if(data.success){
-         $scope.currentid = data.id;
+        $scope.results = [];
+        $scope.search.query = '';
+        $scope.hostname = $window.location.host;
+        $scope.protocol = $window.location.protocol;
         var url = $scope.protocol+"//"+$scope.hostname+"/?"+data.id;
         $("#mymedurl").attr('href', url);
         $("#mymedurl").text(url);
-        $scope.results = [];
-        $scope.search.query = '';
-        //alert('Data saved successfully');
+        alert('Data saved successfully');
       }
       else{
         alert('Error occured');
