@@ -1,0 +1,66 @@
+<div class="container" ng-init="init()">
+    <div class="row">
+      <div class="col-md-9">
+        <h1>My Medication List</h1>
+      </div>
+      <div class="col-md-3">
+        <button id="btnhelp" type="submit" class="btn btn-primary" data-toggle="modal" data-target="#myModal" style="float:right; margin-top:15px;">Help</button>
+      </div>
+    </div>
+      <div class="row">
+      <p>My medication list allows you to keep a list of all the medication you are currently taking and share it with your medical provider using a hyperlink.The hyper link is located at the bottom of the page and is available after you have created a list of your medicatuions and clicked the save button.You can access additional help  associated with this application by clicking on the help button or sending us an email at support@xfinion.com You can also call us at 301.801.4897 Monday to Friday between the hours of 8am and 6pm.Thank you using My Medication List.</p>
+    </div>  
+      <div class="row">
+        <form class="form-inline">
+          <div class="form-group">           
+              <input type="text" placeholder="Search" id="input-search" class="form-control" style="width:350px;" ng-model="search.query">
+          </div>
+          <button id="btnSearch" type="button" class="btn btn-primary" ng-click="performsearch();">Lookup</button>&nbsp;<img src="images/image.gif" ng-if="showLoading"/>
+      </form>
+    </div>
+    <div class="row"></div>
+      <div class="row">
+        <div class="col-md-6">
+          <section class="result-container">          
+            <p ng-repeat="r in results" class="br-bottom">
+              {{ r.openfda.substance_name[0]}}<br /><b>Brand:</b> {{ r.openfda.brand_name[0]}}<a href="javascript:void(0);" style="float:right; cursor:pointer;" ng-click="add(r)">Add</a>
+            </p>
+            <p ng-show="message">{{message}}</p>
+          </section>
+        </div>
+        <div class="col-md-1">
+          <center><div class="vr"></div></center>
+        </div>
+        <div class="col-md-5">
+          <section class="selected-result-container">
+            <p ng-repeat="sr in selectedresults" class="br-bottom">
+              {{ sr.openfda.substance_name[0]}}<br /><b>Brand:</b> {{ sr.openfda.brand_name[0]}}<a href="javascript:void(0);" style="float:right; cursor:pointer;" ng-click="remove(sr)">Remove</a>
+            </p>
+          </section>
+        </div>
+    </div>
+    <hr />
+    <section class="col-md-12">
+      <div class="col-md-8">
+        <p><a id="mymedurl" href="#" target="_blank"></a></p>
+      </div>
+      <div class="col-md-4">
+        <button id="btnSave" type="button" class="btn btn-primary" ng-click="saveData();">Save</button>
+      </div>      
+      </section>
+      <br /><br />
+  </div>
+
+  <div class="modal fade" id="myModal">
+    <div class="modal-dialog">
+      <div class="modal-content">       
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title">App Description</h4>
+        </div>        
+        <div class="modal-body">
+           <p>The AgileBPA RFQ requires a prototype to be developed as part of the submission. The RFQ document is here -&nbsp;<a data-linked-resource-container-version="1" data-linked-resource-container-id="16318483" data-linked-resource-content-type="application/pdf" data-nice-type="PDF Document" data-linked-resource-default-alias="ADS RFQ Final.pdf" data-linked-resource-type="attachment" data-linked-resource-version="1" data-linked-resource-id="16318482" href="/wiki/download/attachments/16318483/ADS%20RFQ%20Final.pdf?version=1&amp;modificationDate=1435014403482&amp;api=v2">ADS RFQ Final.pdf</a>&nbsp;</p><p>The prototype needs to be based on the data available from http://open.fda.gov API. The team brainstormed on possible ideas and approaches for the prototype documented here. While the idea of ingesting the data from API service and listing it sounded attractive as it would have allowed the development team to focus on meeting the criteria's for the award due to the limited amount of time available for the prototype. The development team eventually decided to create a innovative application of the data available from the API service as it would align with the spirit of the RFQ and also showcase the innovation aspect of the company.&nbsp;</p><p>The use case or business pitch for the application is as follows - During a doctor visit or in an emergency condition it's beneficial to have access to medications that the patient is on to aid the care giver in making the important medical decisions. MyMedlookup.org is a website that allows users to create a list of medications that they take. The website generates a unique url based on the list of medications that have been selected by the user. The user can share the url with their physician or carry it as a printed card which would provide the care giver with the medication information. Future versions of the application will generate a QR code.</p><p>The application flow is as follows</p><ol><li>The main application screen / webpage allows users to search for medications and displays matching results</li><li>Users can populate their medication list by selecting medications from the search result</li><li>Clicking on the Save button generates a unique id that can be appended to the application url. Navigating to this url brings up the populated medications which can be referenced by the care giver</li><li>Subsequent update and save operations create a new unique id</li></ol><p>&nbsp;</p><p>&nbsp;</p>
+        </div>
+      </div>
+    </div>
+  </div>

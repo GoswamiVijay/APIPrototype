@@ -1,0 +1,40 @@
+@charset 'utf-8';
+
+body { font-family: 'Open Sans', sans-serif; font-size: 15px; background-image: url(../images/lightpaperfibers.png); background-repeat: repeat; background-position: 0 0; }
+h1, .h1, h2, .h2 { font-family: 'bellotabold'; }
+
+/* header */
+.navbar { background-image: url(../images/straws.jpg); background-repeat: repeat; background-position: 0 0; }
+.navbar-fixed-top { border-width: 0; }
+.navbar-brand { padding: 0; padding-left: 15px; margin-top: 22px; }
+.navbar-nav > li > a { padding: 5px 20px; margin: 28px 0; }
+.navbar-default .navbar-nav > li > a { color: #ffffff; font-weight: 700; font-size: 16px; }
+.navbar-default .navbar-nav > li:nth-child(4) > a, .navbar-default .navbar-nav > li:nth-child(5) > a, .navbar-default .navbar-nav > li:nth-child(6) > a { color: #b2b2b2; }
+.navbar-default .navbar-nav > li:nth-child(3) { border-right: 1px solid #59565a; }
+.navbar-default .navbar-nav > li:nth-child(4) { border-left: 1px solid #726e73; }
+.navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus { color: #ffbf24; }
+.navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus { background-color: transparent; color: #ffbf24; border: 2px solid #ffbf24; border-radius: 35px; }
+
+.big-slider { margin-top: 86px; height: 750px; overflow: hidden; }
+
+.slide-wrppr { position: absolute; top: 0; left: 0; right: 0; bottom: 0; }
+.slide-wrppr .container { position: relative; height: 100%; }
+.slide-one.slide-text { top: 33%; right: 0; max-width: 600px; position: absolute; text-shadow: 0 1px 2px rgba(0, 0, 0, 0.30); }
+.main-txt { color: #ffffff; font-size: 40px; margin-bottom: 30px; }
+.sub-txt { color: #ffffff; font-size: 20px; margin-bottom: 55px; line-height: 1.6; }
+.btn-slider, a.btn-slider { font-size: 20px; font-weight: 700; background-color: rgba(255, 255, 255, 0.15); text-shadow: none; padding: 12px 45px; margin-top: 25px; border: 3px solid #ffffff; border-radius: 35px; color: #ffffff; transition: all ease 300ms; }
+.btn-slider:hover, a.btn-slider:hover, .btn-slider:focus, a.btn-slider:focus { background-color: rgba(255, 255, 255, 0.25); text-decoration: none; }
+
+/*owl caraousel*/
+.owl-carousel { display: none; position: relative; width: 100%; /*padding: 0 60px 0 50px;*/ }
+.owl-carousel .owl-wrapper-outer { overflow: hidden; position: relative; width: 100%; }
+.owl-carousel .owl-wrapper { display: none; position: relative; }
+.owl-carousel .owl-wrapper, .owl-carousel .owl-item { backface-visibility: hidden; transform: translate3d(0px, 0px, 0px); }
+.owl-carousel .owl-wrapper:after { clear: both; content: "."; display: block; height: 0; line-height: 0; visibility: hidden; }
+.owl-carousel .owl-wrapper, .owl-carousel .owl-item { backface-visibility: hidden; transform: translate3d(0px, 0px, 0px); }
+.owl-carousel .owl-item { float: left; /*margin: 5px 18px;*/ }
+.owl-theme .owl-controls { margin-top: 10px; text-align: center; position: relative; }
+.owl-theme .owl-controls .owl-page { display: inline-block; }
+.owl-theme .owl-controls .owl-page.active span, .owl-theme .owl-controls.clickable .owl-page:hover span { opacity: 1; }
+.owl-theme .owl-controls .owl-page span { background: #869791; border-radius: 20px; display: block; height: 12px; margin: 5px 6px; opacity: 0.5; width: 12px; }
+.owl-theme .owl-controls .owl-buttons div { border-radius: 30px; color: #fff; display: inline-block; font-size: 12px; margin: 5px; padding: 3px 10px; /*position: absolute; bottom: 60px; */ cursor: pointer; }
