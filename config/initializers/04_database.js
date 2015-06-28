@@ -1,6 +1,11 @@
 module.exports = function() {
   var mongoose = require('mongoose'),
-  dbAddress = ['mongodb://52.6.196.227:27017/mymed'];
+  //uncomment if you are using mongodb on your local box
+  //dbAddress = ['mongodb://localhost:27017/mymed'];
+  //uncomment if you are using mongodb with docker
+  dbAddress = ['mongodb://mymedlookupdb:27017/mymed'];
+  //uncomment for production deployment
+  //dbAddress = ['mongodb://52.6.196.227:27017/mymed'];
   mongoose.connect(dbAddress);
 
 }
