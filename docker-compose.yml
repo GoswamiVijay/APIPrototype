@@ -1,6 +1,6 @@
 mymedlookupdb:
   build: ./Docker-db
-  dockerfile: Dockerfile-db
+  dockerfile: Dockerfile
   ports:
    - "27017:27017"
 mymedlookupweb1:
@@ -41,7 +41,7 @@ mymedlookupweb4:
    - mymedlookupdb
 nginx:
   build: ./Docker-nginx
-  dockerfile: Dockerfile-nginx
+  dockerfile: Dockerfile
   links:
     - mymedlookupweb1:mymedlookupweb1
     - mymedlookupweb2:mymedlookupweb2
