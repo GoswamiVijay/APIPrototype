@@ -1,4 +1,4 @@
 {
-	"apiurl" : "http://api.fda.gov/drug/label.json?api_key=1RsGQW3DxtW2AdUK1LXOUPnFaNU3DiEcdX7kBTD3&search=effective_time:[20090601+TO+20140731]+AND+openfda.substance_name:",
+	"apiurl" : "https://api.fda.gov/drug/label.json?api_key=1RsGQW3DxtW2AdUK1LXOUPnFaNU3DiEcdX7kBTD3&search=effective_time:[20090601+TO+20140731]+AND+openfda.substance_name:",
 	"limit" : 100
 }
