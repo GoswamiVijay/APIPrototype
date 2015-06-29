@@ -5,7 +5,7 @@ module.exports = function() {
   //uncomment if you are using mongodb with docker
   //dbAddress = ['mongodb://mymedlookupdb:27017/mymed'];
   //uncomment for production deployment
-  dbAddress = ['mongodb://localhost:27017/mymed'];
+  dbAddress = ['mongodb://54.165.225.158:27017/mymed'];
   mongoose.connect(dbAddress);
 
 }
