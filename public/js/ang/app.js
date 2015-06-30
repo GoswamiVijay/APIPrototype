@@ -8,7 +8,8 @@ angular.module('myApp', [
   'myApp.services',
   'myApp.controllers',
   'myApp.angulardirectives',
-  'myApp.customedirectives'
+  'myApp.customedirectives’,
+  'vcRecaptcha'
   
 ]).
 config(function($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider,uiGmapGoogleMapApiProvider) {
