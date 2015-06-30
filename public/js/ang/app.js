@@ -8,7 +8,7 @@ angular.module('myApp', [
   'myApp.services',
   'myApp.controllers',
   'myApp.angulardirectives',
-  'myApp.customedirectives’,
+  'myApp.customedirectives',
   'vcRecaptcha'
   
 ]).
