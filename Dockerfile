@@ -22,7 +22,8 @@ RUN mkdir -p /src && cp -a /tmp/node_modules /src/
 WORKDIR /src
 ADD . /src
 
-CMD ["/src/setEnvVar-integrationDev.sh”]
+#CMD ["/src/setEnvVar-integrationDev.sh”]
+ENV databaseserver 70.0.0.234
 
 # Expose port
 EXPOSE 4000
