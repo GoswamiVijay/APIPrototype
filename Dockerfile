@@ -22,6 +22,9 @@ RUN mkdir -p /src && cp -a /tmp/node_modules /src/
 WORKDIR /src
 ADD . /src
 
+#RUN /bin/bash -c "source /src/setEnvVar-localDev.sh"
+ENV databaseserver mymedlookupdb
+
 # Expose port
 EXPOSE 4000
 
