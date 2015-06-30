@@ -7,5 +7,4 @@ module.exports = function() {
   //uncomment for production deployment
   dbAddress = ['mongodb://70.0.0.234:27017/mymed'];
   mongoose.connect(dbAddress);
-
 }
