@@ -23,7 +23,7 @@ WORKDIR /src
 ADD . /src
 
 #CMD ["/src/setEnvVar-integrationDev.sh”]
-ENV databaseserver 70.0.0.234
+ENV databaseserver mymedlookup
 
 # Expose port
 EXPOSE 4000
