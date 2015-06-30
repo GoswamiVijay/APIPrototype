@@ -103,6 +103,7 @@ var app=angular.module('myApp.controllers', ['uiGmapgoogle-maps','ui-rangeSlider
         $scope.message = '';
       }
       else{
+        $scope.results = [];
         $scope.message = "No matching results found.";
         $rootScope.showLoading = false;
       }
