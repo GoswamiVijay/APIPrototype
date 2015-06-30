@@ -21,6 +21,34 @@ apiController.getSearchResults = function(res,req) {
   });
 }
 
+apiController.validateCapcha = function(res,req) 
+{
+  var th = this;
+  var data = th.req.body.data;
+
+//https://www.google.com/recaptcha/api/siteverify
+//secret 	Required. The shared key between your site and ReCAPTCHA.
+//response 	Required. The user response token provided by the reCAPTCHA to the user and provided to your site on.
+//remoteip 	Optional. The user's IP address.
+
+  request.post(
+    settings.ReCapchaURL,
+    { form: { secret: settings.ReCapchaSecretKey,response:data,remoteip:''} },
+    function (error, response, body) 
+      {
+        if (!error && response.statusCode == 200) 
+        {
+            console.log(body)
+            return th.res.json({success: true});
+        }else
+        {
+            console.log(error)
+            return th.res.json({success: false});
+        }
+    }
+  );    
+}
+
 apiController.saveData = function(res,req) {
   var th = this;
   var data = th.req.body.data;
