@@ -2,14 +2,16 @@ var locomotive = require('locomotive'),
 Controller = locomotive.Controller;
 var request = require('request');
 var mymed = require('../models/mymed');
-var settings = require('../../config/settings.json');
+var applicationConfig = require('../../config/applicationConfig');
+var applicationSettings = require('../../config/settings.json');
 var ObjectId = require('mongoose').Types.ObjectId;
 var apiController = new Controller();
 
 apiController.getSearchResults = function(res,req) {
   var th = this;
   var query = th.req.param('q');
-  var url = settings.apiurl+query+"&limit="+settings.limit;
+  var url = applicationConfig.openFDA.url+query+"&limit="+applicationConfig.openFDA.searchResultLimit;
+  console.log(url);
   request(url, function (error, response, body) {
     if (!error && response.statusCode == 200) {
       var d = JSON.parse(body);
@@ -32,8 +34,8 @@ apiController.validateCapcha = function(res,req)
 //remoteip 	Optional. The user's IP address.
 
   request.post(
-    settings.ReCapchaURL,
-    { form: { secret: settings.ReCapchaSecretKey,response:data,remoteip:''} },
+    applicationConfig.captcha.url,
+    { form: { secret: applicationConfig.captcha.secretKey,response:data,remoteip:''} },
     function (error, response, body) 
       {
         if (!error && response.statusCode == 200) 
