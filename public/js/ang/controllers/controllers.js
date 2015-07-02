@@ -81,7 +81,7 @@ var app=angular.module('myApp.controllers', ['uiGmapgoogle-maps','ui-rangeSlider
       $http.get('/getData?id='+id)
       .success(function(data){
         if (data.success){
-          $scope.selectedresults = data.result.data;
+          $scope.selectedresults = data.result.drugJson.data;
         }
       })
       .error(function(error){

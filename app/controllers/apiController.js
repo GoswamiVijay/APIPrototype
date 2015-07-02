@@ -3,9 +3,9 @@ Controller = locomotive.Controller;
 var request = require('request');
 var mymed = require('../models/mymed');
 var applicationConfig = require('../../config/applicationConfig');
-var applicationSettings = require('../../config/settings.json');
 var ObjectId = require('mongoose').Types.ObjectId;
 var apiController = new Controller();
+var uuid = require('uuid');
 
 apiController.getSearchResults = function(res,req) {
   var th = this;
@@ -54,12 +54,13 @@ apiController.validateCapcha = function(res,req)
 apiController.saveData = function(res,req) {
   var th = this;
   var data = th.req.body.data;
-  var newmymed = new mymed(th.req.body); 
+  var recordId = uuid.v4();
+  var newmymed = new mymed({"recordId": recordId, "drugJson" : th.req.body}); 
   newmymed.save(function (err) {
       if(err) {
           return th.res.json({success: false, id: ''});
       } else {
-        th.res.json({success: true, id: newmymed._id});
+        th.res.json({success: true, id: recordId});
       }
     });
 }
@@ -80,7 +81,7 @@ apiController.updateData = function(res,req) {
 apiController.getData = function(res,req) {
   var th = this;
   var id = th.req.param('id');
-  mymed.findOne({_id: ObjectId(id)}, function(e,r){
+  mymed.findOne({"recordId": id}, function(e,r){
     if(r){
       th.res.json({success: true, result: r});
     }
