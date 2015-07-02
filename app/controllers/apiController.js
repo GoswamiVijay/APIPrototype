@@ -2,14 +2,16 @@ var locomotive = require('locomotive'),
 Controller = locomotive.Controller;
 var request = require('request');
 var mymed = require('../models/mymed');
-var settings = require('../../config/settings.json');
+var applicationConfig = require('../../config/applicationConfig');
 var ObjectId = require('mongoose').Types.ObjectId;
 var apiController = new Controller();
+var uuid = require('uuid');
 
 apiController.getSearchResults = function(res,req) {
   var th = this;
   var query = th.req.param('q');
-  var url = settings.apiurl+query+"&limit="+settings.limit;
+  var url = applicationConfig.openFDA.url+query+"&limit="+applicationConfig.openFDA.searchResultLimit;
+  console.log(url);
   request(url, function (error, response, body) {
     if (!error && response.statusCode == 200) {
       var d = JSON.parse(body);
@@ -32,8 +34,8 @@ apiController.validateCapcha = function(res,req)
 //remoteip 	Optional. The user's IP address.
 
   request.post(
-    settings.ReCapchaURL,
-    { form: { secret: settings.ReCapchaSecretKey,response:data,remoteip:''} },
+    applicationConfig.captcha.url,
+    { form: { secret: applicationConfig.captcha.secretKey,response:data,remoteip:''} },
     function (error, response, body) 
       {
         if (!error && response.statusCode == 200) 
@@ -52,12 +54,13 @@ apiController.validateCapcha = function(res,req)
 apiController.saveData = function(res,req) {
   var th = this;
   var data = th.req.body.data;
-  var newmymed = new mymed(th.req.body); 
+  var recordId = uuid.v4();
+  var newmymed = new mymed({"recordId": recordId, "drugJson" : th.req.body}); 
   newmymed.save(function (err) {
       if(err) {
           return th.res.json({success: false, id: ''});
       } else {
-        th.res.json({success: true, id: newmymed._id});
+        th.res.json({success: true, id: recordId});
       }
     });
 }
@@ -78,7 +81,7 @@ apiController.updateData = function(res,req) {
 apiController.getData = function(res,req) {
   var th = this;
   var id = th.req.param('id');
-  mymed.findOne({_id: ObjectId(id)}, function(e,r){
+  mymed.findOne({"recordId": id}, function(e,r){
     if(r){
       th.res.json({success: true, result: r});
     }
