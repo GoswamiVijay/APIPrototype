@@ -12,8 +12,7 @@ module.exports = function routes() {
 
   	this.get('/applicationConfig', function(req, res){
     	var config = {captchaSiteKey:applicationConfig.captcha.siteKey,applicationMode:applicationConfig.application.mode};
-    	var json = JSON.stringify(config);
-    	res.end('var applicationConfig='+json+";");
+        return res.json({success: true, applicationConfig:config});
 	});
 
 }

@@ -8,6 +8,8 @@ var app=angular.module('myApp.controllers', ['uiGmapgoogle-maps','ui-rangeSlider
 //capcah codes 
     $scope.response = null;
     $scope.widgetId = null;
+    $scope.AppDevelopmentMode = false;
+    
     $scope.model = {
         key: '6Lf3GgkTAAAAAM-KwKq3KxS4-7g40bbLA7jWEyBv'
     };
@@ -19,48 +21,54 @@ var app=angular.module('myApp.controllers', ['uiGmapgoogle-maps','ui-rangeSlider
         console.info('Created widget ID: %s', widgetId);
         $scope.widgetId = widgetId;
     };
+    
+        //Get App settings 
+    $scope.GetApplicationConfig = function()
+    {
+        $http.get('/applicationConfig')
+        .success(function(data)
+        {
+          console.log(data);    
+          if(data.success)
+          {
+            $scope.AppDevelopmentMode = (data.applicationConfig.applicationMode === 'develop') ? false : true ;
+            $scope.model.key = data.applicationConfig.captchaSiteKey;
+          }
+        }).error(function(err){ console.log(err); });       
+    };
+    $scope.GetApplicationConfig();
+
     $scope.submitCapcha = function () 
     {
         var valid;
-        /**
-         * SERVER SIDE VALIDATION
-         *
-         * You need to implement your server side validation here.
-         * Send the reCaptcha response to the server and use some of the server side APIs to validate it
-         * See https://developers.google.com/recaptcha/docs/verify
-         */
         if($scope.selectedresults.length == 0)
         {
             alert('Please add some medications.');
             return;
         }
-        //validateCapcha
-        if($scope.response)
+        if($scope.AppDevelopmentMode)
         {
-            $http.post('/validateCapcha',{data: $scope.response})
-            .success(function(data){
-            if(data.success)
+            //validateCapcha
+            if($scope.response)
             {
-                //alert('Sucess');
-                $scope.saveData();
-            }
-            else
+                $http.post('/validateCapcha',{data: $scope.response})
+                .success(function(data){
+                    if(data.success) { $scope.saveData(); }
+                    else{ vcRecaptchaService.reload($scope.widgetId); }
+                }).error(function(err)
+                {
+                    console.log(err);
+                    vcRecaptchaService.reload($scope.widgetId);    
+                });
+            }else
             {
-                //alert('Error occured');
-                vcRecaptchaService.reload($scope.widgetId);
+                alert('Please confirm.You are not a robot?');    
             }
-        })
-        .error(function(err)
-        {
-            console.log(err);
-            vcRecaptchaService.reload($scope.widgetId);    
-        });
         }else
         {
-            alert('Please confirm.You are not a robot?');    
-        }
+            $scope.saveData();
+        }    
     };
-    
 
   $rootScope.showLoading = false;
   $scope.search = {}; 
