@@ -1,5 +1,5 @@
 module.exports = function() {
-  var databaseserver  = process.env.databaseserver || 'localhost';
+  var databaseserver  = process.env.databaseServer || 'localhost';
   var mongoose = require('mongoose');
   //uncomment if you are using mongodb on your local box
   //dbAddress = ['mongodb://localhost:27017/mymed'];
