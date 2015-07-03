@@ -218,6 +218,12 @@ var app=angular.module('myApp.controllers', ['uiGmapgoogle-maps','ui-rangeSlider
       $scope.paginateResults();
     }
   });
+
+  $scope.selectedMedication = {};    
+  $scope.showMedicationInfo = function(medication)    
+  {
+      $scope.selectedMedication = medication;
+  };
   
 }); 
 

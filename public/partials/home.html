@@ -1,7 +1,7 @@
 <div class="container" ng-init="init()">
     <div class="row">
       <div class="col-md-9">
-        <a href="/"><h1>My Medication List</h1></a>
+        <a href="/" style="text-decoration:none"><h1>My Medication List</h1></a>
       </div>
       <div class="col-md-3">
         <a id="btnhelp" target="_blank" href="/help" class="btn btn-primary" style="float:right; margin-top:15px;">Help</a>
@@ -23,7 +23,7 @@
         <div id="searchContainer" class="col-md-6" style="height:550px;overflow: auto;">
           <section class="result-container"> 
            <div ng-repeat="r in results">
-            <p  class="br-bottom">
+            <p  class="br-bottom" ng-click="showMedicationInfo(r)" data-toggle="modal" data-target="#MedicationModel">
               {{ r.openfda.substance_name[0]}}<br />
               <b>Product Type:</b> {{ r.openfda.product_type[0]}}<br/>
               <b>Manufacturer:</b> {{ r.openfda.manufacturer_name[0]}} <br/>
@@ -72,7 +72,35 @@
       </section>
       <br /><br />
   </div>
-
+  <div class="modal fade" id="MedicationModel" modal="showModal" close="cancel()">
+    <div class="modal-dialog">
+      <div class="modal-content">       
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title">Medication Info</h4>
+        </div>        
+        <div class="modal-body">
+            <p><b>Substance name :</b> {{selectedMedication.openfda.substance_name[0]}}</p>
+            <p><b>Product type :</b> {{selectedMedication.openfda.product_type[0]}}</p>
+            <p><b>Manufacturer name :</b> {{selectedMedication.openfda.manufacturer_name[0]}}</p>
+            <p><b>Brand name :</b> {{selectedMedication.openfda.brand_name[0]}}</p>
+            <p><b>Pharm class moa :</b> {{selectedMedication.openfda.pharm_class_moa[0]}}</p>
+            <p><b>Pharm class epc :</b> {{selectedMedication.openfda.pharm_class_epc[0]}}</p>
+            <p><b>Generic name :</b> {{selectedMedication.openfda.generic_name[0]}}</p>
+            <p><b>Spl product data elements :</b> {{selectedMedication.spl_product_data_elements[0]}}</p>
+            <p><b>Warnings :</b> {{selectedMedication.warnings[0]}}</p>
+            <p><b>Indications and usage :</b> {{selectedMedication.indications_and_usage[0]}}</p>
+            <p><b>Keep out of reach of children :</b> {{selectedMedication.keep_out_of_reach_of_children[0]}}</p>
+            <p><b>Dosage and administration :</b> {{selectedMedication.dosage_and_administration[0]}}</p>
+            <p><b>Purpose :</b> {{selectedMedication.purpose[0]}}</p>
+            <p><b>Pregnancy or breast feeding :</b> {{selectedMedication.pregnancy_or_breast_feeding[0]}}</p>
+            <p><b>Active ingredient :</b> {{selectedMedication.active_ingredient[0]}}</p>
+            <p><b>Inactive ingredient :</b> {{selectedMedication.inactive_ingredient[0]}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  
   <div class="modal fade" id="myModal">
     <div class="modal-dialog">
       <div class="modal-content">       
