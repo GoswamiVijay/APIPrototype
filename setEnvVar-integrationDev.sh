@@ -1,2 +1,2 @@
 #!/bin/bash
-export databaseserver=70.0.0.234
+export databaseServer=70.0.0.234
