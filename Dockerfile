@@ -23,7 +23,7 @@ WORKDIR /src
 ADD . /src
 
 #CMD ["/src/setEnvVar-integrationDev.sh”]
-ENV databaseServer mymedlookup
+ENV databaseServer mymedlookupdb
 ENV applicationMode develop
 ENV captchaSecretKey 6Lf3GgkTAAAAAOSkHedz_ys5RI8-vzeJgrqYRSyR
 ENV captchaUrl https://www.google.com/recaptcha/api/siteverify
