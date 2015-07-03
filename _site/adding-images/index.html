@@ -4,15 +4,15 @@
   <head>
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta charset="utf-8">
-  <title>Adding images - 18F Guides Template</title>
+  <title>Adding Images - My Medication List - Prototype</title>
   <meta name="viewport" content="width=device-width">
   <link href='//fonts.googleapis.com/css?family=Raleway:400,700%7COpen+Sans:300,600' rel='stylesheet' type='text/css'>
-  <link rel="stylesheet" href="/guides-template/assets/css/main.css">
-  <link rel="stylesheet" href="/guides-template/assets/css/syntax.css">
-  <link rel="stylesheet" href="/guides-template/assets/css/custom.css">
+  <link rel="stylesheet" href="/APIPrototype/assets/css/main.css">
+  <link rel="stylesheet" href="/APIPrototype/assets/css/syntax.css">
+  <link rel="stylesheet" href="/APIPrototype/assets/css/custom.css">
   <!--[if lt IE 9]>
-    <script src="/guides-template/assets/js/html5shiv.js"></script>
-    <script src="/guides-template/assets/js/respond.js"></script>
+    <script src="/APIPrototype/assets/js/html5shiv.js"></script>
+    <script src="/APIPrototype/assets/js/respond.js"></script>
   <![endif]-->
 </head>
 
@@ -25,9 +25,9 @@
 
         <div class="wrap">
           
-            <img class="logo" src="/guides-template/assets/img/18f-logo.png" alt="18F logo" width="75px">
+            <img class="logo" src="/APIPrototype/assets/img/18f-logo.png" alt="18F logo" width="75px">
           
-          <h1 class="site-title"><a class="title-link" href="/guides-template/">18F Guides Template</a></h1>
+          <h1 class="site-title"><a class="title-link" href="/APIPrototype/">My Medication List - Prototype</a></h1>
         </div>
         
       </header>
@@ -42,37 +42,67 @@
       
         
           <li >
-            <a href="/guides-template/index.html"  >Introduction</a>
+            <a href="/APIPrototype/index.html"  >Introduction</a>
           </li>
         
       
         
           <li >
-            <a href="/guides-template/adding-a-new-page/"  >Adding a New Page</a>
+            <a href="/APIPrototype/about/"  >About</a>
           </li>
         
       
         
           <li >
-            <a href="/guides-template/adding-images/"  >Adding Images</a>
+            <a href="/APIPrototype/methodology/"  >Methodology</a>
           </li>
         
       
         
           <li >
-            <a href="/guides-template/updating-the-config-file/"  >Updating the Config File</a>
+            <a href="/APIPrototype/design/"  >Design</a>
           </li>
         
       
         
           <li >
-            <a href="/guides-template/github-setup/"  >GitHub Setup</a>
+            <a href="/APIPrototype/development/"  >Development</a>
           </li>
         
       
         
           <li >
-            <a href="/guides-template/post-your-guide/"  >Post Your Guide</a>
+            <a href="/APIPrototype/testing/"  >Testing</a>
+          </li>
+        
+      
+        
+          <li >
+            <a href="/APIPrototype/deployment/"  >Deployment</a>
+          </li>
+        
+      
+        
+          <li >
+            <a href="/APIPrototype/configuration-management/"  >Configuration Management</a>
+          </li>
+        
+      
+        
+          <li >
+            <a href="/APIPrototype/support-and-monitoring/"  >Support and Monitoring</a>
+          </li>
+        
+      
+        
+          <li >
+            <a href="/APIPrototype/miscellaneous/"  >Miscellaneous</a>
+          </li>
+        
+      
+        
+          <li >
+            <a href="/APIPrototype/rfq-evaluation-criteria-evidence/"  >RFQ Evidence</a>
           </li>
         
       
@@ -82,7 +112,7 @@
 
 
         <section id="main" class="main-content" role="main">
-          <h1>Adding images</h1>
+          <h1>Adding Images</h1>
           <p>To add images to your guide, first create an <code>images/</code> directory and place
 your images inside. You may want to use
 <a href="https://github.com/tjko/jpegoptim">jpegoptim</a> or
@@ -92,10 +122,10 @@ both are available via <a href="http://brew.sh/">Homebrew</a>.)</p>
 <p>Then, from your documents, you can reference your images like so (abiding by
 the advice in the <a href="http://18f.github.io/accessibility/images/">Accessibility
 Guide</a>):</p>
-<div class="highlight"><pre><code class="language-" data-lang="">&lt;img src="{{site.baseurl}}/images/images.png" alt="Example of
-an included image"&gt;
+<div class="highlight"><pre><code class="language-text" data-lang="text">&lt;img src=&quot;{{site.baseurl}}/images/images.png&quot; alt=&quot;Example of
+an included image&quot;&gt;
 </code></pre></div>
-<p><img src="/guides-template/images/images.png" alt="Example of an included image"></p>
+<p><img src="/APIPrototype/images/images.png" alt="Example of an included image"></p>
 
 <p>Now click on the <em>Updating the Config File</em> entry in the table of contents.</p>
 
@@ -105,10 +135,10 @@ an included image"&gt;
 
       <footer role="contentinfo">
   <div class="wrap">
-    <p>This project is maintained by <a href="https://18f.gsa.gov">18F</a>.</p>
+    <p>This project is maintained by <a href="http://www.xfinion.com">Xfinion</a>.</p>
 
     <p>Hosted on <a href="https://github.com/18F/pages/">18F Pages</a>.</p>
-    <p><a href="https://github.com/18F/guides-template/edit/18f-pages/pages/images.md">Edit this page on GitHub</a></p>
+    <p><a href="https://github.com/goswamivijay/APIPrototype/edit/18f-pages/pages/images.md">Edit this page on GitHub</a></p>
   </div><!--/.wrap -->
 </footer>
 
@@ -121,7 +151,7 @@ an included image"&gt;
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
   m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
   })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-  ga('create', 'UA-48605964-19', 'gsa.gov');
+  ga('create', 'UA-64764688-1', 'gsa.gov');
 
   // anonymize user IPs (chops off the last IP triplet)
   ga('set', 'anonymizeIp', true);

@@ -4,15 +4,15 @@
   <head>
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta charset="utf-8">
-  <title>Updating the config file - 18F Guides Template</title>
+  <title>Updating the Config File - My Medication List - Prototype</title>
   <meta name="viewport" content="width=device-width">
   <link href='//fonts.googleapis.com/css?family=Raleway:400,700%7COpen+Sans:300,600' rel='stylesheet' type='text/css'>
-  <link rel="stylesheet" href="/guides-template/assets/css/main.css">
-  <link rel="stylesheet" href="/guides-template/assets/css/syntax.css">
-  <link rel="stylesheet" href="/guides-template/assets/css/custom.css">
+  <link rel="stylesheet" href="/APIPrototype/assets/css/main.css">
+  <link rel="stylesheet" href="/APIPrototype/assets/css/syntax.css">
+  <link rel="stylesheet" href="/APIPrototype/assets/css/custom.css">
   <!--[if lt IE 9]>
-    <script src="/guides-template/assets/js/html5shiv.js"></script>
-    <script src="/guides-template/assets/js/respond.js"></script>
+    <script src="/APIPrototype/assets/js/html5shiv.js"></script>
+    <script src="/APIPrototype/assets/js/respond.js"></script>
   <![endif]-->
 </head>
 
@@ -25,9 +25,9 @@
 
         <div class="wrap">
           
-            <img class="logo" src="/guides-template/assets/img/18f-logo.png" alt="18F logo" width="75px">
+            <img class="logo" src="/APIPrototype/assets/img/18f-logo.png" alt="18F logo" width="75px">
           
-          <h1 class="site-title"><a class="title-link" href="/guides-template/">18F Guides Template</a></h1>
+          <h1 class="site-title"><a class="title-link" href="/APIPrototype/">My Medication List - Prototype</a></h1>
         </div>
         
       </header>
@@ -42,37 +42,67 @@
       
         
           <li >
-            <a href="/guides-template/index.html"  >Introduction</a>
+            <a href="/APIPrototype/index.html"  >Introduction</a>
           </li>
         
       
         
           <li >
-            <a href="/guides-template/adding-a-new-page/"  >Adding a New Page</a>
+            <a href="/APIPrototype/about/"  >About</a>
           </li>
         
       
         
           <li >
-            <a href="/guides-template/adding-images/"  >Adding Images</a>
+            <a href="/APIPrototype/methodology/"  >Methodology</a>
           </li>
         
       
         
           <li >
-            <a href="/guides-template/updating-the-config-file/"  >Updating the Config File</a>
+            <a href="/APIPrototype/design/"  >Design</a>
           </li>
         
       
         
           <li >
-            <a href="/guides-template/github-setup/"  >GitHub Setup</a>
+            <a href="/APIPrototype/development/"  >Development</a>
           </li>
         
       
         
           <li >
-            <a href="/guides-template/post-your-guide/"  >Post Your Guide</a>
+            <a href="/APIPrototype/testing/"  >Testing</a>
+          </li>
+        
+      
+        
+          <li >
+            <a href="/APIPrototype/deployment/"  >Deployment</a>
+          </li>
+        
+      
+        
+          <li >
+            <a href="/APIPrototype/configuration-management/"  >Configuration Management</a>
+          </li>
+        
+      
+        
+          <li >
+            <a href="/APIPrototype/support-and-monitoring/"  >Support and Monitoring</a>
+          </li>
+        
+      
+        
+          <li >
+            <a href="/APIPrototype/miscellaneous/"  >Miscellaneous</a>
+          </li>
+        
+      
+        
+          <li >
+            <a href="/APIPrototype/rfq-evaluation-criteria-evidence/"  >RFQ Evidence</a>
           </li>
         
       
@@ -82,7 +112,7 @@
 
 
         <section id="main" class="main-content" role="main">
-          <h1>Updating the config file</h1>
+          <h1>Updating the Config File</h1>
           <ul>
 <li><a href="#set-baseurl-and-name">Set the base URL and guide name</a></li>
 <li><a href="#copy-exclude-entries">Copy the <code>exclude:</code> entries</a></li>
@@ -103,70 +133,84 @@ set <code>baseurl:</code> to the name of your new guide&#39;s repository; this i
 to ensure that it will be published correctly.</p>
 
 <p>For example, for this template, these values are set to:</p>
-<div class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="s">baseurl</span><span class="pi">:</span> <span class="s">/guides-template</span>
-<span class="s">name</span><span class="pi">:</span> <span class="s">18F Guides Template</span>
+<div class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="l-Scalar-Plain">baseurl</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">/APIPrototype</span>
+<span class="l-Scalar-Plain">name</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">My Medication List - Prototype</span>
 </code></pre></div>
 <p>When run locally, the URL for this guide is
-<code>http://localhost:4000/guides-template/</code>. <strong>Remember to include the trailing
-<code>/</code> when serving locally!</strong> The Jekyll built-in webserver doesn&#39;t redirect to
+<code>http://localhost:4000/APIPrototype/</code>. <em>Remember to include the trailing
+<code>/</code> when serving locally!</em> The Jekyll built-in webserver doesn&#39;t redirect to
 it automatically.</p>
 
 <p>The URLs of the individual section pages are relative to the <code>baseurl:</code>. For
 example, the <code>permalink:</code> of this page is <code>/updating-the-config-file/</code>. The full local
-URL is <code>http://localhost:4000/guides-template/updating-the-config-file/</code>.</p>
+URL is <code>http://localhost:4000/APIPrototype/updating-the-config-file/</code>.</p>
 
 <h2><a name="copy-exclude-entries"></a>Copy the <code>exclude:</code> entries</h2>
 
 <p>Make sure that you update the <code>exclude:</code> list to contain at least the
 following files so that they are not copied to your generated <code>_site</code>
 directory:</p>
-<div class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="s">exclude</span><span class="pi">:</span>
-<span class="pi">-</span> <span class="s">go</span>
-<span class="pi">-</span> <span class="s">Gemfile</span>
-<span class="pi">-</span> <span class="s">Gemfile.lock</span>
-<span class="pi">-</span> <span class="s">README.md</span>
-<span class="pi">-</span> <span class="s">LICENSE.md</span>
+<div class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="l-Scalar-Plain">exclude</span><span class="p-Indicator">:</span>
+<span class="p-Indicator">-</span> <span class="l-Scalar-Plain">go</span>
+<span class="p-Indicator">-</span> <span class="l-Scalar-Plain">Gemfile</span>
+<span class="p-Indicator">-</span> <span class="l-Scalar-Plain">Gemfile.lock</span>
+<span class="p-Indicator">-</span> <span class="l-Scalar-Plain">README.md</span>
+<span class="p-Indicator">-</span> <span class="l-Scalar-Plain">LICENSE.md</span>
 </code></pre></div>
 <h2><a name="register-new-pages"></a>Register new pages</h2>
 
 <p>The <code>navigation:</code> list is used to generate the table of contents. Add a new
 entry for any new page added. For example, the <code>navigation:</code> section of this
 guide contains:</p>
-<div class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="s">navigation</span><span class="pi">:</span>
-<span class="pi">-</span> <span class="s">text</span><span class="pi">:</span> <span class="s">Introduction</span>
-  <span class="s">url</span><span class="pi">:</span> <span class="s">index.html</span>
-  <span class="s">internal</span><span class="pi">:</span> <span class="s">true</span>
-<span class="pi">-</span> <span class="s">text</span><span class="pi">:</span> <span class="s">Adding a New Page</span>
-  <span class="s">url</span><span class="pi">:</span> <span class="s">adding-a-new-page/</span>
-  <span class="s">internal</span><span class="pi">:</span> <span class="s">true</span>
-<span class="pi">-</span> <span class="s">text</span><span class="pi">:</span> <span class="s">Adding Images</span>
-  <span class="s">url</span><span class="pi">:</span> <span class="s">adding-images/</span>
-  <span class="s">internal</span><span class="pi">:</span> <span class="s">true</span>
-<span class="pi">-</span> <span class="s">text</span><span class="pi">:</span> <span class="s">Updating the Config File</span>
-  <span class="s">url</span><span class="pi">:</span> <span class="s">updating-the-config-file/</span>
-  <span class="s">internal</span><span class="pi">:</span> <span class="s">true</span>
-<span class="pi">-</span> <span class="s">text</span><span class="pi">:</span> <span class="s">GitHub Setup</span>
-  <span class="s">url</span><span class="pi">:</span> <span class="s">github-setup/</span>
-  <span class="s">internal</span><span class="pi">:</span> <span class="s">true</span>
-<span class="pi">-</span> <span class="s">text</span><span class="pi">:</span> <span class="s">Post Your Guide</span>
-  <span class="s">url</span><span class="pi">:</span> <span class="s">post-your-guide/</span>
-  <span class="s">internal</span><span class="pi">:</span> <span class="s">true</span>
+<div class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="l-Scalar-Plain">navigation</span><span class="p-Indicator">:</span>
+<span class="p-Indicator">-</span> <span class="l-Scalar-Plain">text</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">Introduction</span>
+  <span class="l-Scalar-Plain">url</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">index.html</span>
+  <span class="l-Scalar-Plain">internal</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">true</span>
+<span class="p-Indicator">-</span> <span class="l-Scalar-Plain">text</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">About</span>
+  <span class="l-Scalar-Plain">url</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">about/</span>
+  <span class="l-Scalar-Plain">internal</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">true</span>
+<span class="p-Indicator">-</span> <span class="l-Scalar-Plain">text</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">Methodology</span>
+  <span class="l-Scalar-Plain">url</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">methodology/</span>
+  <span class="l-Scalar-Plain">internal</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">true</span>
+<span class="p-Indicator">-</span> <span class="l-Scalar-Plain">text</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">Design</span>
+  <span class="l-Scalar-Plain">url</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">design/</span>
+  <span class="l-Scalar-Plain">internal</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">true</span>
+<span class="p-Indicator">-</span> <span class="l-Scalar-Plain">text</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">Development</span>
+  <span class="l-Scalar-Plain">url</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">development/</span>
+  <span class="l-Scalar-Plain">internal</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">true</span>
+<span class="p-Indicator">-</span> <span class="l-Scalar-Plain">text</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">Testing</span>
+  <span class="l-Scalar-Plain">url</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">testing/</span>
+  <span class="l-Scalar-Plain">internal</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">true</span>
+<span class="p-Indicator">-</span> <span class="l-Scalar-Plain">text</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">Deployment</span>
+  <span class="l-Scalar-Plain">url</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">deployment/</span>
+  <span class="l-Scalar-Plain">internal</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">true</span>
+<span class="p-Indicator">-</span> <span class="l-Scalar-Plain">text</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">Configuration Management</span>
+  <span class="l-Scalar-Plain">url</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">configuration-management/</span>
+  <span class="l-Scalar-Plain">internal</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">true</span>
+<span class="p-Indicator">-</span> <span class="l-Scalar-Plain">text</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">Support and Monitoring</span>
+  <span class="l-Scalar-Plain">url</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">support-and-monitoring/</span>
+  <span class="l-Scalar-Plain">internal</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">true</span>
+<span class="p-Indicator">-</span> <span class="l-Scalar-Plain">text</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">Miscellaneous</span>
+  <span class="l-Scalar-Plain">url</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">miscellaneous/</span>
+  <span class="l-Scalar-Plain">internal</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">true</span>
+<span class="p-Indicator">-</span> <span class="l-Scalar-Plain">text</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">RFQ Evidence</span>
+  <span class="l-Scalar-Plain">url</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">rfq-evaluation-criteria-evidence/</span>
+  <span class="l-Scalar-Plain">internal</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">true</span>
 </code></pre></div>
 <h2><a name="update-repository-list"></a>Update the repository list</h2>
 
 <p>You will also need to update the <code>repos:</code> list to reflect the GitHub
 repository containing your guide. The <code>repos:</code> entry of this template
 contains:</p>
-<div class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="s">repos</span><span class="pi">:</span>
-<span class="pi">-</span> <span class="s">name</span><span class="pi">:</span> <span class="s">Guides Template</span>
-  <span class="s">description</span><span class="pi">:</span> <span class="s">Main repository</span>
-  <span class="s">url</span><span class="pi">:</span> <span class="s">https://github.com/18F/guides-template</span>
-
+<div class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="l-Scalar-Plain">repos</span><span class="p-Indicator">:</span>
+<span class="p-Indicator">-</span> <span class="l-Scalar-Plain">name</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">Guides Template</span>
+  <span class="l-Scalar-Plain">description</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">Main repository</span>
+  <span class="l-Scalar-Plain">url</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">https://github.com/goswamivijay/APIPrototype</span>
 </code></pre></div>
 <h2><a name="set-google-analytics"></a>Set <code>google_analytics_ua</code></h2>
 
 <p>Set <code>google_analytics_ua</code> to the following, if it isn&#39;t set already:</p>
-<div class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="s">google_analytics_ua</span><span class="pi">:</span> <span class="s">UA-48605964-19</span>
+<div class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="l-Scalar-Plain">google_analytics_ua</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">UA-64764688-1</span>
 </code></pre></div>
         </section>
 
@@ -174,10 +218,10 @@ contains:</p>
 
       <footer role="contentinfo">
   <div class="wrap">
-    <p>This project is maintained by <a href="https://18f.gsa.gov">18F</a>.</p>
+    <p>This project is maintained by <a href="http://www.xfinion.com">Xfinion</a>.</p>
 
     <p>Hosted on <a href="https://github.com/18F/pages/">18F Pages</a>.</p>
-    <p><a href="https://github.com/18F/guides-template/edit/18f-pages/pages/config.md">Edit this page on GitHub</a></p>
+    <p><a href="https://github.com/goswamivijay/APIPrototype/edit/18f-pages/pages/config.md">Edit this page on GitHub</a></p>
   </div><!--/.wrap -->
 </footer>
 
@@ -190,7 +234,7 @@ contains:</p>
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
   m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
   })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-  ga('create', 'UA-48605964-19', 'gsa.gov');
+  ga('create', 'UA-64764688-1', 'gsa.gov');
 
   // anonymize user IPs (chops off the last IP triplet)
   ga('set', 'anonymizeIp', true);

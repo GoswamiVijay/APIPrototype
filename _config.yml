@@ -1,7 +1,7 @@
 #based on repo at https://github.com/18F/guides-template/tree/publishing
 baseurl: /APIPrototype
 markdown: redcarpet
-name: 18F Guides Template
+name: My Medication List - Prototype
 exclude:
 - go
 - copy-template
@@ -27,20 +27,35 @@ navigation:
 - text: Introduction
   url: index.html
   internal: true
-- text: Adding a New Page
-  url: adding-a-new-page/
+- text: About
+  url: about/
   internal: true
-- text: Adding Images
-  url: adding-images/
+- text: Methodology
+  url: methodology/
   internal: true
-- text: Updating the Config File
-  url: updating-the-config-file/
+- text: Design
+  url: design/
   internal: true
-- text: GitHub Setup
-  url: github-setup/
+- text: Development
+  url: development/
   internal: true
-- text: Post Your Guide
-  url: post-your-guide/
+- text: Testing
+  url: testing/
+  internal: true
+- text: Deployment
+  url: deployment/
+  internal: true
+- text: Configuration Management
+  url: configuration-management/
+  internal: true
+- text: Support and Monitoring
+  url: support-and-monitoring/
+  internal: true  
+- text: Miscellaneous
+  url: miscellaneous/
+  internal: true
+- text: RFQ Evidence
+  url: rfq-evaluation-criteria-evidence/
   internal: true
 
 repos:

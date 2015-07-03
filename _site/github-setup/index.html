@@ -4,15 +4,15 @@
   <head>
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta charset="utf-8">
-  <title>GitHub setup - 18F Guides Template</title>
+  <title>GitHub Setup - My Medication List - Prototype</title>
   <meta name="viewport" content="width=device-width">
   <link href='//fonts.googleapis.com/css?family=Raleway:400,700%7COpen+Sans:300,600' rel='stylesheet' type='text/css'>
-  <link rel="stylesheet" href="/guides-template/assets/css/main.css">
-  <link rel="stylesheet" href="/guides-template/assets/css/syntax.css">
-  <link rel="stylesheet" href="/guides-template/assets/css/custom.css">
+  <link rel="stylesheet" href="/APIPrototype/assets/css/main.css">
+  <link rel="stylesheet" href="/APIPrototype/assets/css/syntax.css">
+  <link rel="stylesheet" href="/APIPrototype/assets/css/custom.css">
   <!--[if lt IE 9]>
-    <script src="/guides-template/assets/js/html5shiv.js"></script>
-    <script src="/guides-template/assets/js/respond.js"></script>
+    <script src="/APIPrototype/assets/js/html5shiv.js"></script>
+    <script src="/APIPrototype/assets/js/respond.js"></script>
   <![endif]-->
 </head>
 
@@ -25,9 +25,9 @@
 
         <div class="wrap">
           
-            <img class="logo" src="/guides-template/assets/img/18f-logo.png" alt="18F logo" width="75px">
+            <img class="logo" src="/APIPrototype/assets/img/18f-logo.png" alt="18F logo" width="75px">
           
-          <h1 class="site-title"><a class="title-link" href="/guides-template/">18F Guides Template</a></h1>
+          <h1 class="site-title"><a class="title-link" href="/APIPrototype/">My Medication List - Prototype</a></h1>
         </div>
         
       </header>
@@ -42,37 +42,67 @@
       
         
           <li >
-            <a href="/guides-template/index.html"  >Introduction</a>
+            <a href="/APIPrototype/index.html"  >Introduction</a>
           </li>
         
       
         
           <li >
-            <a href="/guides-template/adding-a-new-page/"  >Adding a New Page</a>
+            <a href="/APIPrototype/about/"  >About</a>
           </li>
         
       
         
           <li >
-            <a href="/guides-template/adding-images/"  >Adding Images</a>
+            <a href="/APIPrototype/methodology/"  >Methodology</a>
           </li>
         
       
         
           <li >
-            <a href="/guides-template/updating-the-config-file/"  >Updating the Config File</a>
+            <a href="/APIPrototype/design/"  >Design</a>
           </li>
         
       
         
           <li >
-            <a href="/guides-template/github-setup/"  >GitHub Setup</a>
+            <a href="/APIPrototype/development/"  >Development</a>
           </li>
         
       
         
           <li >
-            <a href="/guides-template/post-your-guide/"  >Post Your Guide</a>
+            <a href="/APIPrototype/testing/"  >Testing</a>
+          </li>
+        
+      
+        
+          <li >
+            <a href="/APIPrototype/deployment/"  >Deployment</a>
+          </li>
+        
+      
+        
+          <li >
+            <a href="/APIPrototype/configuration-management/"  >Configuration Management</a>
+          </li>
+        
+      
+        
+          <li >
+            <a href="/APIPrototype/support-and-monitoring/"  >Support and Monitoring</a>
+          </li>
+        
+      
+        
+          <li >
+            <a href="/APIPrototype/miscellaneous/"  >Miscellaneous</a>
+          </li>
+        
+      
+        
+          <li >
+            <a href="/APIPrototype/rfq-evaluation-criteria-evidence/"  >RFQ Evidence</a>
           </li>
         
       
@@ -82,13 +112,13 @@
 
 
         <section id="main" class="main-content" role="main">
-          <h1>GitHub setup</h1>
+          <h1>GitHub Setup</h1>
           <ul>
 <li><a href="#create-local-repo">Create a new local repository</a></li>
 <li><a href="#create-18f-repo">Create a new 18F GitHub repository</a></li>
 </ul>
 
-<p>Once you&#39;ve finished the steps below to push to your new 18F guide repo on GitHub, click the
+<p>Once you&#39;re finished pushing to your new 18F guide repo on GitHub, click the
 <em>Post Your Guide</em> entry in the table of contents for the final steps to
 publish your guide.</p>
 
@@ -96,17 +126,17 @@ publish your guide.</p>
 
 <p>Once you&#39;ve got the <code>_config.yml</code> file up-to-date, in the root directory of
 your guide&#39;s repository, copy and paste these commands to remove all of the
-pages and images that came with this template (be careful not to remove any files
+pages and images that came with this template (careful not to remove any files
 that you actually intend to keep):</p>
-<div class="highlight"><pre><code class="language-" data-lang="">$ rm copy-template pages/config.md pages/github.md pages/images.md pages/new-page.md pages/posting.md 
+<div class="highlight"><pre><code class="language-text" data-lang="text">$ rm copy-template pages/about.md pages/config.md pages/configuration-management.md pages/deployment.md pages/design.md pages/development.md pages/github.md pages/images.md pages/methodology.md pages/miscellaneous.md pages/new-page.md pages/posting.md pages/rfq-evaluation-criteria-evidence.md pages/support-and-monitoring.md pages/testing.md 
 $ rm images/18f-pages.png images/description.png images/gh-add-guide.png images/gh-branches-link.png images/gh-default-branch.png images/gh-settings-button.png images/gh-webhook.png images/images.png 
 </code></pre></div>
 <p>Then execute the following to detach from the the original template repository
 and create a new one for your guide:</p>
-<div class="highlight"><pre><code class="language-" data-lang="">$ rm -rf .git
+<div class="highlight"><pre><code class="language-text" data-lang="text">$ rm -rf .git
 $ git init
 $ git add .
-$ git commit -m 'Initial commit'
+$ git commit -m &#39;Initial commit&#39;
 </code></pre></div>
 <h2><a name="create-18f-repo"></a>Create a new 18F GitHub repository</h2>
 
@@ -122,13 +152,13 @@ the <code>README.md</code> file in your own local repository as necessary.</p>
 instructions to create a local repository and push your changes up to it. At
 this point, do the following, replacing <code>MY-NEW-GUIDE</code> with the name of your
 guide&#39;s repository:</p>
-<div class="highlight"><pre><code class="language-" data-lang="">$ git remote add origin git@github.com:18F/MY-NEW-GUIDE.git
+<div class="highlight"><pre><code class="language-text" data-lang="text">$ git remote add origin git@github.com:18F/MY-NEW-GUIDE.git
 $ git push -u origin master
 </code></pre></div>
 <p>Note that you can update the description and add a website link to the
 repository after creating it:</p>
 
-<p><img src="/guides-template/images/description.png" alt="Setting the
+<p><img src="/APIPrototype/images/description.png" alt="Setting the
 description and website of the GitHub repository"></p>
 
         </section>
@@ -137,10 +167,10 @@ description and website of the GitHub repository"></p>
 
       <footer role="contentinfo">
   <div class="wrap">
-    <p>This project is maintained by <a href="https://18f.gsa.gov">18F</a>.</p>
+    <p>This project is maintained by <a href="http://www.xfinion.com">Xfinion</a>.</p>
 
     <p>Hosted on <a href="https://github.com/18F/pages/">18F Pages</a>.</p>
-    <p><a href="https://github.com/18F/guides-template/edit/18f-pages/pages/github.md">Edit this page on GitHub</a></p>
+    <p><a href="https://github.com/goswamivijay/APIPrototype/edit/18f-pages/pages/github.md">Edit this page on GitHub</a></p>
   </div><!--/.wrap -->
 </footer>
 
@@ -153,7 +183,7 @@ description and website of the GitHub repository"></p>
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
   m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
   })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-  ga('create', 'UA-48605964-19', 'gsa.gov');
+  ga('create', 'UA-64764688-1', 'gsa.gov');
 
   // anonymize user IPs (chops off the last IP triplet)
   ga('set', 'anonymizeIp', true);
