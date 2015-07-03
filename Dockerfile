@@ -23,7 +23,7 @@ WORKDIR /src
 ADD . /src
 
 #CMD ["/src/setEnvVar-production.sh”]
-ENV databaseserver 50.0.0.172
+ENV databaseServer 50.0.0.172
 # Expose port
 EXPOSE 4000
 
