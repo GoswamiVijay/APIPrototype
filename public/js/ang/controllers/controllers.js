@@ -9,7 +9,7 @@ var app=angular.module('myApp.controllers', ['uiGmapgoogle-maps','ui-rangeSlider
     $scope.response = null;
     $scope.widgetId = null;
     $scope.model = {
-        key: '6LefEgkTAAAAANWgeebwDLZIchd09jL21MvFIn4C'
+        key: '6Lf3GgkTAAAAAM-KwKq3KxS4-7g40bbLA7jWEyBv'
     };
     $scope.setResponse = function (response) {
         console.info('Response available');
