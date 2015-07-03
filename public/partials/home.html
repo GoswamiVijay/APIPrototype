@@ -1,16 +1,16 @@
 <div class="container" ng-init="init()">
     <div class="row">
       <div class="col-md-9">
-        <h1>My Medication List - develop</h1>
+        <h1>My Medication List</h1>
       </div>
       <div class="col-md-3">
         <button id="btnhelp" type="submit" class="btn btn-primary" data-toggle="modal" data-target="#myModal" style="float:right; margin-top:15px;">Help</button>
       </div>
     </div>
       <div class="row">
-      <p>My medication list allows you to keep a list of all the medication you are currently taking and share it with your medical provider using a hyperlink.The hyper link is located at the bottom of the page and is available after you have created a list of your medicatuions and clicked the save button.You can access additional help  associated with this application by clicking on the help button or sending us an email at support@xfinion.com You can also call us at 301.801.4897 Monday to Friday between the hours of 8am and 6pm.Thank you using My Medication List.</p>
+      <p>My medication list allows you to keep a list of all the medication you are currently taking and share it with your medical provider using a hyperlink.The hyper link is located at the bottom of the page and is available after you have created a list of your medicatuions and clicked the save button.You can access additional help  associated with this application by clicking on the help button or sending us an email at support@xfinion.com You can also call us at 301.801.4897 Monday to Friday between the hours of 8am and 6pm.Thank you using My Medication List. You can review our privacy policy <a href="#" id="btnprivacy" data-toggle="modal" data-target="#privacyModal" >here</a></p>
     </div>  
-      <div class="row">
+      <div class="row" >
         <form class="form-inline" ng-submit="performsearch();">
           <div class="form-group">           
               <input type="text" placeholder="Search" id="input-search" class="form-control" style="width:350px;" ng-model="search.query">
@@ -19,22 +19,32 @@
       </form>
     </div>
     <div class="row"></div>
-      <div class="row">
-        <div class="col-md-6">
-          <section class="result-container">          
-            <p ng-repeat="r in results" class="br-bottom">
-              {{ r.openfda.substance_name[0]}}<br /><b>Brand:</b> {{ r.openfda.brand_name[0]}}<a href="javascript:void(0);" style="float:right; cursor:pointer;" ng-click="add(r)">Add</a>
+      <div class="row" style="margin-top:10px;">
+        <div id="searchContainer" class="col-md-6" style="height:550px;overflow: auto;">
+          <section class="result-container"> 
+           <div ng-repeat="r in results">
+            <p  class="br-bottom">
+              {{ r.openfda.substance_name[0]}}<br />
+              <b>Product Type:</b> {{ r.openfda.product_type[0]}}<br/>
+              <b>Manufacturer:</b> {{ r.openfda.manufacturer_name[0]}} <br/>
+              <b>Brand:</b> {{ r.openfda.brand_name[0]}} 
+              <a href="javascript:void(0);" style="float:right; cursor:pointer;" ng-click="add(r)">Add</a>
             </p>
+           </div>         
             <p ng-show="message">{{message}}</p>
           </section>
         </div>
         <div class="col-md-1">
           <center><div class="vr"></div></center>
         </div>
-        <div class="col-md-5">
+        <div class="col-md-5" style="height:550px;overflow: auto;">
           <section class="selected-result-container">
             <p ng-repeat="sr in selectedresults" class="br-bottom">
-              {{ sr.openfda.substance_name[0]}}<br /><b>Brand:</b> {{ sr.openfda.brand_name[0]}}<a href="javascript:void(0);" style="float:right; cursor:pointer;" ng-click="remove(sr)">Remove</a>
+              {{ sr.openfda.substance_name[0]}}<br />
+              <b>Product Type:</b> {{ sr.openfda.product_type[0]}}<br/>
+              <b>Manufacturer:</b> {{ sr.openfda.manufacturer_name[0]}} <br/>
+              <b>Brand:</b> {{ sr.openfda.brand_name[0]}} 
+              <a href="javascript:void(0);" style="float:right; cursor:pointer;" ng-click="remove(sr)">Remove</a>
             </p>
           </section>
         </div>
@@ -74,3 +84,32 @@
       </div>
     </div>
   </div>
+  <div class="modal fade" id="privacyModal">
+    <div class="modal-dialog">
+      <div class="modal-content">       
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title">Privacy Notice</h4>
+        </div>        
+        <div class="modal-body">
+           <p>We do not collect personal information about your visit to our site unless you choose to provide this information to us. However, we collect and store certain information automatically. </p>
+
+<h2>What We Collect and Store Automatically</h2>
+<p>Name of the domain from which you access the Internet (for example, aol.com, if you use an America Online account, or princeton.edu if you connect from Princeton University's domain); 
+Date and time you access our site; and 
+Internet address of the Website from which you linked directly to our site. 
+We use the information we collect to count the number and type of visitors to the different pages on our site, and to help us make our site more useful to visitors like you. </p>
+
+<h2>If You Send Us E-mail </h2>
+<p>You may choose to provide us with personal information, as in e-mail with a comment or question. We use the information to improve our service to you or to respond to your request. Sometimes we forward your e-mail to other government employees who may be better able to help you. Except for authorized law enforcement investigations, we do not share our e-mail with any other outside organizations. </p>
+
+<h2>Links to Other Sites </h2>
+<p>Our Website has many links to other federal agencies, embassies, multilateral organizations and private organizations. When you link to another site, you are no longer on our site and are subject to the privacy policy of the new site.</p>
+
+<h2>Questions?</h2>
+<p>Email any questions you have about our Privacy Policy to <a href="mailto:vijay@xfinion.com?Subject=privacy info">vijay@xfinion.com</a></p>
+        </div>
+      </div>
+    </div>  
+    </div>
+  
