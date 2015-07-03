@@ -23,7 +23,12 @@ WORKDIR /src
 ADD . /src
 
 #CMD ["/src/setEnvVar-integrationDev.sh”]
-ENV databaseserver mymedlookup
+ENV databaseServer mymedlookup
+ENV applicationMode develop
+ENV captchaSecretKey 6Lf3GgkTAAAAAOSkHedz_ys5RI8-vzeJgrqYRSyR
+ENV captchaUrl https://www.google.com/recaptcha/api/siteverify
+ENV openFDAAPIKey 1RsGQW3DxtW2AdUK1LXOUPnFaNU3DiEcdX7kBTD3
+ENV searchResultLimit 5
 
 # Expose port
 EXPOSE 4000
