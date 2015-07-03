@@ -113,16 +113,148 @@
 
         <section id="main" class="main-content" role="main">
           <h1>Testing</h1>
-          <h3><a name="top"></a>Jump to</h3>
+          <p>Testing can be performed either locally (on your workstation) using docker images or on the hosted test server.</p>
+
+<p>The test server is available at <a href="https://test.mymedlookup.org">https://test.mymedlookup.org</a></p>
+
+<p>Testing the application on your workstation involves pulling the application images and running them. The production application runs 2 web containers load balanced by nginx server, you can either run a simple configuration with one web server and database server or simulate the production environment with 1 nginx server connected to 2 web servers. The webservers are connected to the database server.</p>
+
+<h2><a name="top"></a>Jump to</h2>
 
 <ul>
-<li><a href="#vision">Vision</a></li>
-<li><a href="#user-stories">User Stories</a></li>
+<li><a href="#pull-docker-images">Pull docker images</a></li>
+<li><a href="#run-simple-configuration">Run simple configuration</a></li>
+<li><a href="#run-production-configuration">Run production configuration</a></li>
 </ul>
 
-<h3><a name="vision"></a>Vision</h3>
+<h2><a name="pull-docker-images"></a>Pull docker images</h2>
 
-<h3><a name="user-stories"></a>User Stories</h3>
+<p>You can test the application locally on your box by pulling down <a href="https://hub.docker.com/" title="docker">docker</a> images. A docker image build is triggered when changes are pushed to the github repository. Docker images are available for following branches</p>
+
+<ol>
+<li><a href="https://github.com/GoswamiVijay/APIPrototype/tree/develop">develop</a></li>
+<li><a href="https://github.com/GoswamiVijay/APIPrototype/tree/dev-integration">dev-integration</a></li>
+<li><a href="https://github.com/GoswamiVijay/APIPrototype/tree/master">master</a></li>
+<li><a href="https://github.com/GoswamiVijay/APIPrototype/tree/test">test</a></li>
+</ol>
+
+<p>The following images are publicly available on docker hub <a href="https://registry.hub.docker.com/u/goswamivijay/">API Prototype Images</a></p>
+
+<ol>
+<li><p>Images built from develop branch</p>
+
+<ul>
+<li><a href="https://registry.hub.docker.com/u/goswamivijay/apiprototype-nginx-test/">goswamivijay/apiprototype-web-develop</a> </li>
+<li><a href="https://registry.hub.docker.com/u/goswamivijay/apiprototype-nginx-develop/">goswamivijay/apiprototype-nginx-develop</a> </li>
+<li><a href="https://registry.hub.docker.com/u/goswamivijay/apiprototype-db-develop/">goswamivijay/apiprototype-db-develop</a> </li>
+</ul></li>
+<li><p>Images built from dev-integration branch</p>
+
+<ul>
+<li><a href="https://registry.hub.docker.com/u/goswamivijay/apiprototype-nginx-devint/">goswamivijay/apiprototype-nginx-devint</a> </li>
+<li><a href="https://registry.hub.docker.com/u/goswamivijay/apiprototype-web-devint/">goswamivijay/apiprototype-web-devint</a> </li>
+</ul></li>
+<li><p>Images built from test branch</p>
+
+<ul>
+<li><a href="https://registry.hub.docker.com/u/goswamivijay/apiprototype-web-test/">goswamivijay/apiprototype-web-test</a> </li>
+<li><a href="https://registry.hub.docker.com/u/goswamivijay/apiprototype-nginx-test/">goswamivijay/apiprototype-nginx-test</a> </li>
+<li><a href="https://registry.hub.docker.com/u/goswamivijay/apiprototype-db-test/">goswamivijay/apiprototype-db-test</a> </li>
+</ul></li>
+<li><p>Images built from test branch</p>
+
+<ul>
+<li><a href="https://registry.hub.docker.com/u/goswamivijay/apiprototype-db-testgoswamivijay/apiprototype-web-prod/">goswamivijay/apiprototype-db-testgoswamivijay/apiprototype-web-prod</a> </li>
+<li><a href="https://registry.hub.docker.com/u/goswamivijay/apiprototype-db-testgoswamivijay/apiprototype-nginx-prod/">goswamivijay/apiprototype-db-testgoswamivijay/apiprototype-nginx-prod</a> </li>
+</ul></li>
+</ol>
+
+<p>You can install any of the above images on your workstation to test the application.
+Please ensure you have docker installed on your workstation. You can follow the instructions here (???Miscellaneous) to install docker on your box. The following instructions assume docker is installed on your box (or you are in docker VM if you are using docker tools such as <a href="http://boot2docker.io/">boot2docker</a>.</p>
+
+<p>To perform testing on the latest checkins from development branch</p>
+
+<h2><a name="run-simple-configuration"></a>Run simple configuration</h2>
+
+<p>Pull the web, nginx and db images on your box </p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">$ docker pull goswamivijay/apiprototype-web-develop
+$ docker pull goswamivijay/apiprototype-nginx-develop
+$ docker pull goswamivijay/apiprototype-db-develop
+</code></pre></div>
+<h2>Testing the application without nginx</h2>
+
+<p>Run database server</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">docker run -p 27017:27017 --name mymedlookupdb -d goswamivijay/apiprototype-db-develop
+</code></pre></div>
+<p><em>please note the container id that is displayed after you run the command, we will refer to it as the database container id.</em></p>
+
+<p>Run web  server</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">docker run -p 4000:4000 --name mymedlookupweb1 -d --link mymedlookupdb:mymedlookupdb goswamivijay/apiprototype-web-develop 
+</code></pre></div>
+<p><em>please note the container id that is displayed after you run the command, we will refer to it as the web container id.</em></p>
+
+<p>Navigate to http://&lt;<em>server address</em>&gt;:4000/ in your browser</p>
+
+<p>To find the &lt;<em>server address</em>&gt; if you are running boot2docker, enter the following command</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">$ boot2docker ip 
+</code></pre></div>
+<p>To stop the containers, run the following command</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">$ docker stop &lt;web container id&gt;
+$ docker stop &lt;db container id&gt;
+</code></pre></div>
+<p><em>the web container id and the web container id are the ids that were diplayed when you used the run command.</em>
+If you don&#39;t have the container id, you can query the conatiner id by running the following command</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">$ docker stop ps
+</code></pre></div>
+<p>The container id will be listed with the corresponding name of the container (mymedlookupweb1 for web and mymedlookupdb for database)</p>
+
+<h2><a name="run-production-configuration"></a>Run Production configuration</h2>
+
+<p><em>if you have already run the steps in <a href="#run-simple-configuration">Run simple configuration</a> then you have to either remove the container using the following commands</em> </p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">$ docker rm &lt;web container id&gt;
+$ docker rm &lt;db container id&gt;
+</code></pre></div>
+<p><em>or  substitute the run commands with <strong>docker start</strong> command. The following instructions assume you haven&#39;t run the steps in <a href="#run-simple-configuration">Run simple configuration</a> or you have removed the existing containers. i.e. you don&#39;t have any containers with same name either in running or stopped mode</em></p>
+
+<p>Run database server</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">docker run -p 27017:27017 --name mymedlookupdb -d goswamivijay/apiprototype-db-develop
+</code></pre></div>
+<p><em>please note the container id that is displayed after you run the command, we will refer to it as the database container id.</em></p>
+
+<p>Run web  server - 1</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">docker run -p 4000 --name mymedlookupweb1 -d --link mymedlookupdb:mymedlookupdb goswamivijay/apiprototype-web-develop
+</code></pre></div>
+<p><em>please note the container id that is displayed after you run the command, we will refer to it as the web container id.</em></p>
+
+<p>Run web  server - 2</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">docker run -p 4000 --name mymedlookupweb2 -d --link mymedlookupdb:mymedlookupdb goswamivijay/apiprototype-web-develop 
+</code></pre></div>
+<p><em>please note the container id that is displayed after you run the command, we will refer to it as the web container id.</em></p>
+
+<p>Run nginx server</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">docker run -p 8090:80  --name mymedlookupproxy -d --link mymedlookupweb1:mymedlookupweb1 --link mymedlookupweb2:mymedlookupweb2 goswamivijay/apiprototype-nginx-develop
+</code></pre></div>
+<p><em>please note the container id that is displayed after you run the command, we will refer to it as the web container id.</em></p>
+
+<p>Navigate to http://&lt;<em>server address</em>&gt;:8090/ in your browser</p>
+
+<p>To find the &lt;<em>server address</em>&gt; if you are running boot2docker, enter the following command</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">$ boot2docker ip 
+</code></pre></div>
+<p>To stop the containers, run the following command</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">$ docker stop &lt;mymedlookupproxy container id&gt;
+$ docker stop &lt;mymedlookupweb1 container id&gt;
+$ docker stop &lt;mymedlookupweb2 container id&gt;
+$ docker stop &lt;mymedlookupdb container id&gt;
+</code></pre></div>
+<p><em>the web container id and the web container id are the ids that were diplayed when you used the run command.</em>
+If you don&#39;t have the container id, you can query the container id by running the following command which will return stopped containers.</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">$ docker ps
+</code></pre></div>
+<p>To get a list of running containers, use the following command</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">$ docker ps
+</code></pre></div>
+<p>The container id will be listed with the corresponding name of the container (mymedlookupproxy for nginx server, mymedlookupweb1 for web and mymedlookupdb for database server)</p>
 
         </section>
 
