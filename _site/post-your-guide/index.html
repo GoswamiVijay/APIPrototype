@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+  <head>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta charset="utf-8">
+  <title>Post your guide - 18F Guides Template</title>
+  <meta name="viewport" content="width=device-width">
+  <link href='//fonts.googleapis.com/css?family=Raleway:400,700%7COpen+Sans:300,600' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="/guides-template/assets/css/main.css">
+  <link rel="stylesheet" href="/guides-template/assets/css/syntax.css">
+  <link rel="stylesheet" href="/guides-template/assets/css/custom.css">
+  <!--[if lt IE 9]>
+    <script src="/guides-template/assets/js/html5shiv.js"></script>
+    <script src="/guides-template/assets/js/respond.js"></script>
+  <![endif]-->
+</head>
+
+
+  <body>
+
+    <div class="container">
+
+      <header role="banner">
+
+        <div class="wrap">
+          
+            <img class="logo" src="/guides-template/assets/img/18f-logo.png" alt="18F logo" width="75px">
+          
+          <h1 class="site-title"><a class="title-link" href="/guides-template/">18F Guides Template</a></h1>
+        </div>
+        
+      </header>
+
+      <div class="wrap content">
+
+        <aside>
+  <p class="intro"></p>
+  <a class="skip-link visuallyhidden focusable" href="#main">Skip to Main Content</a>
+  <nav class="sidebar-nav" role="navigation">
+    <ul>
+      
+        
+          <li >
+            <a href="/guides-template/index.html"  >Introduction</a>
+          </li>
+        
+      
+        
+          <li >
+            <a href="/guides-template/adding-a-new-page/"  >Adding a New Page</a>
+          </li>
+        
+      
+        
+          <li >
+            <a href="/guides-template/adding-images/"  >Adding Images</a>
+          </li>
+        
+      
+        
+          <li >
+            <a href="/guides-template/updating-the-config-file/"  >Updating the Config File</a>
+          </li>
+        
+      
+        
+          <li >
+            <a href="/guides-template/github-setup/"  >GitHub Setup</a>
+          </li>
+        
+      
+        
+          <li >
+            <a href="/guides-template/post-your-guide/"  >Post Your Guide</a>
+          </li>
+        
+      
+    </ul>
+  </nav>
+</aside>
+
+
+        <section id="main" class="main-content" role="main">
+          <h1>Post your guide</h1>
+          <ul>
+<li><a href="#create-18f-pages-branch">Create the <code>18f-pages</code> branch</a></li>
+<li><a href="#set-default-branch">Set the default branch</a></li>
+<li><a href="#set-webhook">Create the publishing webhook</a></li>
+<li><a href="#trigger-a-build">Trigger a build</a></li>
+<li><a href="#add-new-guide">Add the new guide to 18F Guides</a></li>
+</ul>
+
+<h2><a name="create-18f-pages-branch"></a>Create the <code>18f-pages</code> branch</h2>
+
+<p>In order to publish your guide automatically to <code>pages.18f.gov</code>, you will need
+to create an <code>18f-pages</code> branch. You can do this using the GitHub interface by
+clicking the <strong>branch: master</strong> button and entering <code>18f-pages</code> in the <strong>Switch
+branches/tags</strong> drop-down box:</p>
+
+<p><img src="/guides-template/images/18f-pages.png" alt="GitHub branch creation
+interface"></p>
+
+<h2><a name="set-default-branch"></a>Set the default branch</h2>
+
+<p><em>Note: If your repository is not just a Jekyll site, e.g. it is a project
+repository with a <code>gh-pages</code> or <code>18f-pages</code> branch for documentation, you can
+ignore this step.</em></p>
+
+<p>You also need to set <code>18f-pages</code> branch as the default. First, click the <strong>Settings</strong> page button (on the right side of the screen):<br/>
+<img src="/guides-template/images/gh-settings-button.png" alt="GitHub settings page button"></p>
+
+<p>This will present you with the <strong>Options</strong> page. In the <strong>Settings</strong> section, select <code>18f-pages</code> from the <strong>Default branch</strong> drop-down menu:<br/>
+<img src="/guides-template/images/gh-default-branch.png" alt="GitHub default branch option"></p>
+
+<p>Deleting the original <code>master</code> branch, both on GitHub and locally, is left as
+an exercise for the reader. Doing so will help avoid confusion in the long run
+but is not strictly necessary.</p>
+
+<h2><a name="set-webhook"></a>Create the publishing webhook</h2>
+
+<p>Now go into the <strong>Webhooks &amp; Services</strong> section of the <strong>Settings</strong> section
+and click the <strong>Add webhook</strong> button. On the following screen, set the
+<strong>Payload URL</strong> to <code>https://pages.18f.gov/deploy</code>, leave the <strong>Secret</strong> field
+blank, and click <strong>Update webhook</strong>:</p>
+
+<p><img src="/guides-template/images/gh-webhook.png" alt="Set the GitHub webhook"></p>
+
+<h2><a name="trigger-a-build"></a>Trigger a build</h2>
+
+<p>With the webhook in place, push an update to your <code>18f-pages</code> branch to your
+GitHub repository. Within seconds, your guide should appear at
+<code>https://pages.18f.gov/$REPO-NAME</code>. Your guide is now live!</p>
+
+<h2><a name="add-new-guide"></a>Add the new guide to 18F Guides</h2>
+
+<p>Now for the final step: Add an entry to the list of <a href="http://18f.github.io/guides/">18F
+Guides</a> linking to your new guide. You can <a href="https://github.com/18F/guides/edit/18f-pages/index.html">use
+this link to edit the file directly in
+GitHub</a>:</p>
+
+<p><img src="/guides-template/images/gh-add-guide.png" alt="Add the new guide to 18F Guides using the GitHub text editor"></p>
+
+<p>Congratulations! Your guide should now be published and accessible to the world
+as one of the few, the proud, the <a href="https://pages.18f.gov/guides/">18F Guides</a>!</p>
+
+        </section>
+
+      </div><!-- /.wrap content -->
+
+      <footer role="contentinfo">
+  <div class="wrap">
+    <p>This project is maintained by <a href="https://18f.gsa.gov">18F</a>.</p>
+
+    <p>Hosted on <a href="https://github.com/18F/pages/">18F Pages</a>.</p>
+    <p><a href="https://github.com/18F/guides-template/edit/18f-pages/pages/posting.md">Edit this page on GitHub</a></p>
+  </div><!--/.wrap -->
+</footer>
+
+
+    </div> <!-- /.container -->
+
+    <!-- Google Analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-48605964-19', 'gsa.gov');
+
+  // anonymize user IPs (chops off the last IP triplet)
+  ga('set', 'anonymizeIp', true);
+
+  ga('send', 'pageview');
+</script>
+
+<!-- Digital Analytics Program roll-up, see https://analytics.usa.gov for data -->
+<script id="_fed_an_ua_tag" src="https://analytics.usa.gov/dap/dap.min.js" async></script>
+
+    <script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
+<script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+
+
+
+
+
+  </body>
+
+</html>
