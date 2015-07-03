@@ -1,7 +1,7 @@
 ---
 permalink: /adding-a-new-page/
 layout: default
-title: Adding a new page
+title: Adding a New Page
 ---
 To add new pages to the guide, first create a new
 [Markdown](http://daringfireball.net/projects/markdown/syntax) file in the
@@ -20,7 +20,7 @@ title: {{ page.title }}
 ---
 ```
 
-**The `/` at the end of the `permalink:` attribute is important!** It ensures
+_The `/` at the end of the `permalink:` attribute is important!_ It ensures
 the page is generated as `{{ page.permalink }}index.html`. Without it, it would
 be generated as `{{ page.permalink | remove_first: '/' | replace:'/','.'}}html`.
 
