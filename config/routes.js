@@ -1,9 +1,6 @@
 var applicationConfig = require('../config/applicationConfig');
-module.exports = function routes() {
-	this.get('/', function(req, res) {
-    	res.sendfile('./public/home.html');
-	});
-  
+module.exports = function routes() 
+{
   	this.get('/getSearchResults','api#getSearchResults');
   	this.get('/getData','api#getData');
   	this.post('/saveData','api#saveData');
@@ -13,6 +10,14 @@ module.exports = function routes() {
   	this.get('/applicationConfig', function(req, res){
     	var config = {captchaSiteKey:applicationConfig.captcha.siteKey,applicationMode:applicationConfig.application.mode};
         return res.json({success: true, applicationConfig:config});
+	});
+
+    this.get('/help', function(req, res) {
+    	res.sendfile('./public/partials/help.html');
+	});
+
+	this.get('/', function(req, res) {
+    	res.sendfile('./public/home.html');
 	});
 
 }
