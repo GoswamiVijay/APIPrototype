@@ -23,7 +23,9 @@ WORKDIR /src
 ADD . /src
 
 #CMD ["/src/setEnvVar-integrationTest.sh”]
-ENV databaseserver 60.0.0.81 
+ENV databaseServer 60.0.0.81
+
+
 
 # Expose port
 EXPOSE 4000
