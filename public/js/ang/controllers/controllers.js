@@ -65,6 +65,11 @@ var app=angular.module('myApp.controllers', ['uiGmapgoogle-maps','ui-rangeSlider
   $rootScope.showLoading = false;
   $scope.search = {}; 
   $scope.results = [];
+  $scope.AllResults = []; 
+  $scope.pageNumber = 0;
+  $scope.TotalPages = 0;  
+  $scope.NumberOfRecords = 10;    
+    
   $scope.selectedresults = [];
   $scope.currentid = '';
   $scope.message = '';
@@ -76,7 +81,7 @@ var app=angular.module('myApp.controllers', ['uiGmapgoogle-maps','ui-rangeSlider
       $http.get('/getData?id='+id)
       .success(function(data){
         if (data.success){
-          $scope.selectedresults = data.result.data;
+          $scope.selectedresults = data.result.drugJson.data;
         }
       })
       .error(function(error){
@@ -96,14 +101,19 @@ var app=angular.module('myApp.controllers', ['uiGmapgoogle-maps','ui-rangeSlider
     $scope.message = "";
     $http.get('/getSearchResults?q='+$scope.search.query)
     .success(function(data){
-      if(data.success){
+      if(data.success)
+      {
         var response = data.data;
         $rootScope.showLoading = false;
-        $scope.results = response;
+        $scope.AllResults = response;
         $scope.message = '';
+        $scope.pageNumber = 0;  
+        $scope.paginateResults();
       }
-      else{
-        $scope.results = [];
+      else
+      {
+        $scope.pageNumber = 0;  
+        $scope.AllResults = [];
         $scope.message = "No matching results found.";
         $rootScope.showLoading = false;
       }
@@ -112,7 +122,26 @@ var app=angular.module('myApp.controllers', ['uiGmapgoogle-maps','ui-rangeSlider
       console.log(err);
     });
   }
-
+  
+  //Paginate the medications  
+  $scope.paginateResults = function()
+  {
+      if($scope.results.length < $scope.AllResults.length)
+      {
+          var recordStart = $scope.pageNumber * $scope.NumberOfRecords;
+          var iTemsToLookUp = recordStart + $scope.NumberOfRecords;
+          if(iTemsToLookUp > $scope.AllResults.length)
+          {
+              iTemsToLookUp = $scope.AllResults.length;
+          }
+          for(; recordStart < iTemsToLookUp; recordStart++ )
+          {
+              $scope.results.push($scope.AllResults[recordStart]);
+          }
+          $scope.$apply();
+      }
+  };
+  
   $scope.add = function(obj){
     var oldResult = $scope.results;
     var resultToSave = $scope.selectedresults;
@@ -165,6 +194,23 @@ var app=angular.module('myApp.controllers', ['uiGmapgoogle-maps','ui-rangeSlider
       console.log(err);
     });
   }
+  
+  //Grab Scroll events 
+  $('#searchContainer').bind('scroll', function() {
+    var scrollPosition = $(this).scrollTop() + $(this).outerHeight();
+    var divTotalHeight = $(this)[0].scrollHeight 
+                          + parseInt($(this).css('padding-top'), 10) 
+                          + parseInt($(this).css('padding-bottom'), 10)
+                          + parseInt($(this).css('border-top-width'), 10)
+                          + parseInt($(this).css('border-bottom-width'), 10);
+
+    if( scrollPosition == divTotalHeight )
+    {
+      $scope.pageNumber = $scope.pageNumber + 1;    
+      $scope.paginateResults();
+    }
+  });
+  
 }); 
 
 
