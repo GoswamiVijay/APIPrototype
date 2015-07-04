@@ -238,6 +238,8 @@ var app=angular.module('myApp.controllers', ['uiGmapgoogle-maps','ui-rangeSlider
     .success(function(data){
       if(data.success){
         $scope.results = [];
+        $scope.AllResults = [];
+        $scope.paginateResults();  
         $scope.search.query = '';
         $scope.hostname = $window.location.host;
         $scope.protocol = $window.location.protocol;
@@ -245,6 +247,7 @@ var app=angular.module('myApp.controllers', ['uiGmapgoogle-maps','ui-rangeSlider
         $("#mymedurl").attr('href', url);
         $("#mymedurl").text(url);
         alert('Data saved successfully');
+          
       }
       else{
         alert('Error occured');
