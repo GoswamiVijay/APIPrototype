@@ -1,0 +1,84 @@
+{
+  "AWSEBDockerrunVersion": 2,
+  "volumes": [
+    {
+      "name": "APIPrototype",
+      "host": {
+        "sourcePath": "/var/app/current"
+      }
+    },
+    {
+      "name": "nginx-proxy-conf",
+      "host": {
+        "sourcePath": "/var/app/current/Docker-nginx"
+      }
+    }  
+  ],
+  "containerDefinitions": [
+    {
+      "name": "mymedlookupweb1",
+      "image": "goswamivijay/apiprototype-web-devint",
+      "essential": true,
+      "memory": 1024,
+      "portMappings": [
+        {
+          "hostPort": 4040,
+          "containerPort": 4000
+        }
+      ],
+      "mountPoints": [
+        {
+          "sourceVolume": "APIPrototype",
+          "containerPath": "/src",
+          "readOnly": true
+        }
+      ]
+    },
+    {
+      "name": "mymedlookupweb2",
+      "image": "goswamivijay/apiprototype-web-devint",
+      "essential": true,
+      "memory": 1024,
+      "portMappings": [
+        {
+          "hostPort": 4050,
+          "containerPort": 4000
+        }
+      ],
+      "mountPoints": [
+        {
+          "sourceVolume": "APIPrototype",
+          "containerPath": "/src",
+          "readOnly": true
+        }
+      ]
+    },
+    {
+      "name": "nginx-proxy",
+      "image": "goswamivijay/apiprototype-nginx-devint",
+      "essential": true,
+      "memory": 1024,
+      "portMappings": [
+        {
+          "hostPort": 80,
+          "containerPort": 80
+        }
+      ],
+      "links": [
+        "mymedlookupweb1",
+        "mymedlookupweb2"
+      ],
+      "mountPoints": [
+        {
+          "sourceVolume": "nginx-proxy-conf",
+          "containerPath": "/etc/nginx",
+          "readOnly": true
+        },
+        {
+          "sourceVolume": "awseb-logs-nginx-proxy",
+          "containerPath": "/var/log/nginx"
+        }
+      ]
+    }
+  ]
+}
