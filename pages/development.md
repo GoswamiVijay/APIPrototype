@@ -94,7 +94,18 @@ Use the develop branch for development, bug fixes and enhancement unless you are
 
 The master branch is used for releasing to production. Please do not check in code into this branch. Sprint testing and UAT is done on the test branch. Code is deployed daily to dev-integration branch. Please use the dev-integration branch to verify development is complete before closing the ticket.
 
+To clone the develop branch of the repository on your desktop use the following command from Terminal 
 
+```
+$ clone https://github.com/GoswamiVijay/APIPrototype.git
+```
+
+To checkout the develop branch
+
+```
+$ cd APIPrototype
+$ git checkout -b develop
+```
 ## <a name="development-workflow"></a>Development workflow
 
 The development workflow is pretty simple

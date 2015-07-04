@@ -4,7 +4,7 @@
   <head>
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta charset="utf-8">
-  <title>Continuous Integration - My Medication List - Prototype</title>
+  <title>Continuous Integration (CI) - My Medication List - Prototype</title>
   <meta name="viewport" content="width=device-width">
   <link href='//fonts.googleapis.com/css?family=Raleway:400,700%7COpen+Sans:300,600' rel='stylesheet' type='text/css'>
   <link rel="stylesheet" href="/APIPrototype/assets/css/main.css">
@@ -87,8 +87,8 @@
         
       
         
-          <li class="sidebar-nav-active">
-            <a href="/APIPrototype/continuous-integration/"  title='Selected'>Continuous Integration</a>
+          <li >
+            <a href="/APIPrototype/continuous-integration/"  >Continuous Integration</a>
           </li>
         
       
@@ -122,23 +122,62 @@
 
 
         <section id="main" class="main-content" role="main">
-          <h1>Continuous Integration</h1>
+          <h1>Continuous Integration (CI)</h1>
           <h2>Overview</h2>
 
-<ul>
-<li><a href="#vision">GitHub</a></li>
-<li><a href="#prerequisites">Gitflow</a></li>
-<li><a href="#user-stories">Deploying to hosted environments</a></li>
-<li><a href="#user-stories">Checklist for deployment</a></li>
-</ul>
+<p>We use <a href="https://codeship.com">Codeship</a> for implemeting continuous build, test and deployment of My Medication List application. We chose Codeship for it&#39;s ability to deploy passed builds to Elastic Beanstalk which other CI tools were lacking. Codeship, however, does not provide the ability to select the branches that will be unit tested which is a shortcoming. 
+The current CI workflow is as follows
+1.  Codeship has been configured to watch the github repository
+2.  Changes pushed to the repsoitory trigger a build and running of unit tests
+3.  If a build passes, the deployment pipeline for that branch is executed and the environment associated with that pipeline is updated with latest code. The following table shows the mapping between branches in github and the deployment pipeline associated with that branch.</p>
 
-<h3><a name="vision"></a>Vision</h3>
+<table><thead>
+<tr>
+<th>Github branch</th>
+<th>Codeship deployment pipeline</th>
+<th>Application environment</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>master</td>
+<td>master</td>
+<td><a href="http://www.mymedlookup.org">www.mymedlookup.org</a></td>
+</tr>
+<tr>
+<td>test</td>
+<td>test</td>
+<td>test.mymedlookup.org</td>
+</tr>
+<tr>
+<td>dev-integration</td>
+<td>dev-integration</td>
+<td>production</td>
+</tr>
+</tbody></table>
 
-<h3><a name="user-stories"></a>User Stories</h3>
+<h3>dev-integration branch deployment settings</h3>
 
-<p>S3 bucket to which codeship uploads
-versions of application
-....</p>
+<hr>
+
+<p><img src="/APIPrototype/images/continuous-integration/ci-dev-integration-deployment-pipeline.png" width="100%" alt="dev-integration branch deployment settings" /></p>
+
+<h3>master/production branch deployment settings</h3>
+
+<hr>
+
+<p><img src="/APIPrototype/images/continuous-integration/ci-master-deployment-pipeline.png" width="100%" alt="master/production branch deployment settings" /></p>
+
+<h3>test branch deployment settings</h3>
+
+<hr>
+
+<p><img src="/APIPrototype/images/continuous-integration/ci-test-integration-deployment-pipeline.png" width="100%" alt="test branch deployment settings" /></p>
+
+<h3>Build results</h3>
+
+<hr>
+
+<p><img src="/APIPrototype/images/continuous-integration/ci-build-results.png" width="100%" alt="build results" /></p>
 
         </section>
 
