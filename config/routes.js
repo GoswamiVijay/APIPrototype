@@ -3,6 +3,7 @@ module.exports = function routes()
 {
   	this.get('/getSearchResults','api#getSearchResults');
   	this.get('/getData','api#getData');
+    this.get('/getTopSearchKeywords','api#getTopSearchKeywords');
   	this.post('/saveData','api#saveData');
 	this.post('/validateCapcha','api#validateCapcha');
   	this.post('/updateData','api#updateData');
