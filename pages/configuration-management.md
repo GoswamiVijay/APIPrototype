@@ -3,11 +3,15 @@ permalink: /configuration-management/
 layout: default
 title: Configuration Management
 ---
+
+## Overview ##
+
 ### <a name="top"></a>Jump to ###
 
-
-* [Vision](#vision)
-* [User Stories](#user-stories)
+* [GitHub](#vision)
+* [Gitflow](#prerequisites)
+* [Deploying to hosted environments](#user-stories)
+* [Checklist for deployment](#user-stories)
 
 ### <a name="vision"></a>Vision ###
 
