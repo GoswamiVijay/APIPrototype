@@ -1,0 +1,155 @@
+<div class="container" ng-init="init()">
+    <div class="row">
+      <div class="col-md-9">
+        <a href="/" style="text-decoration:none"><h1>My Medication List</h1></a>
+      </div>
+      <div class="col-md-3">
+        <a id="btnhelp" target="_blank" href="/help" class="btn btn-primary" style="float:right; margin-top:15px;">Help</a>
+      </div>
+    </div>
+      <div class="row">
+      <p>My medication list allows you to keep a list of all the medication you are currently taking and share it with your medical provider using a hyperlink.The hyper link is located at the bottom of the page and is available after you have created a list of your medicatuions and clicked the save button.You can access additional help  associated with this application by clicking on the help button or sending us an email at support@xfinion.com You can also call us at 301.801.4897 Monday to Friday between the hours of 8am and 6pm.Thank you using My Medication List. You can review our privacy policy <a href="#" id="btnprivacy" data-toggle="modal" data-target="#privacyModal" >here</a></p>
+    </div> 
+    <div class="row">
+     <h3 style="font-size:14px;margin:0px;">Top Searched Medications</h3> 
+     <div style="display:inline;margin-top:-10px;margin-bottom:10px;" ng-repeat="medication in TopSearchedMedications">
+         <a style="display:inline" ng-click="search.query=medication.tag">{{medication.tag}},</a>
+     </div>
+    </div>
+     
+      <div class="row" style="margin-top:10px;">
+        <form class="form-inline" ng-submit="performsearch();">
+          <div class="form-group">           
+              <input type="text" placeholder="Search" id="input-search" class="form-control" style="width:350px;" ng-model="search.query">
+          </div>
+          <button id="btnSearch" type="submit" class="btn btn-primary">Lookup</button>&nbsp;<img src="images/image.gif" ng-if="showLoading"/>
+      </form>
+    </div>
+    <div class="row"></div>
+      <div class="row" style="margin-top:10px;">
+        <div id="searchContainer" class="col-md-6" style="height:550px;overflow: auto;">
+          <section class="result-container"> 
+           <div ng-repeat="r in results">
+            <p  class="br-bottom">
+              {{ r.openfda.substance_name[0]}}<br />
+              <b>Product Type:</b> {{ r.openfda.product_type[0]}}<br/>
+              <b>Manufacturer:</b> {{ r.openfda.manufacturer_name[0]}} <br/>
+              <b>Brand:</b> {{ r.openfda.brand_name[0]}} 
+              <a href="javascript:void(0);" style="float:right; cursor:pointer;padding-left:10px;" ng-click="add(r)">Add</a>
+            
+              <a href="javascript:void(0);" style="float:right; cursor:pointer;" data-toggle="modal" data-target="#MedicationModel" ng-click="showMedicationInfo(r)">View Info </a>
+            </p>
+           </div>         
+            <p ng-show="message">{{message}}</p>
+          </section>
+        </div>
+        <div class="col-md-1">
+          <center><div class="vr"></div></center>
+        </div>
+        <div class="col-md-5" style="height:550px;overflow: auto;">
+          <section class="selected-result-container">
+            <p ng-repeat="sr in selectedresults" class="br-bottom">
+              {{ sr.openfda.substance_name[0]}}<br />
+              <b>Product Type:</b> {{ sr.openfda.product_type[0]}}<br/>
+              <b>Manufacturer:</b> {{ sr.openfda.manufacturer_name[0]}} <br/>
+              <b>Brand:</b> {{ sr.openfda.brand_name[0]}} 
+              <a href="javascript:void(0);" style="float:right; cursor:pointer;padding-left:10px;" ng-click="remove(sr)">Remove</a>
+              <a href="javascript:void(0);" style="float:right; cursor:pointer;" data-toggle="modal" data-target="#MedicationModel" ng-click="showMedicationInfo(sr)">View Info </a>
+            </p>
+          </section>
+        </div>
+    </div>
+    <hr />
+    <section class="col-md-12">
+      <div class="col-md-7">
+        <p><a id="mymedurl" href="#" target="_blank"></a></p>
+      </div>
+      <div class="col-md-4">
+        <div 
+            
+                ng-show="AppDevelopmentMode"
+                vc-recaptcha
+                theme="'light'"
+                key="model.key"
+                type=""    
+                on-create="setWidgetId(widgetId)"
+                on-success="setResponse(response)"
+            ></div>
+      </div>  
+     <div class="col-md-1">
+        <button id="btnSave" style="margin-top:17px;" type="button" class="btn btn-primary" ng-click="submitCapcha();">Save</button>
+      </div>      
+      </section>
+      <br /><br />
+  </div>
+  <div class="modal fade" id="MedicationModel" modal="showModal" close="cancel()">
+    <div class="modal-dialog">
+      <div class="modal-content">       
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title">Medication Info</h4>
+        </div>        
+        <div class="modal-body">
+            <p><b>Substance name :</b> {{selectedMedication.openfda.substance_name[0]}}</p>
+            <p><b>Product type :</b> {{selectedMedication.openfda.product_type[0]}}</p>
+            <p><b>Manufacturer name :</b> {{selectedMedication.openfda.manufacturer_name[0]}}</p>
+            <p><b>Brand name :</b> {{selectedMedication.openfda.brand_name[0]}}</p>
+            <p><b>Pharm class moa :</b> {{selectedMedication.openfda.pharm_class_moa[0]}}</p>
+            <p><b>Pharm class epc :</b> {{selectedMedication.openfda.pharm_class_epc[0]}}</p>
+            <p><b>Generic name :</b> {{selectedMedication.openfda.generic_name[0]}}</p>
+            <p><b>Spl product data elements :</b> {{selectedMedication.spl_product_data_elements[0]}}</p>
+            <p><b>Warnings :</b> {{selectedMedication.warnings[0]}}</p>
+            <p><b>Indications and usage :</b> {{selectedMedication.indications_and_usage[0]}}</p>
+            <p><b>Keep out of reach of children :</b> {{selectedMedication.keep_out_of_reach_of_children[0]}}</p>
+            <p><b>Dosage and administration :</b> {{selectedMedication.dosage_and_administration[0]}}</p>
+            <p><b>Purpose :</b> {{selectedMedication.purpose[0]}}</p>
+            <p><b>Pregnancy or breast feeding :</b> {{selectedMedication.pregnancy_or_breast_feeding[0]}}</p>
+            <p><b>Active ingredient :</b> {{selectedMedication.active_ingredient[0]}}</p>
+            <p><b>Inactive ingredient :</b> {{selectedMedication.inactive_ingredient[0]}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="modal fade" id="myModal">
+    <div class="modal-dialog">
+      <div class="modal-content">       
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title">App Description</h4>
+        </div>        
+        <div class="modal-body">
+           <p>The AgileBPA RFQ requires a prototype to be developed as part of the submission. The RFQ document is here -&nbsp;<a data-linked-resource-container-version="1" data-linked-resource-container-id="16318483" data-linked-resource-content-type="application/pdf" data-nice-type="PDF Document" data-linked-resource-default-alias="ADS RFQ Final.pdf" data-linked-resource-type="attachment" data-linked-resource-version="1" data-linked-resource-id="16318482" href="/wiki/download/attachments/16318483/ADS%20RFQ%20Final.pdf?version=1&amp;modificationDate=1435014403482&amp;api=v2">ADS RFQ Final.pdf</a>&nbsp;</p><p>The prototype needs to be based on the data available from http://open.fda.gov API. The team brainstormed on possible ideas and approaches for the prototype documented here. While the idea of ingesting the data from API service and listing it sounded attractive as it would have allowed the development team to focus on meeting the criteria's for the award due to the limited amount of time available for the prototype. The development team eventually decided to create a innovative application of the data available from the API service as it would align with the spirit of the RFQ and also showcase the innovation aspect of the company.&nbsp;</p><p>The use case or business pitch for the application is as follows - During a doctor visit or in an emergency condition it's beneficial to have access to medications that the patient is on to aid the care giver in making the important medical decisions. MyMedlookup.org is a website that allows users to create a list of medications that they take. The website generates a unique url based on the list of medications that have been selected by the user. The user can share the url with their physician or carry it as a printed card which would provide the care giver with the medication information. Future versions of the application will generate a QR code.</p><p>The application flow is as follows</p><ol><li>The main application screen / webpage allows users to search for medications and displays matching results</li><li>Users can populate their medication list by selecting medications from the search result</li><li>Clicking on the Save button generates a unique id that can be appended to the application url. Navigating to this url brings up the populated medications which can be referenced by the care giver</li><li>Subsequent update and save operations create a new unique id</li></ol><p>&nbsp;</p><p>&nbsp;</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" id="privacyModal">
+    <div class="modal-dialog">
+      <div class="modal-content">       
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title">Privacy Notice</h4>
+        </div>        
+        <div class="modal-body">
+           <p>We do not collect personal information about your visit to our site unless you choose to provide this information to us. However, we collect and store certain information automatically. </p>
+
+<h2>What We Collect and Store Automatically</h2>
+<p>Name of the domain from which you access the Internet (for example, aol.com, if you use an America Online account, or princeton.edu if you connect from Princeton University's domain); 
+Date and time you access our site; and 
+Internet address of the Website from which you linked directly to our site. 
+We use the information we collect to count the number and type of visitors to the different pages on our site, and to help us make our site more useful to visitors like you. </p>
+
+<h2>If You Send Us E-mail </h2>
+<p>You may choose to provide us with personal information, as in e-mail with a comment or question. We use the information to improve our service to you or to respond to your request. Sometimes we forward your e-mail to other government employees who may be better able to help you. Except for authorized law enforcement investigations, we do not share our e-mail with any other outside organizations. </p>
+
+<h2>Links to Other Sites </h2>
+<p>Our Website has many links to other federal agencies, embassies, multilateral organizations and private organizations. When you link to another site, you are no longer on our site and are subject to the privacy policy of the new site.</p>
+
+<h2>Questions?</h2>
+<p>Email any questions you have about our Privacy Policy to <a href="mailto:vijay@xfinion.com?Subject=privacy info">vijay@xfinion.com</a></p>
+        </div>
+      </div>
+    </div>  
+    </div>
+  

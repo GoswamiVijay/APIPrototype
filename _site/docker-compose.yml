@@ -1,0 +1,31 @@
+mymedlookupdb:
+  build: ./Docker-db
+  dockerfile: Dockerfile
+  ports:
+   - "27017:27017"
+mymedlookupweb1:
+  build: .
+  dockerfile: Dockerfile
+  ports:
+   - "4000"
+  volumes:
+   - .:/src
+  links:
+   - mymedlookupdb
+mymedlookupweb2:
+  build: .
+  dockerfile: Dockerfile
+  ports:
+   - "4000"
+  volumes:
+   - .:/src
+  links:
+   - mymedlookupdb
+nginx:
+  build: ./Docker-nginx
+  dockerfile: Dockerfile
+  links:
+    - mymedlookupweb1:mymedlookupweb1
+    - mymedlookupweb2:mymedlookupweb2
+  ports:
+    - "8090:8090"
