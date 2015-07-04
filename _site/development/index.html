@@ -132,10 +132,8 @@
 <li><a href="#prerequisites">Prerequisites for developing the application</a></li>
 <li><a href="#repository-branches">Repository branches</a></li>
 <li><a href="#development-workflow">Development workflow</a></li>
-<li><a href="#building-docker-images">Building docker images</a></li>
-<li><a href="#running-the-application">Running the application</a></li>
-<li><a href="#running-the-application-with-docker">Running the application with docker</a></li>
-<li><a href="#user-stories">Documentation</a></li>
+<li><a href="#building-and-running-application">Building and running the application</a></li>
+<li><a href="#building-docker-images">Building and running docker images</a></li>
 </ul>
 
 <h3><a name="setting-up-development-workstation"></a>Setting up development workstation</h3>
@@ -235,7 +233,20 @@ If you are new to git please use the following resources to learn git and gitflo
 <li><p>Err on the side of more documentation. If there are configuration settings your are adding or dependecies or steps for building or testing the application, pleas record it in confluence and/or github pages</p></li>
 </ol>
 
-<h2><a name="building-docker-images"></a>Building docker images</h2>
+<h2><a name="building-and-running-application"></a>Building and running the application</h2>
+
+<ol>
+<li> Start mongodb database using the following command in terminal window</li>
+</ol>
+<div class="highlight"><pre><code class="language-text" data-lang="text">$ sudo mongod
+</code></pre></div>
+<ol>
+<li> Run the application
+In a new terminal window, navigate to the folder where you have cloned the repository and run the following command</li>
+</ol>
+<div class="highlight"><pre><code class="language-text" data-lang="text">$ nodemon
+</code></pre></div>
+<h2><a name="building-docker-images"></a>Building and running docker images</h2>
 
 <p>The following instructions for building the docker images assume you have checked out the develop branch on your workstation and in terminal/command prompt in that folder. If you are running boot2docker, it is assumed you are in the boot2docker shell (run boot2docker from Application folder on mac). Substitute your account name with goswamivijay when building or running the images</p>
 
@@ -299,13 +310,26 @@ If you don&#39;t have the container id, you can query the conatiner id by runnin
 <p><a href="https://docs.docker.com/userguide/">https://docs.docker.com/userguide/</a>
 <a href="https://docs.docker.com/reference/builder/">https://docs.docker.com/reference/builder/</a></p>
 
-<p>Alternatively, you can use the docker-compose command to build all the images.</p>
+<p>Alternatively, you can use the docker-compose commands to build and run the images/containers </p>
 
-<h2><a name="running-the-application"></a>Running the application</h2>
+<p>To build all the images, start boot2docker and navigate to the folder where you have cloned the repository. Run the following command to build all the images </p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">$ docker-compose build
+</code></pre></div>
+<p>Run the containers</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">$ docker-compose up -d
+</code></pre></div>
+<p>To find the port numbers the containers are listening on</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">$ docker ps
+</code></pre></div>
+<p>You can now navigate to the nginx url or the web application containers to test the application. To find the ip address use the the following command.</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">$ boot2docker ip
+</code></pre></div>
+<p>The browser response might be slow by few seconds the first time you run the containers.</p>
 
-<h2><a name="running-the-application-with-docker"></a>Running the application with docker</h2>
-
-<h2><a name="user-stories"></a>Documentation</h2>
+<p>To remove the containers use the following command</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">$ docker-compose rm
+</code></pre></div>
+<p>Optional -- you can use the -v option to map your working folder to the container so changes in your folder are reflected in the application.</p>
 
         </section>
 

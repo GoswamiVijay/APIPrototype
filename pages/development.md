@@ -109,13 +109,19 @@ The development workflow is pretty simple
 4.  Err on the side of more documentation. If there are configuration settings your are adding or dependecies or steps for building or testing the application, pleas record it in confluence and/or github pages
 
 ## <a name="building-and-running-application"></a>Building and running the application
-1. Start mongodb database using the following command in terminal window
+1.  Start mongodb database using the following command in terminal window
+
 
 ```
-$ mongod
+$ sudo mongod
 ```
 
-2. run the application
+2.  Run the application
+In a new terminal window, navigate to the folder where you have cloned the repository and run the following command
+
+```
+$ nodemon
+```
 
 ## <a name="building-docker-images"></a>Building and running docker images
 The following instructions for building the docker images assume you have checked out the develop branch on your workstation and in terminal/command prompt in that folder. If you are running boot2docker, it is assumed you are in the boot2docker shell (run boot2docker from Application folder on mac). Substitute your account name with goswamivijay when building or running the images
