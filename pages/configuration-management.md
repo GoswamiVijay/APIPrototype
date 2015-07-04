@@ -11,7 +11,7 @@ While using the command line tool can be used for performing checkins and push t
 
 Our branching model is based on [gitflow](https://github.com/nvie/gitflow). Details on the using the gitflow workflow can be found [here](https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow).
 
-### <a href="branches"></a>Branches ###
+### <a name="branches"></a>Branches
 The repository contains the following primary branches
 
 1.  master -- all releases and deployment to production is based on this branch. 
@@ -20,12 +20,21 @@ The repository contains the following primary branches
 4.  dev-integration -- this branch is used performing developer integration testing, the code is synchronized on a schedule and deployed to dev-integration platform
 
 Secondary branches are created in response to bug fixes with a deployed version, feature development etc.
+
 1.  release -- this branch is created from develop in preparation for release, configuration changes specifc to production environment are made and checked in before merging with master branch.
 2.  feature-branch -- feature branches are created for functional requirements that are independent of current code base and for features that will span multiple sprints.
 
 ### Branching & Merging ###
-We recommend using SourceTree for performing merge and branch operations. We make one person responsible for working with master, test and dev-integration branches. Development team members are free to create feature branches.
+We recommend using SourceTree for performing merge and branch operations. We made one person responsible for working with master, test and dev-integration branches. Development team members are free to create feature branches.
 
-The Dockerfile file in each of the branch is specific to that environment. When merging branches please ensure that the Dockerfile file does not get overwritten/merged with another branch. This is just a precaution, the environment settings in the Dockerfile file is overridden by the environment settings configured in the Elastic Beanstalk environment.
+Please refer to this article for creating and merging branches http://blog.sourcetreeapp.com/2012/08/01/smart-branching-with-sourcetree-and-git-flow/.
+
+
+
+__Important__
+
+___The Dockerfile file in each of the branch is specific to that environment. When merging branches please ensure that the Dockerfile file does not get overwritten/merged with another branch. This is just a precaution, the environment settings in the Dockerfile file is overridden by the environment settings configured in the Elastic Beanstalk environment.___
+
+___The Dockerrun.aws.json file is used by Amazon Elastic Beanstalk to setup the environment. No changes should be merged to this file from other branches unless the hosting environment needs to be changes.___
 
 

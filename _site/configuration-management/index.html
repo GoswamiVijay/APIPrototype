@@ -25,8 +25,6 @@
 
         <div class="wrap">
           
-            <img class="logo" src="/APIPrototype/assets/img/18f-logo.png" alt="18F logo" width="75px">
-          
           <h1 class="site-title"><a class="title-link" href="/APIPrototype/">My Medication List - Prototype</a></h1>
         </div>
         
@@ -96,7 +94,7 @@
       
         
           <li >
-            <a href="/APIPrototype/support-and-monitoring/"  >Support and Monitoring</a>
+            <a href="/APIPrototype/continuous-monitoring/"  >Continuous Monitoring</a>
           </li>
         
       
@@ -133,7 +131,7 @@
 
 <p>Our branching model is based on <a href="https://github.com/nvie/gitflow">gitflow</a>. Details on the using the gitflow workflow can be found <a href="https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow">here</a>.</p>
 
-<h3><a href="branches"></a>Branches</h3>
+<h3><a name="branches"></a>Branches</h3>
 
 <p>The repository contains the following primary branches</p>
 
@@ -144,15 +142,24 @@
 <li> dev-integration -- this branch is used performing developer integration testing, the code is synchronized on a schedule and deployed to dev-integration platform</li>
 </ol>
 
-<p>Secondary branches are created in response to bug fixes with a deployed version, feature development etc.
-1.  release -- this branch is created from develop in preparation for release, configuration changes specifc to production environment are made and checked in before merging with master branch.
-2.  feature-branch -- feature branches are created for functional requirements that are independent of current code base and for features that will span multiple sprints.</p>
+<p>Secondary branches are created in response to bug fixes with a deployed version, feature development etc.</p>
+
+<ol>
+<li> release -- this branch is created from develop in preparation for release, configuration changes specifc to production environment are made and checked in before merging with master branch.</li>
+<li> feature-branch -- feature branches are created for functional requirements that are independent of current code base and for features that will span multiple sprints.</li>
+</ol>
 
 <h3>Branching &amp; Merging</h3>
 
-<p>We recommend using SourceTree for performing merge and branch operations. We make one person responsible for working with master, test and dev-integration branches. Development team members are free to create feature branches.</p>
+<p>We recommend using SourceTree for performing merge and branch operations. We made one person responsible for working with master, test and dev-integration branches. Development team members are free to create feature branches.</p>
 
-<p>The Dockerfile file in each of the branch is specific to that environment. When merging branches please ensure that the Dockerfile file does not get overwritten/merged with another branch. This is just a precaution, the environment settings in the Dockerfile file is overridden by the environment settings configured in the Elastic Beanstalk environment.</p>
+<p>Please refer to this article for creating and merging branches <a href="http://blog.sourcetreeapp.com/2012/08/01/smart-branching-with-sourcetree-and-git-flow/">http://blog.sourcetreeapp.com/2012/08/01/smart-branching-with-sourcetree-and-git-flow/</a>.</p>
+
+<p><strong>Important</strong></p>
+
+<p><strong><em>The Dockerfile file in each of the branch is specific to that environment. When merging branches please ensure that the Dockerfile file does not get overwritten/merged with another branch. This is just a precaution, the environment settings in the Dockerfile file is overridden by the environment settings configured in the Elastic Beanstalk environment.</em></strong></p>
+
+<p><strong><em>The Dockerrun.aws.json file is used by Amazon Elastic Beanstalk to setup the environment. No changes should be merged to this file from other branches unless the hosting environment needs to be changes.</em></strong></p>
 
         </section>
 
@@ -162,9 +169,7 @@
   <div class="wrap">
     <p>This project is maintained by <a href="http://www.xfinion.com">Xfinion</a>.</p>
 
-    <p>Hosted on <a href="https://github.com/18F/pages/">18F Pages</a>.</p>
-    <p><a href="https://github.com/goswamivijay/APIPrototype/edit/18f-pages/pages/configuration-management.md">Edit this page on GitHub</a></p>
-  </div><!--/.wrap -->
+    </div><!--/.wrap -->
 </footer>
 
 

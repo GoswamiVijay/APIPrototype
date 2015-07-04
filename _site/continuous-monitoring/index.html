@@ -4,7 +4,7 @@
   <head>
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta charset="utf-8">
-  <title>Support and Monitoring - My Medication List - Prototype</title>
+  <title>Continuous Monitoring - My Medication List - Prototype</title>
   <meta name="viewport" content="width=device-width">
   <link href='//fonts.googleapis.com/css?family=Raleway:400,700%7COpen+Sans:300,600' rel='stylesheet' type='text/css'>
   <link rel="stylesheet" href="/APIPrototype/assets/css/main.css">
@@ -24,8 +24,6 @@
       <header role="banner">
 
         <div class="wrap">
-          
-            <img class="logo" src="/APIPrototype/assets/img/18f-logo.png" alt="18F logo" width="75px">
           
           <h1 class="site-title"><a class="title-link" href="/APIPrototype/">My Medication List - Prototype</a></h1>
         </div>
@@ -96,7 +94,7 @@
       
         
           <li class="sidebar-nav-active">
-            <a href="/APIPrototype/support-and-monitoring/"  title='Selected'>Support and Monitoring</a>
+            <a href="/APIPrototype/continuous-monitoring/"  title='Selected'>Continuous Monitoring</a>
           </li>
         
       
@@ -124,21 +122,111 @@
 
 
         <section id="main" class="main-content" role="main">
-          <h1>Support and Monitoring</h1>
-          <h3><a name="top"></a>Jump to</h3>
+          <h1>Continuous Monitoring</h1>
+          <h2>Overview</h2>
 
-<ul>
-<li><a href="#vision">Vision</a></li>
-<li><a href="#user-stories">User Stories</a></li>
-</ul>
+<p>We leveraged  Platform as a Service (PaaS) cloud model for hosting the application on Amazon Elastic Beanstalk. Utilizing a PaaS model comes with following benefits</p>
 
-<p>email notification from codeship and elastic beanstalk, update email setting info for elastic beanstalk in deployment.md</p>
+<ol>
+<li> Higher level of abstraction compared to OS/infrastructure as a service (IaaS) based models</li>
+<li> Built in mechanisms for scaling, monitoring and healing</li>
+<li> Cost effeciences</li>
+<li> Faster time to market</li>
+</ol>
 
-<h3><a name="vision"></a>Vision</h3>
+<p>Our continuous monitoring model consists of following elements
+1.  Healthcheck, notification and scaling configurations
+2.  Monitoring platform generated metrics
+3.  Logging and monitoring system and environment changes
+4.  Running analysis scripts/jobs on logs saved to Amazon S3 (tbd)</p>
 
-<p>$ github-pages health-check</p>
+<p>The following screenshots provide an overview of the healthcheck and monitoring configuration and metrics</p>
 
-<h3><a name="user-stories"></a>User Stories</h3>
+<p><a href="http://aws.amazon.com/cloudtrail/">AWS CloudTrail</a> keeps an audit logs of all the API calls to the AWS cloud platform. These logs provide a record of how, when and by whom cloud platform configuration changes were effected.</p>
+
+<h3>CloudTrail logs viewable in the console</h3>
+
+<hr>
+
+<p><img src="/APIPrototype/images/monitoring-and-support/cloudtrail-console-logs.png" width="100%" alt="" /></p>
+
+<h3>CloudTrail logs stored in S3</h3>
+
+<hr>
+
+<p><img src="/APIPrototype/images/monitoring-and-support/cloudtrail-logs-s3.png" width="100%" alt="" /></p>
+
+<h3>Application platform alarms - 1</h3>
+
+<hr>
+
+<p><img src="/APIPrototype/images/monitoring-and-support/eb-console-environment-alarms-1.png" width="100%" alt="" /></p>
+
+<h3>Application platform alarms - 2</h3>
+
+<hr>
+
+<p><img src="/APIPrototype/images/monitoring-and-support/eb-console-environment-alarms-2.png" width="100%" alt="" /></p>
+
+<h3>Platform health events</h3>
+
+<hr>
+
+<p><img src="/APIPrototype/images/monitoring-and-support/eb-console-environment-events.png" width="100%%" alt="" /></p>
+
+<h3>Platform health</h3>
+
+<hr>
+
+<p><img src="/APIPrototype/images/monitoring-and-support/eb-console-environment-health.png" width="100%" alt="" /></p>
+
+<h3>Platform logs can be downloaded from console</h3>
+
+<hr>
+
+<p><img src="/APIPrototype/images/monitoring-and-support/eb-console-environment-logs.png" width="100%" alt="" /></p>
+
+<h3>Platform logs contents</h3>
+
+<hr>
+
+<p><img src="/APIPrototype/images/monitoring-and-support/eb-console-environment-logs-expanded.png" width="100%" alt="" /></p>
+
+<h5>Application platform metrics - 1</h5>
+
+<hr>
+
+<p><img src="/APIPrototype/images/monitoring-and-support/eb-console-environment-metrics-1.png" width="100%" alt="" /></p>
+
+<h3>Application platform metrics - 2</h3>
+
+<hr>
+
+<p><img src="/APIPrototype/images/monitoring-and-support/eb-console-environment-metrics-2.png" width="100%" alt="" /></p>
+
+<h3>Email notification configuration</h3>
+
+<hr>
+
+<p><img src="/APIPrototype/images/monitoring-and-support/eb-console-environment-Notification.png" width="100%" alt="" /></p>
+
+<h3>Email notification on platform change</h3>
+
+<hr>
+
+<p><img src="/APIPrototype/images/monitoring-and-support/eb-environment-change-notification-email.png" width="100%" alt="" /></p>
+
+<h3>Load balancer logs saved to S3 - 1</h3>
+
+<hr>
+
+<p><img src="/APIPrototype/images/monitoring-and-support/lb-s3-logs-1.png" width="100%" alt="" /></p>
+
+<h3>Load balancer logs saved to S3 - 2</h3>
+
+<hr>
+
+<p><img src="/APIPrototype/images/monitoring-and-support/lb-s3-logs-2.png" width="100%" alt="" /></p>
 
         </section>
 
@@ -148,9 +236,7 @@
   <div class="wrap">
     <p>This project is maintained by <a href="http://www.xfinion.com">Xfinion</a>.</p>
 
-    <p>Hosted on <a href="https://github.com/18F/pages/">18F Pages</a>.</p>
-    <p><a href="https://github.com/goswamivijay/APIPrototype/edit/18f-pages/pages/support-and-monitoring.md">Edit this page on GitHub</a></p>
-  </div><!--/.wrap -->
+    </div><!--/.wrap -->
 </footer>
 
 

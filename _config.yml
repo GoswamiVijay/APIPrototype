@@ -20,8 +20,8 @@ author:
   url: http://www.xfinion.com
 
 # Point the logo URL at a file in your repo or hosted elsewhere by your organization
-logourl: /assets/img/18f-logo.png
-logoalt: 18F logo
+#logourl: /assets/img/18f-logo.png
+#logoalt: 18F logo
 
 # Navigation
 # List links that should appear in the site sidebar here
@@ -54,8 +54,8 @@ navigation:
   url: continuous-integration/
   internal: true
   
-- text: Support and Monitoring
-  url: support-and-monitoring/
+- text: Continuous Monitoring
+  url: continuous-monitoring/
   internal: true  
 - text: Security
   url: security/
