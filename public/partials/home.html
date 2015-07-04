@@ -9,8 +9,15 @@
     </div>
       <div class="row">
       <p>My medication list allows you to keep a list of all the medication you are currently taking and share it with your medical provider using a hyperlink.The hyper link is located at the bottom of the page and is available after you have created a list of your medicatuions and clicked the save button.You can access additional help  associated with this application by clicking on the help button or sending us an email at support@xfinion.com You can also call us at 301.801.4897 Monday to Friday between the hours of 8am and 6pm.Thank you using My Medication List. You can review our privacy policy <a href="#" id="btnprivacy" data-toggle="modal" data-target="#privacyModal" >here</a></p>
-    </div>  
-      <div class="row" >
+    </div> 
+    <div class="row">
+     <h3 style="font-size:14px;margin:0px;">Top Searched Medications</h3> 
+     <div style="display:inline;margin-top:-10px;margin-bottom:10px;" ng-repeat="medication in TopSearchedMedications">
+         <a style="display:inline" ng-click="search.query=medication.tag">{{medication.tag}},</a>
+     </div>
+    </div>
+     
+      <div class="row" style="margin-top:10px;">
         <form class="form-inline" ng-submit="performsearch();">
           <div class="form-group">           
               <input type="text" placeholder="Search" id="input-search" class="form-control" style="width:350px;" ng-model="search.query">
@@ -23,12 +30,14 @@
         <div id="searchContainer" class="col-md-6" style="height:550px;overflow: auto;">
           <section class="result-container"> 
            <div ng-repeat="r in results">
-            <p  class="br-bottom" ng-click="showMedicationInfo(r)" data-toggle="modal" data-target="#MedicationModel">
+            <p  class="br-bottom">
               {{ r.openfda.substance_name[0]}}<br />
               <b>Product Type:</b> {{ r.openfda.product_type[0]}}<br/>
               <b>Manufacturer:</b> {{ r.openfda.manufacturer_name[0]}} <br/>
               <b>Brand:</b> {{ r.openfda.brand_name[0]}} 
-              <a href="javascript:void(0);" style="float:right; cursor:pointer;" ng-click="add(r)">Add</a>
+              <a href="javascript:void(0);" style="float:right; cursor:pointer;padding-left:10px;" ng-click="add(r)">Add</a>
+            
+              <a href="javascript:void(0);" style="float:right; cursor:pointer;" data-toggle="modal" data-target="#MedicationModel" ng-click="showMedicationInfo(r)">View Info </a>
             </p>
            </div>         
             <p ng-show="message">{{message}}</p>
@@ -44,7 +53,8 @@
               <b>Product Type:</b> {{ sr.openfda.product_type[0]}}<br/>
               <b>Manufacturer:</b> {{ sr.openfda.manufacturer_name[0]}} <br/>
               <b>Brand:</b> {{ sr.openfda.brand_name[0]}} 
-              <a href="javascript:void(0);" style="float:right; cursor:pointer;" ng-click="remove(sr)">Remove</a>
+              <a href="javascript:void(0);" style="float:right; cursor:pointer;padding-left:10px;" ng-click="remove(sr)">Remove</a>
+              <a href="javascript:void(0);" style="float:right; cursor:pointer;" data-toggle="modal" data-target="#MedicationModel" ng-click="showMedicationInfo(sr)">View Info </a>
             </p>
           </section>
         </div>

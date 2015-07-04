@@ -9,6 +9,7 @@ var app=angular.module('myApp.controllers', ['uiGmapgoogle-maps','ui-rangeSlider
     $scope.response = null;
     $scope.widgetId = null;
     $scope.AppDevelopmentMode = false;
+    $scope.TopSearchedMedications = [];
     
     $scope.model = {
         key: '6Lf3GgkTAAAAAM-KwKq3KxS4-7g40bbLA7jWEyBv'
@@ -38,6 +39,22 @@ var app=angular.module('myApp.controllers', ['uiGmapgoogle-maps','ui-rangeSlider
     };
     $scope.GetApplicationConfig();
 
+    //Get Top Medications 
+    $scope.GetTopSearchedMedications = function()
+    {
+        $http.get('/getTopSearchKeywords')
+        .success(function(data)
+        {
+          console.log(data);    
+          if(data.success)
+          {
+            $scope.TopSearchedMedications = data.result;
+          }
+        }).error(function(err){ console.log(err); }); 
+    };
+    $scope.GetTopSearchedMedications();
+    
+    
     $scope.submitCapcha = function () 
     {
         var valid;
@@ -121,7 +138,9 @@ var app=angular.module('myApp.controllers', ['uiGmapgoogle-maps','ui-rangeSlider
       else
       {
         $scope.pageNumber = 0;  
+        $scope.results = [];  
         $scope.AllResults = [];
+        $scope.paginateResults();
         $scope.message = "No matching results found.";
         $rootScope.showLoading = false;
       }
