@@ -41,9 +41,9 @@ The following images are publicly available on docker hub [API Prototype Images]
   * [goswamivijay/apiprototype-nginx-test](https://registry.hub.docker.com/u/goswamivijay/apiprototype-nginx-test/) 
   * [goswamivijay/apiprototype-db-test](https://registry.hub.docker.com/u/goswamivijay/apiprototype-db-test/) 
 
-4. Images built from test branch
-  * [goswamivijay/apiprototype-db-testgoswamivijay/apiprototype-web-prod](https://registry.hub.docker.com/u/goswamivijay/apiprototype-db-testgoswamivijay/apiprototype-web-prod/) 
-  * [goswamivijay/apiprototype-db-testgoswamivijay/apiprototype-nginx-prod](https://registry.hub.docker.com/u/goswamivijay/apiprototype-db-testgoswamivijay/apiprototype-nginx-prod/) 
+4. Images built from master branch
+  * [goswamivijay//apiprototype-web-prod](https://registry.hub.docker.com/u/goswamivijay/apiprototype-db-testgoswamivijay/apiprototype-web-prod/) 
+  * [goswamivijay//apiprototype-nginx-prod](https://registry.hub.docker.com/u/goswamivijay/apiprototype-db-testgoswamivijay/apiprototype-nginx-prod/) 
 
 You can install any of the above images on your workstation to test the application.
 Please ensure you have docker installed on your workstation. You can follow the instructions here (???Miscellaneous) to install docker on your box. The following instructions assume docker is installed on your box (or you are in docker VM if you are using docker tools such as [boot2docker](http://boot2docker.io/).

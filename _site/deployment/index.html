@@ -161,24 +161,486 @@ The following table shows the mapping of load balancer end points to the respect
 </tr>
 </tbody></table>
 
+<p>The application uses <a href="http://aws.amazon.com/route53/">Amazon Route 53 service</a> to provide DNS service for mymedlookup.org domain. Amazon Route 53 service provides user friendly and scalable domain name management services especially if the application servicing the domain is hosted on Amazon cloud infrastructure (AWS). One of the benefits of AWS Route 53 service is that it provides convenient services to do A/B testing for new services that will be deployed. Having this ability is critical for getting realtime feedback on new features before they are made available to all users of the application. The following table lists the A record mapping for mymedlookup domain and the EB load balancer to which it points.</p>
+
+<table><thead>
+<tr>
+<th>No.</th>
+<th>Url endpoint</th>
+<th>Load Balancer endpoint</th>
+<th>EB environment url</th>
+<th>EB environment name</th>
+<th>Hosting mode</th>
+<th>Github branch</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>1</td>
+<td><a href="http://dev.mymedlookup.org">http://dev.mymedlookup.org</a>  <a href="http://dev.mymedlookup.org">http://dev.mymedlookup.org</a></td>
+<td><a href="http://awseb-e-e-AWSEBLoa-86H1H9G12GM9-2031228343.us-east-1.elb.amazonaws.com">http://awseb-e-e-AWSEBLoa-86H1H9G12GM9-2031228343.us-east-1.elb.amazonaws.com</a></td>
+<td><a href="http://mymedlookup-dev-env.elasticbeanstalk.com">http://mymedlookup-dev-env.elasticbeanstalk.com</a></td>
+<td>mymedlookup-dev-env</td>
+<td>Developer Integration</td>
+<td>develop</td>
+</tr>
+<tr>
+<td>2</td>
+<td><a href="http://www.mymedlookup.org">http://www.mymedlookup.org</a>  <a href="http://www.mymedlookup.org">http://www.mymedlookup.org</a> <a href="http://prod.mymedlookup.org">http://prod.mymedlookup.org</a> <a href="https://prod.mymedlookup.org">https://prod.mymedlookup.org</a></td>
+<td><a href="http://awseb-e-w-AWSEBLoa-17QCCHNB5MY4W-1581895741.us-east-1.elb.amazonaws.com">http://awseb-e-w-AWSEBLoa-17QCCHNB5MY4W-1581895741.us-east-1.elb.amazonaws.com</a></td>
+<td><a href="http://mymedlookup-prod-env.elasticbeanstalk.com">http://mymedlookup-prod-env.elasticbeanstalk.com</a></td>
+<td>mymedlookup-prod-env</td>
+<td>Production</td>
+<td>master</td>
+</tr>
+<tr>
+<td>3</td>
+<td><a href="http://test.mymedlookup.org">http://test.mymedlookup.org</a> <a href="http://test.mymedlookup.org">http://test.mymedlookup.org</a></td>
+<td><a href="http://awseb-e-q-AWSEBLoa-186S0I28Y2KIK-3464553.us-east-1.elb.amazonaws.com">http://awseb-e-q-AWSEBLoa-186S0I28Y2KIK-3464553.us-east-1.elb.amazonaws.com</a></td>
+<td><a href="http://mymedlookup-test-env.elasticbeanstalk.com">http://mymedlookup-test-env.elasticbeanstalk.com</a></td>
+<td>mymedlookup-test-env</td>
+<td>Testing</td>
+<td>test</td>
+</tr>
+</tbody></table>
+
+<p>To support HTTPS, wildcard SSL certificates have been deployed on the load balancers. The load balancers accepts both HTTP and HTTPS traffic. Production load balancer will be reconfigured to direct HTTP traffic to HTTPS endpoint when the application goes live. </p>
+
+<p>The load balancers have also been configured to save access logs on <a href="http://aws.amazon.com/s3/">Amazon S3</a>. Storing the logs on S3 provides couple of benefits, the logs can either be downloaded to process them or can be run thru Elastic Map Reduce Jobs to generate reports or trigger notifications based on events.</p>
+
+<p>Notes: For setting up storage of load balancer logs to S3, you need to setup a bucket on S3 and add bucket policy that will allow load balancer to store the logs. The following policy has been applied for mymedlookup application. Substitute xxAWSAccountNumberxx with the AWS account number.</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">{
+    &quot;Version&quot;: &quot;2012-10-17&quot;,
+    &quot;Id&quot;: &quot;Policy1435854988205&quot;,
+    &quot;Statement&quot;: [
+        {
+            &quot;Sid&quot;: &quot;mymedlookup-1435855633164&quot;,
+            &quot;Effect&quot;: &quot;Allow&quot;,
+            &quot;Principal&quot;: {
+                &quot;AWS&quot;: &quot;arn:aws:iam::127311923021:root&quot;
+            },
+            &quot;Action&quot;: &quot;s3:PutObject&quot;,
+            &quot;Resource&quot;: &quot;arn:aws:s3:::mymedlookuplogs/devlblogs/AWSLogs/xxAWSAccountNumberxx/*&quot;
+        },
+        {
+            &quot;Sid&quot;: &quot;mymedlookup-1435855633165&quot;,
+            &quot;Effect&quot;: &quot;Allow&quot;,
+            &quot;Principal&quot;: {
+                &quot;AWS&quot;: &quot;arn:aws:iam::127311923021:root&quot;
+            },
+            &quot;Action&quot;: &quot;s3:PutObject&quot;,
+            &quot;Resource&quot;: &quot;arn:aws:s3:::mymedlookuplogs/prodlblogs/AWSLogs/xxAWSAccountNumberxx/*&quot;
+        },
+        {
+            &quot;Sid&quot;: &quot;mymedlookup-1435855633166&quot;,
+            &quot;Effect&quot;: &quot;Allow&quot;,
+            &quot;Principal&quot;: {
+                &quot;AWS&quot;: &quot;arn:aws:iam::127311923021:root&quot;
+            },
+            &quot;Action&quot;: &quot;s3:PutObject&quot;,
+            &quot;Resource&quot;: &quot;arn:aws:s3:::mymedlookuplogs/testlblogs/AWSLogs/xxAWSAccountNumberxx/*&quot;
+        }
+    ]
+}
+</code></pre></div>
+<p><a href="https://codeship.com/">Codeship</a> is used for continous integration and deployment on the EB environments. For Codeship to deploy, you need to setup a user account in IAM (Amazon Identity and Access Management) (codeship) and add it to group with following permissions/policy</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">{
+    &quot;Version&quot;: &quot;2012-10-17&quot;,
+    &quot;Statement&quot;: [
+        {
+            &quot;Sid&quot;: &quot;Stmt1435632464000&quot;,
+            &quot;Effect&quot;: &quot;Allow&quot;,
+            &quot;Action&quot;: [
+                &quot;ecs:RegisterTaskDefinition&quot;
+            ],
+            &quot;Resource&quot;: [
+                &quot;*&quot;
+            ]
+        }
+    ]
+}
+</code></pre></div><div class="highlight"><pre><code class="language-text" data-lang="text">{
+    &quot;Version&quot;: &quot;2012-10-17&quot;,
+    &quot;Statement&quot;: [
+        {
+            &quot;Action&quot;: [
+                &quot;elasticbeanstalk:CreateApplicationVersion&quot;,
+                &quot;elasticbeanstalk:DescribeEnvironments&quot;,
+                &quot;elasticbeanstalk:DeleteApplicationVersion&quot;,
+                &quot;elasticbeanstalk:UpdateEnvironment&quot;
+            ],
+            &quot;Effect&quot;: &quot;Allow&quot;,
+            &quot;Resource&quot;: &quot;*&quot;
+        },
+        {
+            &quot;Action&quot;: [
+                &quot;elasticloadbalancing:DescribeInstanceHealth&quot;,
+                &quot;elasticloadbalancing:DeregisterInstancesFromLoadBalancer&quot;,
+                &quot;elasticloadbalancing:RegisterInstancesWithLoadBalancer&quot;
+            ],
+            &quot;Effect&quot;: &quot;Allow&quot;,
+            &quot;Resource&quot;: &quot;*&quot;
+        },
+        {
+            &quot;Action&quot;: [
+                &quot;sns:CreateTopic&quot;,
+                &quot;sns:GetTopicAttributes&quot;,
+                &quot;sns:ListSubscriptionsByTopic&quot;,
+                &quot;sns:Subscribe&quot;
+            ],
+            &quot;Effect&quot;: &quot;Allow&quot;,
+            &quot;Resource&quot;: &quot;arn:aws:sns:us-east-1:065907742841:*&quot;
+        },
+        {
+            &quot;Action&quot;: [
+                &quot;autoscaling:SuspendProcesses&quot;,
+                &quot;autoscaling:DescribeScalingActivities&quot;,
+                &quot;autoscaling:ResumeProcesses&quot;,
+                &quot;autoscaling:DescribeAutoScalingGroups&quot;
+            ],
+            &quot;Effect&quot;: &quot;Allow&quot;,
+            &quot;Resource&quot;: &quot;*&quot;
+        },
+        {
+            &quot;Action&quot;: [
+                &quot;cloudformation:GetTemplate&quot;,
+                &quot;cloudformation:DescribeStackResource&quot;,
+                &quot;cloudformation:UpdateStack&quot;
+            ],
+            &quot;Effect&quot;: &quot;Allow&quot;,
+            &quot;Resource&quot;: &quot;arn:aws:cloudformation:us-east-1:065907742841:*&quot;
+        },
+        {
+            &quot;Action&quot;: [
+                &quot;ec2:DescribeImages&quot;,
+                &quot;ec2:DescribeKeyPairs&quot;
+            ],
+            &quot;Effect&quot;: &quot;Allow&quot;,
+            &quot;Resource&quot;: &quot;*&quot;
+        },
+        {
+            &quot;Action&quot;: [
+                &quot;s3:PutObject&quot;,
+                &quot;s3:PutObjectAcl&quot;,
+                &quot;s3:GetObject&quot;,
+                &quot;s3:GetObjectAcl&quot;,
+                &quot;s3:ListBucket&quot;,
+                &quot;s3:DeleteObject&quot;,
+                &quot;s3:GetBucketPolicy&quot;
+            ],
+            &quot;Effect&quot;: &quot;Allow&quot;,
+            &quot;Resource&quot;: [
+                &quot;arn:aws:s3:::elasticbeanstalk:us-east-1:065907742841&quot;,
+                &quot;arn:aws:s3:::elasticbeanstalk:us-east-1:065907742841/*&quot;
+            ]
+        }
+    ]
+}
+</code></pre></div>
 <h3><a name="top"></a>Jump to</h3>
 
 <ul>
-<li><a href="#vision">Hosted environments</a></li>
-<li><a href="#user-stories">Setting up development environment on Elastic Beanstalk</a></li>
-<li><a href="#user-stories">Setting up test environment on Elastic Beanstalk</a></li>
-<li><a href="#user-stories">Setting up production environment on Elastic Beanstalk</a></li>
-<li><a href="#user-stories">Domain name mapping</a></li>
-<li><a href="#user-stories">Reverting to previous version</a></li>
-<li><a href="#user-stories">Scalibility settings</a></li>
-<li><a href="#user-stories">Logging</a></li>
-<li><a href="#user-stories">Rule of 2</a></li>
-<li><a href="#user-stories">Checklist for manual deployment</a></li>
+<li><a href="#vpc-info">VPC Information</a></li>
+<li><a href="#deployment-setup">Deployment Setup</a></li>
+<li><a href="#database-setup">Database Setup</a></li>
+<li><a href="#creating-eb-application">Creating EB Application and production environment</a></li>
+<li><a href="#application-configuration">Application configuration</a></li>
+<li><a href="#reverting-to-previous-version">Reverting to previous version</a></li>
+<li><a href="#scalibility-settings">Scalibility settings</a></li>
+<li><a href="#logging">Logging</a></li>
+<li><a href="#aws-docker-configuration">AWS Docker configuration</a></li>
+<li><a href="#rule-of-2">Rule of 2</a></li>
 </ul>
 
-<h3><a name="vision"></a>Vision</h3>
+<h3><a name="vpc-info"></a>VPC Information</h3>
 
-<h3><a name="user-stories"></a>User Stories</h3>
+<p>The production, dev-integration and test environments are deployed in their own VPC. The following table provides a mapping of the environment and the VPC cidr.</p>
+
+<table><thead>
+<tr>
+<th>VPC name</th>
+<th>VPC cidr</th>
+<th>Environment mode</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>mymedlookup_test</td>
+<td>60.0.0.0/16</td>
+<td>test</td>
+</tr>
+<tr>
+<td>mymedlookup_dev</td>
+<td>70.0.0.0/16</td>
+<td>dev-integration</td>
+</tr>
+<tr>
+<td>mymedlookup_prod</td>
+<td>50.0.0.0/16</td>
+<td>production</td>
+</tr>
+</tbody></table>
+
+<p>Each of the application environments described below are deployed in their respective VPC</p>
+
+<h3><a name="deployment-setup"></a>Deployment Setup</h3>
+
+<p>The application uses <a href="http://aws.amazon.com/elasticbeanstalk/">Amazon Elastic BeanStalk</a> and <a href="http://aws.amazon.com/ecs/">Amazon EC2 Container service</a> PaaS services to host the application in docker containers. The docker images are pulled from <a href="https://hub.docker.com/">docker hub</a>. Automated docker image build has been configured for dev-integration, test and production branches of the repository. Changes to any of these branches triggers a docker image build. 
+The following table shows the mapping of repository branches to docker image builds</p>
+
+<table><thead>
+<tr>
+<th>No.</th>
+<th>Github branch</th>
+<th>Application component</th>
+<th>Docker image name</th>
+<th>Image endpoint</th>
+<th>Application mode</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>1</td>
+<td><a href="https://github.com/GoswamiVijay/APIPrototype/tree/develop">https://github.com/GoswamiVijay/APIPrototype/tree/develop</a></td>
+<td>web</td>
+<td>goswamivijay/apiprototype-web-develop</td>
+<td><a href="https://registry.hub.docker.com/u/goswamivijay/apiprototype-nginx-test/">https://registry.hub.docker.com/u/goswamivijay/apiprototype-nginx-test/</a></td>
+<td>develop</td>
+</tr>
+<tr>
+<td>2</td>
+<td><a href="https://github.com/GoswamiVijay/APIPrototype/tree/develop">https://github.com/GoswamiVijay/APIPrototype/tree/develop</a></td>
+<td>nginx</td>
+<td>goswamivijay/apiprototype-nginx-develop</td>
+<td><a href="https://registry.hub.docker.com/u/goswamivijay/apiprototype-nginx-develop/">https://registry.hub.docker.com/u/goswamivijay/apiprototype-nginx-develop/</a></td>
+<td>develop</td>
+</tr>
+<tr>
+<td>3</td>
+<td><a href="https://github.com/GoswamiVijay/APIPrototype/tree/develop">https://github.com/GoswamiVijay/APIPrototype/tree/develop</a></td>
+<td>database</td>
+<td>goswamivijay/apiprototype-db-develop</td>
+<td><a href="https://registry.hub.docker.com/u/goswamivijay/apiprototype-db-develop/">https://registry.hub.docker.com/u/goswamivijay/apiprototype-db-develop/</a></td>
+<td>develop</td>
+</tr>
+<tr>
+<td>4</td>
+<td><a href="https://github.com/GoswamiVijay/APIPrototype/tree/master">https://github.com/GoswamiVijay/APIPrototype/tree/master</a></td>
+<td>web</td>
+<td>goswamivijay//apiprototype-web-prod</td>
+<td><a href="https://registry.hub.docker.com/u/goswamivijay/apiprototype-db-testgoswamivijay/apiprototype-web-prod/">https://registry.hub.docker.com/u/goswamivijay/apiprototype-db-testgoswamivijay/apiprototype-web-prod/</a></td>
+<td>production</td>
+</tr>
+<tr>
+<td>5</td>
+<td><a href="https://github.com/GoswamiVijay/APIPrototype/tree/master">https://github.com/GoswamiVijay/APIPrototype/tree/master</a></td>
+<td>nginx</td>
+<td>goswamivijay//apiprototype-nginx-prod</td>
+<td><a href="https://registry.hub.docker.com/u/goswamivijay/apiprototype-db-testgoswamivijay/apiprototype-nginx-prod/">https://registry.hub.docker.com/u/goswamivijay/apiprototype-db-testgoswamivijay/apiprototype-nginx-prod/</a></td>
+<td>production</td>
+</tr>
+<tr>
+<td>6</td>
+<td><a href="https://github.com/GoswamiVijay/APIPrototype/tree/test">https://github.com/GoswamiVijay/APIPrototype/tree/test</a></td>
+<td>web</td>
+<td>goswamivijay/apiprototype-web-test</td>
+<td><a href="https://registry.hub.docker.com/u/goswamivijay/apiprototype-web-test/">https://registry.hub.docker.com/u/goswamivijay/apiprototype-web-test/</a></td>
+<td>test</td>
+</tr>
+<tr>
+<td>7</td>
+<td><a href="https://github.com/GoswamiVijay/APIPrototype/tree/test">https://github.com/GoswamiVijay/APIPrototype/tree/test</a></td>
+<td>nginx</td>
+<td>goswamivijay/apiprototype-nginx-test</td>
+<td><a href="https://registry.hub.docker.com/u/goswamivijay/apiprototype-nginx-test/">https://registry.hub.docker.com/u/goswamivijay/apiprototype-nginx-test/</a></td>
+<td>test</td>
+</tr>
+<tr>
+<td>8</td>
+<td><a href="https://github.com/GoswamiVijay/APIPrototype/tree/test">https://github.com/GoswamiVijay/APIPrototype/tree/test</a></td>
+<td>database</td>
+<td>goswamivijay/apiprototype-db-test</td>
+<td><a href="https://registry.hub.docker.com/u/goswamivijay/apiprototype-db-test/">https://registry.hub.docker.com/u/goswamivijay/apiprototype-db-test/</a></td>
+<td>test</td>
+</tr>
+<tr>
+<td>9</td>
+<td><a href="https://github.com/GoswamiVijay/APIPrototype/tree/dev-integration">https://github.com/GoswamiVijay/APIPrototype/tree/dev-integration</a></td>
+<td>web</td>
+<td>goswamivijay/apiprototype-nginx-devint</td>
+<td><a href="https://registry.hub.docker.com/u/goswamivijay/apiprototype-nginx-devint/">https://registry.hub.docker.com/u/goswamivijay/apiprototype-nginx-devint/</a></td>
+<td>dev integration</td>
+</tr>
+<tr>
+<td>10</td>
+<td><a href="https://github.com/GoswamiVijay/APIPrototype/tree/dev-integration">https://github.com/GoswamiVijay/APIPrototype/tree/dev-integration</a></td>
+<td>nginx</td>
+<td>goswamivijay/apiprototype-web-devint</td>
+<td><a href="https://registry.hub.docker.com/u/goswamivijay/apiprototype-web-devint/">https://registry.hub.docker.com/u/goswamivijay/apiprototype-web-devint/</a></td>
+<td>dev integration</td>
+</tr>
+</tbody></table>
+
+<h3><a name="database-setup"></a>Database Setup</h3>
+
+<p>The application uses <a href="https://www.mongodb.org/">mongodb</a> for persisting data. Each of the hosted environment (dev-integration, test and production) has it&#39;s own database instance deployed on <a href="http://aws.amazon.com/ec2/">Amazon EC2</a>. Since each of the environment is deployed in it&#39;s own <a href="http://aws.amazon.com/vpc/">Amazon Virtual Private Cloud</a> (VPC), connections to the database is restricted to instances in that VPC using the subnet IP address. To further secure the environments, the VPC only allows inbound network traffic on port 80 and 443. Before the application go live date, a jump will be provisioned in the VPC that will be used for administering the database server and to diagnose issue on the container instances. The jump server will be switched off when not needed. Database replication will be setup to provide high availability and reliability at the database tier.</p>
+
+<h3><a name="creating-eb-application"></a>Creating EB Application and production environment</h3>
+
+<ol>
+<li> Sign in to AWS console</li>
+<li> Select the Elastic Beanstalk service <a href="https://console.aws.amazon.com/elasticbeanstalk/home?region=us-east-1">https://console.aws.amazon.com/elasticbeanstalk/home?region=us-east-1</a></li>
+<li> Select the Create New Application link from top right of the page</li>
+<li> Enter mymedlookup for Application name: and click Next</li>
+<li> In the New Environment page, select Create web server button</li>
+<li> In the Permissions popup, select aws-elasticbeanstalk-ec2-role</li>
+<li> In the Environment Type page, select Multi-container Docker option for the Predefined configuration field and Load balancing, auto scaling option for Environment type: field</li>
+<li> On the Application Version page, for source field, select the S3 URL radio button and enter the following location for production S3 application package <a href="https://s3.amazonaws.com/mymedlookup/app/production/mymedlookup.zip">https://s3.amazonaws.com/mymedlookup/app/production/mymedlookup.zip</a>
+For Deployment Limits, use the default setting (30%) and click Next</li>
+<li> On the Environment Information page, enter mymedlookup-dev-env for Environment name: and click Next</li>
+<li> On the Additional Resources page, check the box for Create this environment inside a VPC and click Next</li>
+<li> In the Configuration Details page, use the following settings
+Instance Type: m4.large
+EC2 key pair: use production key pair
+Email address: <a href="mailto:support@xfinion.com">support@xfinion.com</a>
+Application health check URL: /
+Use default options for rest of the fields.</li>
+<li> Click Next on the Environment Tags page</li>
+<li> Confirm the information on the Review page and click Launch
+Your application is now launching and it will take few minutes for the application to be completely setup</li>
+</ol>
+
+<p>For test and dev-integration environments, navigate to the <a href="https://console.aws.amazon.com/elasticbeanstalk/home?region=us-east-1#/applications?applicationNameFilter=">applicaiton page</a> and in the Actions drop down box (top right), select Launch New Environment and follow the above steps for creating the production environment. Substitute the S3 url on step 8 above with <a href="https://s3.amazonaws.com/mymedlookup/app/development/mymedlookup.zip">https://s3.amazonaws.com/mymedlookup/app/development/mymedlookup.zip</a> for dev-integration environment and <a href="https://s3.amazonaws.com/mymedlookup/app/test/mymedlookup.zip">https://s3.amazonaws.com/mymedlookup/app/test/mymedlookup.zip</a> for test environment</p>
+
+<h3><a name="application-configuration"></a>Application configuration</h3>
+
+<p>After the application environments have been launched, you can now set the environment configuration settings for each environment. These environment settings are used by the application and are specific to each environment. The environement variables also allow keeping seetings such as API key and reCaptcha keys secure. These application settings can be changed and deployed without doing an application rebuild. This is particularly important due to restrictions on the number of API calls that can be made per minute. New API key can be requested and updated for the environment should the API key be disabled due to excessive use. The team intends to configure caching on nginx server to save on API calls to OpenFDA endpoint.
+<strong>Environment Properties</strong>
+applicationMode  production
+captchaSecretKey xxxxx
+captchaUrl  xxxx
+databaseServer  xxxx
+openFDAAPIKey  xxxx
+searchResultLimit  xxxx</p>
+
+<h3><a name="reverting-to-previous-version"></a>Reverting to previous version</h3>
+
+<p>Previous versions of the applications can be deployed to elastic beanstalk using 3 methods</p>
+
+<ol>
+<li> We use Codeship for continous integration. Codeship uploads the deployment package to AWS S3 endpoint when all unit tests succeed. Each application package uploaded to S3 by Codeship is availble for subsequent deployment by manually uploading it to elastic beansalk.</li>
+<li> A specific commit in github can be checked out, the content compressed and can be manually deployed to elastic beanstalk</li>
+<li> Previous versions of the application can be manually selected for deployment within elastic beanstalk</li>
+</ol>
+
+<h3><a name="scalibility-settings"></a>Scalibility settings</h3>
+
+<p>The production environment has been configured to auto scale based on CPU utilization. The following settings provide the configured values for auto scaling
+Minimum instance count: 1
+Maximum instance count: 4
+Scaling cooldown: 300 seconds
+Trigger measurement: CPUUtilization
+Trigger statistic: Average
+Unit of measurement: Percent
+Measurement period: 5 minutes
+Breach duration: 2 minutes
+Upper threshold: 80
+Upper breach scale increment: 10%
+Lower threshold: 60 percent
+Lower breach scale increment: 30%</p>
+
+<h3><a name="logging"></a>Logging</h3>
+
+<p>The production environment has been configured to publish service logs to S3. To set the logging options, navigate to the environment for which logging needs to be configured, select Configuration from the left menu panel, click on the settings gear on the Software Configuration panel in the content area, on the Container Options page, select the box for Enable log file rotation to Amazon S3. If checked, service logs are published to S3.</p>
+
+<h3><a name="aws-docker-configuration"></a>AWS Docker configuration</h3>
+
+<p>AWS Elastic Beanstalk uses the Dockerrun.aws.json file for setting up and configuring the docker containers. Following is the content of the Dockerrun.aws.json for production environment</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">{
+  &quot;AWSEBDockerrunVersion&quot;: 2,
+  &quot;volumes&quot;: [
+    {
+      &quot;name&quot;: &quot;APIPrototype&quot;,
+      &quot;host&quot;: {
+        &quot;sourcePath&quot;: &quot;/var/app/current&quot;
+      }
+    },
+    {
+      &quot;name&quot;: &quot;nginx-proxy-conf&quot;,
+      &quot;host&quot;: {
+        &quot;sourcePath&quot;: &quot;/var/app/current/Docker-nginx&quot;
+      }
+    }  
+  ],
+  &quot;containerDefinitions&quot;: [
+    {
+      &quot;name&quot;: &quot;mymedlookupweb1&quot;,
+      &quot;image&quot;: &quot;goswamivijay/apiprototype-web-prod&quot;,
+      &quot;essential&quot;: true,
+      &quot;memory&quot;: 1024,
+      &quot;portMappings&quot;: [
+        {
+          &quot;hostPort&quot;: 4040,
+          &quot;containerPort&quot;: 4000
+        }
+      ],
+      &quot;mountPoints&quot;: [
+        {
+          &quot;sourceVolume&quot;: &quot;APIPrototype&quot;,
+          &quot;containerPath&quot;: &quot;/src&quot;,
+          &quot;readOnly&quot;: true
+        }
+      ]
+    },
+    {
+      &quot;name&quot;: &quot;mymedlookupweb2&quot;,
+      &quot;image&quot;: &quot;goswamivijay/apiprototype-web-prod&quot;,
+      &quot;essential&quot;: true,
+      &quot;memory&quot;: 1024,
+      &quot;portMappings&quot;: [
+        {
+          &quot;hostPort&quot;: 4050,
+          &quot;containerPort&quot;: 4000
+        }
+      ],
+      &quot;mountPoints&quot;: [
+        {
+          &quot;sourceVolume&quot;: &quot;APIPrototype&quot;,
+          &quot;containerPath&quot;: &quot;/src&quot;,
+          &quot;readOnly&quot;: true
+        }
+      ]
+    },
+    {
+      &quot;name&quot;: &quot;nginx-proxy&quot;,
+      &quot;image&quot;: &quot;goswamivijay/apiprototype-nginx-prod&quot;,
+      &quot;essential&quot;: true,
+      &quot;memory&quot;: 1024,
+      &quot;portMappings&quot;: [
+        {
+          &quot;hostPort&quot;: 80,
+          &quot;containerPort&quot;: 80
+        }
+      ],
+      &quot;links&quot;: [
+        &quot;mymedlookupweb1&quot;,
+        &quot;mymedlookupweb2&quot;
+      ],
+      &quot;mountPoints&quot;: [
+        {
+          &quot;sourceVolume&quot;: &quot;nginx-proxy-conf&quot;,
+          &quot;containerPath&quot;: &quot;/etc/nginx&quot;,
+          &quot;readOnly&quot;: true
+        },
+        {
+          &quot;sourceVolume&quot;: &quot;awseb-logs-nginx-proxy&quot;,
+          &quot;containerPath&quot;: &quot;/var/log/nginx&quot;
+        }
+      ]
+    }
+  ]
+}
+</code></pre></div>
+<h3><a name="rule-of-2"></a>Rule of 2</h3>
+
+<p>When doing a manual deployment, please follow the deployment steps (???link). It is advisable to have 2 people doing manual deployments.</p>
 
         </section>
 
