@@ -22,7 +22,7 @@ RUN mkdir -p /src && cp -a /tmp/node_modules /src/
 WORKDIR /src
 ADD . /src
 
-#CMD ["/src/setEnvVar-integrationDev.sh”]
+#CMD ["/src/setEnvVar-localDev.sh”]
 ENV databaseServer mymedlookupdb
 ENV applicationMode develop
 ENV captchaSecretKey 6Lf3GgkTAAAAAOSkHedz_ys5RI8-vzeJgrqYRSyR
