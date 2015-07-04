@@ -9,10 +9,8 @@ title: Development
 * [Prerequisites for developing the application](#prerequisites)
 * [Repository branches](#repository-branches)
 * [Development workflow](#development-workflow)
-* [Building docker images](#building-docker-images)
-* [Running the application](#running-the-application)
-* [Running the application with docker](#running-the-application-with-docker)
-* [Documentation](#user-stories)
+* [Building and running the application](#building-and-running-application)
+* [Building and running docker images](#building-docker-images)
 
 ### <a name="setting-up-development-workstation"></a>Setting up development workstation
 The development workstation can be either Mac or Windows based. The team uses bothe, Apple Mac (Mac) and Windows workstation for developing the application. A Mac is preferred due to low friction in getting the prerequisites installed, availability of package manager for installing applications. The following instructions assume you have a Mac based workstation. Instructions that are windows specific will be pointed out (???todo???)
@@ -110,8 +108,16 @@ The development workflow is pretty simple
 
 4.  Err on the side of more documentation. If there are configuration settings your are adding or dependecies or steps for building or testing the application, pleas record it in confluence and/or github pages
 
+## <a name="building-and-running-application"></a>Building and running the application
+1. Start mongodb database using the following command in terminal window
 
-## <a name="building-docker-images"></a>Building docker images
+```
+$ mongod
+```
+
+2. run the application
+
+## <a name="building-docker-images"></a>Building and running docker images
 The following instructions for building the docker images assume you have checked out the develop branch on your workstation and in terminal/command prompt in that folder. If you are running boot2docker, it is assumed you are in the boot2docker shell (run boot2docker from Application folder on mac). Substitute your account name with goswamivijay when building or running the images
 
 __Build mongo db image__
@@ -212,12 +218,45 @@ https://docs.docker.com/userguide/
 https://docs.docker.com/reference/builder/
 
 
-Alternatively, you can use the docker-compose command to build all the images.
+Alternatively, you can use the docker-compose commands to build and run the images/containers 
 
-## <a name="running-the-application"></a>Running the application
+To build all the images, start boot2docker and navigate to the folder where you have cloned the repository. Run the following command to build all the images 
 
-## <a name="running-the-application-with-docker"></a>Running the application with docker
+```
+$ docker-compose build
+```
 
-## <a name="user-stories"></a>Documentation
+Run the containers
+
+```
+$ docker-compose up -d
+```
+
+To find the port numbers the containers are listening on
+
+```
+$ docker ps
+```
+
+You can now navigate to the nginx url or the web application containers to test the application. To find the ip address use the the following command.
+
+```
+$ boot2docker ip
+```
+
+The browser response might be slow by few seconds the first time you run the containers.
+
+
+To remove the containers use the following command
+
+```
+$ docker-compose rm
+```
+Optional -- you can use the -v option to map your working folder to the container so changes in your folder are reflected in the application.
+
+
+
+
+
 
 
