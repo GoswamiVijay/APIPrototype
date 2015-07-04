@@ -1,6 +1,8 @@
 #based on repo at https://github.com/18F/guides-template/tree/publishing
 baseurl: /APIPrototype
 markdown: redcarpet
+redcarpet:
+  extensions: ["autolink", "tables"]
 name: My Medication List - Prototype
 exclude:
 - go

@@ -113,11 +113,67 @@
 
         <section id="main" class="main-content" role="main">
           <h1>Deployment</h1>
-          <h3><a name="top"></a>Jump to</h3>
+          <h2>Overview</h2>
+
+<p>My Medication List web application (application) is hosted on <a href="http://aws.amazon.com/elasticbeanstalk/">Amazon Elastic BeanStalk</a> (EB). EB is a cloud platform form that provides Platform as a Service (PaaS) model for cloud computing. PaaS services provide a higher level of abstraction for cloud applications than traditional deployment on OS platforms. Some of the benefits of using PaaS include elastic scalibility, reliability, application health monitoring and cost. </p>
+
+<p>The application on EB is deployed in 3 environments
+1.  <a href="http://mymedlookup-dev-env.elasticbeanstalk.com">mymedlookup-dev-env</a> 
+2.  <a href="http://mymedlookup-prod-env.elasticbeanstalk.com">mymedlookup-prod-env</a>
+3.  <a href="http://mymedlookup-test-env.elasticbeanstalk.com">mymedlookup-test-env</a></p>
+
+<p>Each of the above environments uses <a href="http://aws.amazon.com/elasticloadbalancing/">Amazon Elastic Load Balancer</a> to direct traffic to the environments.
+The following table shows the mapping of load balancer end points to the respective EB environments</p>
+
+<table><thead>
+<tr>
+<th>No</th>
+<th>Load Balancer endpoint</th>
+<th>EB environment url</th>
+<th>EB environment name</th>
+<th>Hosting mode</th>
+<th>Github branch</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>1</td>
+<td><a href="http://awseb-e-e-AWSEBLoa-86H1H9G12GM9-2031228343.us-east-1.elb.amazonaws.com">http://awseb-e-e-AWSEBLoa-86H1H9G12GM9-2031228343.us-east-1.elb.amazonaws.com</a></td>
+<td><a href="http://mymedlookup-dev-env.elasticbeanstalk.com">http://mymedlookup-dev-env.elasticbeanstalk.com</a></td>
+<td>mymedlookup-dev-env</td>
+<td>Developer Integration</td>
+<td>develop</td>
+</tr>
+<tr>
+<td>2</td>
+<td><a href="http://awseb-e-w-AWSEBLoa-17QCCHNB5MY4W-1581895741.us-east-1.elb.amazonaws.com">http://awseb-e-w-AWSEBLoa-17QCCHNB5MY4W-1581895741.us-east-1.elb.amazonaws.com</a></td>
+<td><a href="http://mymedlookup-prod-env.elasticbeanstalk.com">http://mymedlookup-prod-env.elasticbeanstalk.com</a></td>
+<td>mymedlookup-prod-env</td>
+<td>Production</td>
+<td>master</td>
+</tr>
+<tr>
+<td>3</td>
+<td><a href="http://awseb-e-q-AWSEBLoa-186S0I28Y2KIK-3464553.us-east-1.elb.amazonaws.com">http://awseb-e-q-AWSEBLoa-186S0I28Y2KIK-3464553.us-east-1.elb.amazonaws.com</a></td>
+<td><a href="http://mymedlookup-test-env.elasticbeanstalk.com">http://mymedlookup-test-env.elasticbeanstalk.com</a></td>
+<td>mymedlookup-test-env</td>
+<td>Testing</td>
+<td>test</td>
+</tr>
+</tbody></table>
+
+<h3><a name="top"></a>Jump to</h3>
 
 <ul>
-<li><a href="#vision">Vision</a></li>
-<li><a href="#user-stories">User Stories</a></li>
+<li><a href="#vision">Hosted environments</a></li>
+<li><a href="#user-stories">Setting up development environment on Elastic Beanstalk</a></li>
+<li><a href="#user-stories">Setting up test environment on Elastic Beanstalk</a></li>
+<li><a href="#user-stories">Setting up production environment on Elastic Beanstalk</a></li>
+<li><a href="#user-stories">Domain name mapping</a></li>
+<li><a href="#user-stories">Reverting to previous version</a></li>
+<li><a href="#user-stories">Scalibility settings</a></li>
+<li><a href="#user-stories">Logging</a></li>
+<li><a href="#user-stories">Rule of 2</a></li>
+<li><a href="#user-stories">Checklist for manual deployment</a></li>
 </ul>
 
 <h3><a name="vision"></a>Vision</h3>
