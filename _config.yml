@@ -53,6 +53,9 @@ navigation:
 - text: Support and Monitoring
   url: support-and-monitoring/
   internal: true  
+- text: Security
+  url: security/
+  internal: true
 - text: Miscellaneous
   url: miscellaneous/
   internal: true

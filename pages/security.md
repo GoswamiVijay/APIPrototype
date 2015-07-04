@@ -1,7 +1,7 @@
 ---
-permalink: /design/
+permalink: /security/
 layout: default
-title: Design
+title: Security
 ---
 ### <a name="top"></a>Jump to ###
 
