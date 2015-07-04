@@ -28,4 +28,4 @@ nginx:
     - mymedlookupweb1:mymedlookupweb1
     - mymedlookupweb2:mymedlookupweb2
   ports:
-    - "8090:8090"
+    - "80:8090"
