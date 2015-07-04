@@ -170,8 +170,6 @@ Notes: For setting up storage of load balancer logs to S3, you need to setup a b
 }
 ```
 
-### <a name="top"></a>Jump to ###
-
 * [VPC Information](#vpc-info)
 * [Deployment Setup](#deployment-setup)
 * [Database Setup](#database-setup)

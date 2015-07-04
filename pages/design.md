@@ -3,8 +3,6 @@ permalink: /design/
 layout: default
 title: Design
 ---
-### <a name="top"></a>Jump to ###
-
 
 * [Vision](#vision)
 * [User Stories](#user-stories)

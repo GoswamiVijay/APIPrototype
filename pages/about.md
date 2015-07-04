@@ -3,7 +3,6 @@ permalink: /about/
 layout: default
 title: About My Medication List
 ---
-### <a name="top"></a>Jump to ###
 
 
 * [Vision](#vision)

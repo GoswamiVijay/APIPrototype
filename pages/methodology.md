@@ -13,8 +13,6 @@ As with all of our projects, we used Agile methodology for developing My Medicat
 We recommend attending a scrum master or agile workshop to get a good understanding of some of the important concepts that you have to deal with everyday, user story and story points for example.
 
 
-### <a name="top"></a>Jump to 
-
 * [Agile Workflow](#agile-workflow)
 * [Stories, tasks and bugs](#stories)
 * [Jira, Confluence and Github](#jira)

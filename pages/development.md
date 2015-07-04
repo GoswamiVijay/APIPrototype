@@ -3,7 +3,6 @@ permalink: /development/
 layout: default
 title: Development
 ---
-### <a name="top"></a>Jump to 
 
 * [Setting up development workstation](#setting-up-development-workstation)
 * [Prerequisites for developing the application](#prerequisites)

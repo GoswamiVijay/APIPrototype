@@ -3,7 +3,6 @@ permalink: /rfq-evaluation-criteria-evidence/
 layout: default
 title: RFQ Evaluation Criteria Evidence
 ---
-### <a name="top"></a>Jump to ###
 
 
 * [Vision](#vision)

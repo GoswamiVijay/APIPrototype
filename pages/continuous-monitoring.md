@@ -19,6 +19,15 @@ Our continuous monitoring model consists of following elements
 3.  Logging and monitoring system and environment changes
 4.  Running analysis scripts/jobs on logs saved to Amazon S3 (tbd)
 
+We also use google analytics to get information on site access.
+
+###Google analytics console
+---
+
+<img src="{{ site.baseurl }}/images/monitoring-and-support/google-analytics.png" width="100%" alt="Google analytics console" />
+
+
+
 The following screenshots provide an overview of the healthcheck and monitoring configuration and metrics
 
 
@@ -27,61 +36,62 @@ The following screenshots provide an overview of the healthcheck and monitoring 
 ###CloudTrail logs viewable in the console
 ---
 
-<img src="{{ site.baseurl }}/images/monitoring-and-support/cloudtrail-console-logs.png" width="100%" alt="" />
+<img src="{{ site.baseurl }}/images/monitoring-and-support/cloudtrail-console-logs.png" width="100%" alt="CloudTrail logs viewable in the console" />
 
 ###CloudTrail logs stored in S3
 ---
-<img src="{{ site.baseurl }}/images/monitoring-and-support/cloudtrail-logs-s3.png" width="100%" alt="" />
+<img src="{{ site.baseurl }}/images/monitoring-and-support/cloudtrail-logs-s3.png" width="100%" alt="CloudTrail logs stored in S3" />
 
 
 ###Application platform alarms - 1
 ---
-<img src="{{ site.baseurl }}/images/monitoring-and-support/eb-console-environment-alarms-1.png" width="100%" alt="" />
+<img src="{{ site.baseurl }}/images/monitoring-and-support/eb-console-environment-alarms-1.png" width="100%" alt="Application platform alarms - 1" />
 
 ###Application platform alarms - 2
 ---
-<img src="{{ site.baseurl }}/images/monitoring-and-support/eb-console-environment-alarms-2.png" width="100%" alt="" />
+<img src="{{ site.baseurl }}/images/monitoring-and-support/eb-console-environment-alarms-2.png" width="100%" alt="Application platform alarms - 2" />
 
 ###Platform health events
 ---
-<img src="{{ site.baseurl }}/images/monitoring-and-support/eb-console-environment-events.png" width="100%%" alt="" />
+<img src="{{ site.baseurl }}/images/monitoring-and-support/eb-console-environment-events.png" width="100%%" alt="Platform health events" />
 
 ###Platform health
 ---
-<img src="{{ site.baseurl }}/images/monitoring-and-support/eb-console-environment-health.png" width="100%" alt="" />
+<img src="{{ site.baseurl }}/images/monitoring-and-support/eb-console-environment-health.png" width="100%" alt="Platform health" />
 
 ###Platform logs can be downloaded from console
 ---
-<img src="{{ site.baseurl }}/images/monitoring-and-support/eb-console-environment-logs.png" width="100%" alt="" />
+<img src="{{ site.baseurl }}/images/monitoring-and-support/eb-console-environment-logs.png" width="100%" alt="Platform logs can be downloaded from console" />
 
 ###Platform logs contents
 ---
-<img src="{{ site.baseurl }}/images/monitoring-and-support/eb-console-environment-logs-expanded.png" width="100%" alt="" />
+<img src="{{ site.baseurl }}/images/monitoring-and-support/eb-console-environment-logs-expanded.png" width="100%" alt="Platform logs contents" />
 
 
-#####Application platform metrics - 1
+####Application platform metrics - 1
 ---
-<img src="{{ site.baseurl }}/images/monitoring-and-support/eb-console-environment-metrics-1.png" width="100%" alt="" />
+<img src="{{ site.baseurl }}/images/monitoring-and-support/eb-console-environment-metrics-1.png" width="100%" alt="Application platform metrics - 1" />
 
 ###Application platform metrics - 2
 ---
-<img src="{{ site.baseurl }}/images/monitoring-and-support/eb-console-environment-metrics-2.png" width="100%" alt="" />
+<img src="{{ site.baseurl }}/images/monitoring-and-support/eb-console-environment-metrics-2.png" width="100%" alt="Application platform metrics - 2" />
 
 ###Email notification configuration
 ---
-<img src="{{ site.baseurl }}/images/monitoring-and-support/eb-console-environment-Notification.png" width="100%" alt="" />
+<img src="{{ site.baseurl }}/images/monitoring-and-support/eb-console-environment-Notification.png" width="100%" alt="Email notification configuration" />
 
 ###Email notification on platform change
 ---
-<img src="{{ site.baseurl }}/images/monitoring-and-support/eb-environment-change-notification-email.png" width="100%" alt="" />
+<img src="{{ site.baseurl }}/images/monitoring-and-support/eb-environment-change-notification-email.png" width="100%" alt="Email notification on platform change" />
 
 ###Load balancer logs saved to S3 - 1
 ---
-<img src="{{ site.baseurl }}/images/monitoring-and-support/lb-s3-logs-1.png" width="100%" alt="" />
+<img src="{{ site.baseurl }}/images/monitoring-and-support/lb-s3-logs-1.png" width="100%" alt="Load balancer logs saved to S3 - 1" />
 
 ###Load balancer logs saved to S3 - 2
 ---
-<img src="{{ site.baseurl }}/images/monitoring-and-support/lb-s3-logs-2.png" width="100%" alt="" />
+<img src="{{ site.baseurl }}/images/monitoring-and-support/lb-s3-logs-2.png" width="100%" alt="Load balancer logs saved to S3 - 2" />
+
 
 
 

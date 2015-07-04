@@ -4,9 +4,7 @@ layout: default
 title: Continuous Integration
 ---
 
-## Overview ##
-
-### <a name="top"></a>Jump to ###
+## Overview
 
 * [GitHub](#vision)
 * [Gitflow](#prerequisites)
