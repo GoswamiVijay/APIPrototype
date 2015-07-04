@@ -150,9 +150,37 @@ var app=angular.module('myApp.controllers', ['uiGmapgoogle-maps','ui-rangeSlider
     });
   }
   
+  $scope.TotalPages =function()
+  {
+    return Math.ceil($scope.AllResults.length/$scope.NumberOfRecords);                
+  }
+  
+  $scope.NextRecord = function()
+  {
+      $('#searchContainer').scrollTop(0);
+      if($scope.pageNumber >= $scope.TotalPages())
+      {
+          return;
+      }
+      $scope.pageNumber = $scope.pageNumber + 1;
+      $scope.paginateResults();
+  };
+    
+  $scope.PreviousRecord = function()
+  {
+      $('#searchContainer').scrollTop(0);
+      if($scope.pageNumber < 1){
+          return;
+      }
+      
+      $scope.pageNumber = $scope.pageNumber - 1;
+      $scope.paginateResults();
+  };
+    
   //Paginate the medications  
   $scope.paginateResults = function()
   {
+      $scope.results = [];
       if($scope.results.length < $scope.AllResults.length)
       {
           var recordStart = $scope.pageNumber * $scope.NumberOfRecords;
@@ -190,13 +218,18 @@ var app=angular.module('myApp.controllers', ['uiGmapgoogle-maps','ui-rangeSlider
   $scope.remove = function(obj){
     var oldResult = ($scope.results ? $scope.results : []);
     var resultToSave =  ($scope.selectedresults ? $scope.selectedresults : []);
-    if(resultToSave.length > 0){
+    if(resultToSave.length > 0)
+    {
       var newArray = resultToSave.filter(function (el) {
         return el.id !== obj.id;
       });
       oldResult.push(obj);
       $scope.results = oldResult;
       $scope.selectedresults = newArray;
+    }
+    if(oldResult.length > 0)
+    {
+        $scope.message = "";
     }
   }
 
@@ -233,8 +266,8 @@ var app=angular.module('myApp.controllers', ['uiGmapgoogle-maps','ui-rangeSlider
 
     if( scrollPosition == divTotalHeight )
     {
-      $scope.pageNumber = $scope.pageNumber + 1;    
-      $scope.paginateResults();
+      //$scope.pageNumber = $scope.pageNumber + 1;    
+      //$scope.paginateResults();
     }
   });
 
