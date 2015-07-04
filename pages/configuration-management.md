@@ -11,7 +11,7 @@ While using the command line tool can be used for performing checkins and push t
 
 Our branching model is based on [gitflow](https://github.com/nvie/gitflow). Details on the using the gitflow workflow can be found [here](https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow).
 
-### Branches ###
+### <a href="branches"></a>Branches ###
 The repository contains the following primary branches
 
 1.  master -- all releases and deployment to production is based on this branch. 

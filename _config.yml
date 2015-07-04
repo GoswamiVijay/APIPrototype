@@ -50,6 +50,10 @@ navigation:
 - text: Configuration Management
   url: configuration-management/
   internal: true
+- text: Continuous Integration
+  url: continuous-integration/
+  internal: true
+  
 - text: Support and Monitoring
   url: support-and-monitoring/
   internal: true  

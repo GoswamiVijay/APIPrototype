@@ -90,7 +90,19 @@
       
         
           <li >
+            <a href="/APIPrototype/continuous-integration/"  >Continuous Integration</a>
+          </li>
+        
+      
+        
+          <li >
             <a href="/APIPrototype/support-and-monitoring/"  >Support and Monitoring</a>
+          </li>
+        
+      
+        
+          <li >
+            <a href="/APIPrototype/security/"  >Security</a>
           </li>
         
       
@@ -116,25 +128,184 @@
           <h3><a name="top"></a>Jump to</h3>
 
 <ul>
-<li><a href="#vision">Setting up development workstation</a></li>
-<li><a href="#prerequisites">Prerequisites</a></li>
-<li><a href="#user-stories">Repository branches</a></li>
-<li><a href="#user-stories">Development workflow</a></li>
-<li><a href="#user-stories">Building the application</a></li>
-<li><a href="#user-stories">Running the application</a></li>
-<li><a href="#user-stories">Running the application with docker</a></li>
-<li><p><a href="#user-stories">Documentation</a></p></li>
-<li><p><a href="#prerequisites">Prerequisites</a>
-Tools - Sourcetree, software, Sublime, Textwrangler, virtualbox</p></li>
-<li><p><a href="#user-stories">Repository branches</a>
-develop and feature branches, merging</p></li>
-<li><p><a href="#user-stories">Development workflow</a>
---record jira ticket in checkins</p></li>
+<li><a href="#setting-up-development-workstation">Setting up development workstation</a></li>
+<li><a href="#prerequisites">Prerequisites for developing the application</a></li>
+<li><a href="#repository-branches">Repository branches</a></li>
+<li><a href="#development-workflow">Development workflow</a></li>
+<li><a href="#building-docker-images">Building docker images</a></li>
+<li><a href="#running-the-application">Running the application</a></li>
+<li><a href="#running-the-application-with-docker">Running the application with docker</a></li>
+<li><a href="#user-stories">Documentation</a></li>
 </ul>
 
-<h3><a name="vision"></a>Prerequisites</h3>
+<h3><a name="setting-up-development-workstation"></a>Setting up development workstation</h3>
 
-<h3><a name="user-stories"></a>User Stories</h3>
+<p>The development workstation can be either Mac or Windows based. The team uses bothe, Apple Mac (Mac) and Windows workstation for developing the application. A Mac is preferred due to low friction in getting the prerequisites installed, availability of package manager for installing applications. The following instructions assume you have a Mac based workstation. Instructions that are windows specific will be pointed out (???todo???)</p>
+
+<h3>Basic setup</h3>
+
+<ol>
+<li><p>Install XCode and OS X Command Line Tools
+reference - <a href="https://developer.apple.com/xcode/downloads/">https://developer.apple.com/xcode/downloads/</a></p></li>
+<li><p>Use the instructions from here <a href="https://github.com/18F/laptop">https://github.com/18F/laptop</a> to setup your developer box with the required software 
+$ curl --remote-name <a href="https://raw.githubusercontent.com/18F/laptop/master/mac">https://raw.githubusercontent.com/18F/laptop/master/mac</a>
+$ bash mac 2&gt;&amp;1 | tee ~/laptop.log</p></li>
+<li><p>Install mongo</p></li>
+</ol>
+<div class="highlight"><pre><code class="language-text" data-lang="text">$ brew install mongodb
+</code></pre></div>
+<p>reference - <a href="http://docs.mongodb.org/manual/tutorial/install-mongodb-on-os-x/">http://docs.mongodb.org/manual/tutorial/install-mongodb-on-os-x/</a></p>
+
+<ol>
+<li><p>Install Sourcetree 
+reference - <a href="https://www.sourcetreeapp.com/download/">https://www.sourcetreeapp.com/download/</a></p></li>
+<li><p>Install Virtual box</p></li>
+</ol>
+
+<p>reference - <a href="https://www.virtualbox.org/wiki/Downloads">https://www.virtualbox.org/wiki/Downloads</a></p>
+
+<ol>
+<li>Install boot2docker</li>
+</ol>
+
+<p>reference - <a href="http://boot2docker.io/">http://boot2docker.io/</a>
+Instructions - <a href="https://docs.docker.com/installation/mac/">https://docs.docker.com/installation/mac/</a></p>
+
+<ol>
+<li>Install Textwrangler</li>
+</ol>
+
+<p>reference - <a href="http://www.barebones.com/products/textwrangler/">http://www.barebones.com/products/textwrangler/</a></p>
+
+<ol>
+<li>Install mongo gui client</li>
+</ol>
+
+<p>reference - <a href="http://robomongo.org/">http://robomongo.org/</a></p>
+
+<p>Install VirtualBox - <a href="https://www.virtualbox.org/wiki/Downloads">https://www.virtualbox.org/wiki/Downloads</a></p>
+
+<ol>
+<li> Install ruby gems for working on documentation branch (gh-pages)</li>
+</ol>
+<div class="highlight"><pre><code class="language-text" data-lang="text">$ gem install jekyll
+$ gem install kramdown
+</code></pre></div>
+<ol>
+<li>Install grunt</li>
+</ol>
+<div class="highlight"><pre><code class="language-text" data-lang="text">$ npm install -g grunt-cli
+</code></pre></div>
+<p>reference - <a href="https://github.com/cfpb/DOCter/blob/gh-pages/README.md">https://github.com/cfpb/DOCter/blob/gh-pages/README.md</a></p>
+
+<p>Optional - You can use <a href="http://www.sublimetext.com/">sublime</a> , <a href="http://www.barebones.com/products/textwrangler/">TextWrangler</a> or <a href="https://www.jetbrains.com/webstorm/">webstorm</a></p>
+
+<p><em>If you find yourself having to use sudo for running node, please see this page on how to resolve the issue <a href="http://stackoverflow.com/questions/16151018/npm-throws-error-without-sudo">http://stackoverflow.com/questions/16151018/npm-throws-error-without-sudo</a></em></p>
+
+<p>If you haven&#39;t done so already, please create an account on github, dockerhub 
+The project administrator should also add you to the project team on github, dockerhub, codeship, Jira, confluence and Amazon Cloud</p>
+
+<h2><a name="prerequisites"></a>Prerequisites for developing the application</h2>
+
+<p>It is assumed you have the editor, and development environment mentioned above already setup.
+If you are new to git please use the following resources to learn git and gitflow
+<a href="https://git-scm.com/book/en/v1/Getting-Started">git</a>
+<a href="https://www.atlassian.com/git/tutorials/comparing-workflows/feature-branch-workflow">gitflow</a>
+<a href="https://help.github.com/articles/using-jekyll-with-pages/">github pages</a>
+<a href="http://blog.sourcetreeapp.com/2012/08/01/smart-branching-with-sourcetree-and-git-flow/">git branching</a></p>
+
+<p><em>if you are using the command line to work with github, please use good judgement before merging and/or rebasing. <a href="https://www.google.com/">Google</a> or <a href="http://stackoverflow.com/">SO</a> are your friends.</em></p>
+
+<h2><a name="repository-branches"></a>Repository branches</h2>
+
+<p>Please refer to <a href="/APIPrototype/configuration-management/#branches">Configuration Management - branches</a> for details source code branching. </p>
+
+<p>Use the develop branch for development, bug fixes and enhancement unless you are working on a feature or a patch in which case a branch will be created for you by the scrum master or configuration manager. </p>
+
+<p>The master branch is used for releasing to production. Please do not check in code into this branch. Sprint testing and UAT is done on the test branch. Code is deployed daily to dev-integration branch. Please use the dev-integration branch to verify development is complete before closing the ticket.</p>
+
+<h2><a name="development-workflow"></a>Development workflow</h2>
+
+<p>The development workflow is pretty simple</p>
+
+<ol>
+<li><p>If you are working on a an issue, please make sure the the issue is recorded in Jira or Github issues list and is in the current sprint (if not, create the ticket/issue and and/or move it to current sprint)</p></li>
+<li><p>When closing the issue, reference the ticket number in the commit message, this allows for referencing the files that were modified when the issue was resolved.</p></li>
+<li><p>Only check in working code, use <a href="http://git-scm.com/docs/git-stash">stash</a> to switch work branches or suspend the current activity.</p></li>
+<li><p>Err on the side of more documentation. If there are configuration settings your are adding or dependecies or steps for building or testing the application, pleas record it in confluence and/or github pages</p></li>
+</ol>
+
+<h2><a name="building-docker-images"></a>Building docker images</h2>
+
+<p>The following instructions for building the docker images assume you have checked out the develop branch on your workstation and in terminal/command prompt in that folder. If you are running boot2docker, it is assumed you are in the boot2docker shell (run boot2docker from Application folder on mac). Substitute your account name with goswamivijay when building or running the images</p>
+
+<p><strong>Build mongo db image</strong></p>
+
+<p>Navigate to Docker-db folder (this is one level down from the application folder)</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">$ cd Docker-db
+</code></pre></div>
+<p>run the following command to build the image</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">$ docker build -t goswamivijay/apiprototype-db-develop .
+</code></pre></div>
+<p>Verify image exist by running the following command. You should see the image listed.</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">$ docker images
+</code></pre></div>
+<p><strong>Build webapp images</strong></p>
+
+<p>Navigate to application folder (this is the folder where you checked out the repository)</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">$ docker build -t goswamivijay/apiprototype-web-develop .
+</code></pre></div>
+<p>Verify image exist by running</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">$ docker images
+</code></pre></div>
+<p>Navigate to Docker-nginx folder (this is one level down from the application folder)</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">$ cd Docker-nginx
+</code></pre></div>
+<p>run the following command to build the image</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">$ docker build -t goswamivijay/apiprototype-nginx-develop .
+</code></pre></div>
+<p>Verify image exist by running the following command. You should see the image listed.</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">$ docker images
+</code></pre></div>
+<p>Once you have the docker images you can run the images</p>
+
+<p>Run database server</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">docker run -p 27017:27017 --name mymedlookupdb -d goswamivijay/apiprototype-db-develop
+</code></pre></div>
+<p><em>please note the container id that is displayed after you run the command, we will refer to it as the database container id.</em></p>
+
+<p>Run web  server</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">docker run -p 4000:4000 --name mymedlookupweb1 -d --link mymedlookupdb:mymedlookupdb goswamivijay/apiprototype-web-develop 
+</code></pre></div>
+<p><em>please note the container id that is displayed after you run the command, we will refer to it as the web container id.</em></p>
+
+<p>Navigate to http://&lt;<em>server address</em>&gt;:4000/ in your browser</p>
+
+<p>To find the &lt;<em>server address</em>&gt; if you are running boot2docker, enter the following command</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">$ boot2docker ip 
+</code></pre></div>
+<p>To stop the containers, run the following command</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">$ docker stop &lt;web container id&gt;
+$ docker stop &lt;db container id&gt;
+</code></pre></div>
+<p><em>the web container id and the web container id are the ids that were diplayed when you used the run command.</em>
+If you don&#39;t have the container id, you can query the conatiner id by running the following command</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">$ docker stop ps
+</code></pre></div>
+<p>The container id will be listed with the corresponding name of the container (mymedlookupweb1 for web and mymedlookupdb for database)</p>
+
+<p>Refer to /APIPrototype/testing/ for details on running the docker images. Use the following references to learn more about running docker images locally.</p>
+
+<p><a href="https://docs.docker.com/userguide/">https://docs.docker.com/userguide/</a>
+<a href="https://docs.docker.com/reference/builder/">https://docs.docker.com/reference/builder/</a></p>
+
+<p>Alternatively, you can use the docker-compose command to build all the images.</p>
+
+<h2><a name="running-the-application"></a>Running the application</h2>
+
+<h2><a name="running-the-application-with-docker"></a>Running the application with docker</h2>
+
+<h2><a name="user-stories"></a>Documentation</h2>
 
         </section>
 

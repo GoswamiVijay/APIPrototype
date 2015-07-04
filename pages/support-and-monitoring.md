@@ -9,7 +9,10 @@ title: Support and Monitoring
 * [Vision](#vision)
 * [User Stories](#user-stories)
 
-### <a name="vision"></a>Vision ###
+email notification from codeship and elastic beanstalk, update email setting info for elastic beanstalk in deployment.md
+### <a name="vision"></a>Vision
 
-### <a name="user-stories"></a>User Stories ###
+$ github-pages health-check
 
+
+### <a name="user-stories"></a>User Stories

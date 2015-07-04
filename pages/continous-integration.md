@@ -1,7 +1,7 @@
 ---
-permalink: /configuration-management/
+permalink: /continuous-integration/
 layout: default
-title: Configuration Management
+title: Continuous Integration
 ---
 
 ## Overview ##

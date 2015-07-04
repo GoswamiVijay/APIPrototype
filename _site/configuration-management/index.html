@@ -90,7 +90,19 @@
       
         
           <li >
+            <a href="/APIPrototype/continuous-integration/"  >Continuous Integration</a>
+          </li>
+        
+      
+        
+          <li >
             <a href="/APIPrototype/support-and-monitoring/"  >Support and Monitoring</a>
+          </li>
+        
+      
+        
+          <li >
+            <a href="/APIPrototype/security/"  >Security</a>
           </li>
         
       
@@ -115,22 +127,32 @@
           <h1>Configuration Management</h1>
           <h2>Overview</h2>
 
-<h3><a name="top"></a>Jump to</h3>
+<p>We use git for source code and system artifact version control and configuration management. All versioned project artifacts are hosted on <a href="https://github.com/">Github</a>. Github provides a web based interface for interacting with git hosted on the server. Additional benefits include, collaboration using issues and wiki as well as providing metrics on usage by team members. Third party hooks available in Github such as notification when changes are pushed enable continous integration and integration with third party issue management system such as Jira.</p>
 
-<ul>
-<li><a href="#vision">GitHub</a></li>
-<li><a href="#prerequisites">Gitflow</a></li>
-<li><a href="#user-stories">Deploying to hosted environments</a></li>
-<li><a href="#user-stories">Checklist for deployment</a></li>
-</ul>
+<p>While using the command line tool can be used for performing checkins and push to Github repository, we suggest using <a href="https://www.sourcetreeapp.com/">SourceTree</a> tool for working with Github. Sourcetree is available for Mac and Windows platforms. </p>
 
-<h3><a name="vision"></a>Vision</h3>
+<p>Our branching model is based on <a href="https://github.com/nvie/gitflow">gitflow</a>. Details on the using the gitflow workflow can be found <a href="https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow">here</a>.</p>
 
-<h3><a name="user-stories"></a>User Stories</h3>
+<h3><a href="branches"></a>Branches</h3>
 
-<p>S3 bucket to which codeship uploads
-versions of application
-....</p>
+<p>The repository contains the following primary branches</p>
+
+<ol>
+<li> master -- all releases and deployment to production is based on this branch. </li>
+<li> develop -- all active development happens on this branch.</li>
+<li> test -- this branch is used to deploy pre-release and uat version of the app for user and interal team testing. this beanch is based on develop branch.</li>
+<li> dev-integration -- this branch is used performing developer integration testing, the code is synchronized on a schedule and deployed to dev-integration platform</li>
+</ol>
+
+<p>Secondary branches are created in response to bug fixes with a deployed version, feature development etc.
+1.  release -- this branch is created from develop in preparation for release, configuration changes specifc to production environment are made and checked in before merging with master branch.
+2.  feature-branch -- feature branches are created for functional requirements that are independent of current code base and for features that will span multiple sprints.</p>
+
+<h3>Branching &amp; Merging</h3>
+
+<p>We recommend using SourceTree for performing merge and branch operations. We make one person responsible for working with master, test and dev-integration branches. Development team members are free to create feature branches.</p>
+
+<p>The Dockerfile file in each of the branch is specific to that environment. When merging branches please ensure that the Dockerfile file does not get overwritten/merged with another branch. This is just a precaution, the environment settings in the Dockerfile file is overridden by the environment settings configured in the Elastic Beanstalk environment.</p>
 
         </section>
 
@@ -141,7 +163,7 @@ versions of application
     <p>This project is maintained by <a href="http://www.xfinion.com">Xfinion</a>.</p>
 
     <p>Hosted on <a href="https://github.com/18F/pages/">18F Pages</a>.</p>
-    <p><a href="https://github.com/goswamivijay/APIPrototype/edit/18f-pages/pages/continous-integration.md">Edit this page on GitHub</a></p>
+    <p><a href="https://github.com/goswamivijay/APIPrototype/edit/18f-pages/pages/configuration-management.md">Edit this page on GitHub</a></p>
   </div><!--/.wrap -->
 </footer>
 
