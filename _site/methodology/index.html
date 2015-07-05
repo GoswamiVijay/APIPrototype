@@ -170,13 +170,13 @@
 
 <p>(??? overview)</p>
 
-<h3>Play - 1 Understand what people need</h3>
+<h3><a name="play-1"></a>Play - 1 Understand what people need</h3>
 
 <p>reference - <a href="https://playbook.cio.gov/#play1">https://playbook.cio.gov/#play1</a>
 After the RFQ was announced, the development team lead went through the entire RFQ noting the requirements of the RFQ. The lead assembled a team of developers who would build the prototype of the application utilizing the <a href="https://open.fda.gov/">OpenFDA API</a>. The team brainstormed ideas on how best to develop a prototype that would best project the capabilities and expertise of the team as well as the company. Given the short time frame and amount of work involved, the team was split between developing a prototype that met the basic requirements of the RFQ or build an application that would fill a need for potential users of the application. The team lead made the decision to go ahead with the idea of building an application that allows users to keep the list of medications they take online. The application would provide interface points for external parties (such as physicans and emergency care professionals) with whom the user can share the medication list they are on. The receiving party would then be able to make decisions on providing care to the user based on the medication facts that are known to him/her.
 Future versions of the application would provide notifications to the user when medications they are using are recalled and a printed card version of the hyperlink in the form of a barcode or QR code for easy integration with other applications. Spending time braninstorming and picking the right idea turned out to be a good judgement call as the response period was extended and the team was excited on working on the idea that that the potential to be a production in real world. The team picked the .org domain name to reflect the open and benefitial nature of the idea and the prototype. The team developed initial mockups in <a href="https://balsamiq.com/">Balsamiq</a> viewable <a href="https://xfinion.mybalsamiq.com/projects/demo/MyMedicationList-Main%20Screen">here</a> and with one team member representing the user community expressed tasks they would want to accomplish as well as concerns with using the application such as privacy which drove the technical decisions. A priortitized list of user-stories was created to attain a mimimum viable product assuming the original timeline for the RFQ.</p>
 
-<h3>Play - 7 Bring in experienced teams</h3>
+<h3><a name="play-7"></a> Play - 7 Bring in experienced teams</h3>
 
 <p>reference - <a href="https://playbook.cio.gov/#play7">https://playbook.cio.gov/#play7</a>
 Based on the vision and usage of the application a development team was assembled. The collective development team has had experience in the following areas
@@ -189,7 +189,7 @@ Based on the vision and usage of the application a development team was assemble
 2.  Developing public datasets and API for Department of State
 3.  Designing cloud infrastructure platform for deploying enterprise scale applications available across all countries and timezones</p>
 
-<h3>Play - 8 Choose a modern technology stack</h3>
+<h3><a name="play-8"></a> Play - 8 Choose a modern technology stack</h3>
 
 <p>reference - <a href="https://playbook.cio.gov/#play8">https://playbook.cio.gov/#play8</a></p>
 
@@ -221,7 +221,7 @@ The prototype makes use of following technologies</p>
 <li> <a href="http://mochajs.org/">Mocha</a></li>
 </ol>
 
-<h3>Play - 9 Deploy in a flexible hosting environment</h3>
+<h3><a name="play-9"></a> Play - 9 Deploy in a flexible hosting environment</h3>
 
 <p>reference - <a href="https://playbook.cio.gov/#play9">https://playbook.cio.gov/#play9</a>
 The development team used Amazon cloud services to deploy the application using Amazon Elastic BeanStalk which provides Platform as a Service (PaaS) cloud model. The application itself uses Amazon EC2 Container service. Deploying on cloud platform allowed use to rapidly build the development and production environment while keeping the cost low. The cloud environment will also benefit testing application scalibility features when it is made available at internet scale. The following Amazon cloud services were utilized</p>
@@ -241,13 +241,13 @@ The development team used Amazon cloud services to deploy the application using 
 <p>In addition to the PaaS service. The prototype also utilized the following Software as a Service (Saas) cloud model
 1.  <a href="https://codeship.com/">Codeship</a></p>
 
-<h3>Play - 10 Automate testing and deployments</h3>
+<h3><a name="play-10"></a> Play - 10 Automate testing and deployments</h3>
 
 <p>reference - <a href="https://playbook.cio.gov/#play10">https://playbook.cio.gov/#play10</a></p>
 
 <p>The development team utilized <a href="http://mochajs.org/">Mocha</a> for creating unit tests. An integration environment was also built for doing functional and user acceptance testing (UAT). A continuous integration process was implemented using Codeship to perform application build, perform unit testing and deploying the application on the respective test, development-integration and production environment.</p>
 
-<h3>Play - 4 Build the service using agile and iterative practices</h3>
+<h3><a name="play-4"></a>Play - 4 Build the service using agile and iterative practices</h3>
 
 <p>reference - <a href="https://playbook.cio.gov/#play4">https://playbook.cio.gov/#play4</a></p>
 
@@ -258,18 +258,18 @@ The team deployed the minimum viable project after 3 days of the RFQ and kept ad
 
 <p>The team performed scrum calls and sprint retrospective meetings which was recorded in Confluence. The team was proactive in picking up additional tickets and working on them in the interest of meeting the RFQ deadline.</p>
 
-<h3>Play - 6 Assign one leader and hold that person accountable</h3>
+<h3><a name="play-6"></a> Play - 6 Assign one leader and hold that person accountable</h3>
 
 <p>reference - <a href="https://playbook.cio.gov/#play6">https://playbook.cio.gov/#play6</a>
 The team assigned Vijay Goswami as the Product Owner. Mr. Goswami also played the role technical architect and devops engineer on the project. While being in the dual role of Product Owner and developer is not ideal, the team had to work with the available resources it had. As a product owner, Mr. Goswami prioritized the list of features and assigned tasks to team members.</p>
 
-<h3>Play - 12 Use data to drive decisions</h3>
+<h3><a name="play-12"></a> Play - 12 Use data to drive decisions</h3>
 
 <p>reference - <a href="https://playbook.cio.gov/#play12">https://playbook.cio.gov/#play12</a></p>
 
 <p>The development team implemented monitoring and alert for the deployed system. Google Analytics was integrated to provide realtime usage of the application. Application healthcheck and audit log archiving were configured as well as evidenced <a href="/APIPrototype/continuous-monitoring/">here</a></p>
 
-<h3>Default to open</h3>
+<h3><a name="play-13"></a>  Play - 12 Default to open</h3>
 
 <p>reference - <a href="https://playbook.cio.gov/#play13">https://playbook.cio.gov/#play13</a></p>
 
