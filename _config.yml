@@ -29,8 +29,8 @@ navigation:
 - text: Introduction
   url: index.html
   internal: true
-- text: About
-  url: about/
+- text: How we built it
+  url: how-we-built-it/
   internal: true
 - text: Methodology
   url: methodology/

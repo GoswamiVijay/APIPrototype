@@ -46,7 +46,7 @@
       
         
           <li >
-            <a href="/APIPrototype/about/"  >About</a>
+            <a href="/APIPrototype/how-we-built-it/"  >How we built it</a>
           </li>
         
       
@@ -140,6 +140,7 @@
 <li><a href="#stories">Stories, tasks and bugs</a></li>
 <li><a href="#jira">Jira, Confluence and Github</a></li>
 <li><a href="#continuous-integration">Continuous Integration</a></li>
+<li><a href="#digital-services-play">U.S. Digital Services Plays</a></li>
 </ul>
 
 <h2><a name="agile-workflow"></a>Agile Workflow</h2>
@@ -164,6 +165,115 @@
 <h2><a name="continuous-integration"></a>Continuous Integration</h2>
 
 <p>We used <a href="https://codeship.com/projects">Codeship</a> to implement continuous integration and deployment from repository branches. Codeships support for deployment on Elastic Beanstalk was why we used it over Travis CI. </p>
+
+<h2><a name="digital-services-play"></a>U.S. Digital Services Plays</h2>
+
+<p>(??? overview)</p>
+
+<h3>Play - 1 Understand what people need</h3>
+
+<p>reference - <a href="https://playbook.cio.gov/#play1">https://playbook.cio.gov/#play1</a>
+After the RFQ was announced, the development team lead went through the entire RFQ noting the requirements of the RFQ. The lead assembled a team of developers who would build the prototype of the application utilizing the <a href="https://open.fda.gov/">OpenFDA API</a>. The team brainstormed ideas on how best to develop a prototype that would best project the capabilities and expertise of the team as well as the company. Given the short time frame and amount of work involved, the team was split between developing a prototype that met the basic requirements of the RFQ or build an application that would fill a need for potential users of the application. The team lead made the decision to go ahead with the idea of building an application that allows users to keep the list of medications they take online. The application would provide interface points for external parties (such as physicans and emergency care professionals) with whom the user can share the medication list they are on. The receiving party would then be able to make decisions on providing care to the user based on the medication facts that are known to him/her.
+Future versions of the application would provide notifications to the user when medications they are using are recalled and a printed card version of the hyperlink in the form of a barcode or QR code for easy integration with other applications. Spending time braninstorming and picking the right idea turned out to be a good judgement call as the response period was extended and the team was excited on working on the idea that that the potential to be a production in real world. The team picked the .org domain name to reflect the open and benefitial nature of the idea and the prototype. The team developed initial mockups in <a href="https://balsamiq.com/">Balsamiq</a> viewable <a href="https://xfinion.mybalsamiq.com/projects/demo/MyMedicationList-Main%20Screen">here</a> and with one team member representing the user community expressed tasks they would want to accomplish as well as concerns with using the application such as privacy which drove the technical decisions. A priortitized list of user-stories was created to attain a mimimum viable product assuming the original timeline for the RFQ.</p>
+
+<h3>Play - 7 Bring in experienced teams</h3>
+
+<p>reference - <a href="https://playbook.cio.gov/#play7">https://playbook.cio.gov/#play7</a>
+Based on the vision and usage of the application a development team was assembled. The collective development team has had experience in the following areas
+1.  Developing applications using open source technologies
+2.  Experience with cloud platforms
+3.  Experience handling highly visible projects.</p>
+
+<p>Some of the experience included the following
+1.  Acting as system architect and tech lead in delivering the <a href="http://travel.state.gov">http://travel.state.gov</a> website (~500k visitors per day) 
+2.  Developing public datasets and API for Department of State
+3.  Designing cloud infrastructure platform for deploying enterprise scale applications available across all countries and timezones</p>
+
+<h3>Play - 8 Choose a modern technology stack</h3>
+
+<p>reference - <a href="https://playbook.cio.gov/#play8">https://playbook.cio.gov/#play8</a></p>
+
+<p>The development team made the decision to use only open source technologies for buildign the prototype based on the requirements of the RFQ. The team originally used Jira and Confluence tools but moved to Githup pages and issues feature after the RFQ questions were made available. 
+The prototype makes use of following technologies</p>
+
+<ol>
+<li> <a href="https://nodejs.org/">Node.js</a></li>
+<li> Javascript - implementation of ECMAScript language standard </li>
+<li> <a href="https://www.mongodb.com/">MongoDB</a></li>
+<li> <a href="https://www.ruby-lang.org/en/">Ruby</a> - for generating this documentation</li>
+<li> <a href="http://jekyllrb.com/">Jekyll</a></li>
+<li> <a href="https://www.docker.com/">Docker</a></li>
+</ol>
+
+<p>The application itself uses the following frameworks</p>
+
+<ol>
+<li> <a href="http://locomotivejs.org/">locomotive</a></li>
+<li> <a href="https://github.com/jaredhanson/bootable">bootable</a></li>
+<li> <a href="https://github.com/jaredhanson/bootable-environment">bootable-environment</a></li>
+<li> <a href="http://expressjs.com/">express</a></li>
+<li> <a href="https://github.com/jaredhanson/connect-powered-by">connect-powered-by</a></li>
+<li> <a href="http://www.embeddedjs.com/">ejs</a></li>
+<li> <a href="http://underscorejs.org/">underscore</a></li>
+<li> <a href="http://docs.mongodb.org/ecosystem/drivers/node-js/">mongoose</a></li>
+<li> <a href="https://github.com/request/request">request</a></li>
+<li> <a href="https://www.npmjs.com/package/grunt-cli">grunt</a></li>
+<li> <a href="http://mochajs.org/">Mocha</a></li>
+</ol>
+
+<h3>Play - 9 Deploy in a flexible hosting environment</h3>
+
+<p>reference - <a href="https://playbook.cio.gov/#play9">https://playbook.cio.gov/#play9</a>
+The development team used Amazon cloud services to deploy the application using Amazon Elastic BeanStalk which provides Platform as a Service (PaaS) cloud model. The application itself uses Amazon EC2 Container service. Deploying on cloud platform allowed use to rapidly build the development and production environment while keeping the cost low. The cloud environment will also benefit testing application scalibility features when it is made available at internet scale. The following Amazon cloud services were utilized</p>
+
+<ol>
+<li> <a href="http://aws.amazon.com/ec2/">Amazon EC2</a></li>
+<li> <a href="http://aws.amazon.com/s3/">Amazon S3</a></li>
+<li> <a href="http://aws.amazon.com/vpc/">Amazon VPC</a></li>
+<li> <a href="http://aws.amazon.com/elasticbeanstalk/">AWS Elastic Beanstalk</a></li>
+<li> <a href="http://aws.amazon.com/cloudtrail/">AWS CloudTrail</a></li>
+<li> <a href="http://aws.amazon.com/sns/">Amazon SNS</a></li>
+<li> <a href="http://aws.amazon.com/ecs/">Amazon EC2 Container Service</a></li>
+<li> <a href="http://aws.amazon.com/route53/">Amazon Route 53</a></li>
+<li> <a href="http://aws.amazon.com/iam/">AWS Identity and Access Management (IAM)</a></li>
+</ol>
+
+<p>In addition to the PaaS service. The prototype also utilized the following Software as a Service (Saas) cloud model
+1.  <a href="https://codeship.com/">Codeship</a></p>
+
+<h3>Play - 10 Automate testing and deployments</h3>
+
+<p>reference - <a href="https://playbook.cio.gov/#play10">https://playbook.cio.gov/#play10</a></p>
+
+<p>The development team utilized <a href="http://mochajs.org/">Mocha</a> for creating unit tests. An integration environment was also built for doing functional and user acceptance testing (UAT). A continuous integration process was implemented using Codeship to perform application build, perform unit testing and deploying the application on the respective test, development-integration and production environment.</p>
+
+<h3>Play - 4 Build the service using agile and iterative practices</h3>
+
+<p>reference - <a href="https://playbook.cio.gov/#play4">https://playbook.cio.gov/#play4</a></p>
+
+<p>The development team used an iterative approach to develop the prototype. User stories were created and added to backlog, the stories were then prioritized for implementation of the sprint (which was compressed to meet RFQ deadline). 
+The team deployed the minimum viable project after 3 days of the RFQ and kept adding incremental value and functionality to the project, all the while keeping a product that could be used as an evidence for the RFQ submission.</p>
+
+<p>The team originally utilized Jira and Confluence along with Github, but moved to github pages and issues after an update to the RFQ was posted. </p>
+
+<p>The team performed scrum calls and sprint retrospective meetings which was recorded in Confluence. The team was proactive in picking up additional tickets and working on them in the interest of meeting the RFQ deadline.</p>
+
+<h3>Play - 6 Assign one leader and hold that person accountable</h3>
+
+<p>reference - <a href="https://playbook.cio.gov/#play6">https://playbook.cio.gov/#play6</a>
+The team assigned Vijay Goswami as the Product Owner. Mr. Goswami also played the role technical architect and devops engineer on the project. While being in the dual role of Product Owner and developer is not ideal, the team had to work with the available resources it had. As a product owner, Mr. Goswami prioritized the list of features and assigned tasks to team members.</p>
+
+<h3>Play - 12 Use data to drive decisions</h3>
+
+<p>reference - <a href="https://playbook.cio.gov/#play12">https://playbook.cio.gov/#play12</a></p>
+
+<p>The development team implemented monitoring and alert for the deployed system. Google Analytics was integrated to provide realtime usage of the application. Application healthcheck and audit log archiving were configured as well as evidenced <a href="/APIPrototype/continuous-monitoring/">here</a></p>
+
+<h3>Default to open</h3>
+
+<p>reference - <a href="https://playbook.cio.gov/#play13">https://playbook.cio.gov/#play13</a></p>
+
+<p>The team has open sourced the repository and provided public access to it&#39;s Jira project site. The licensing statement in the repository reflects that. </p>
 
         </section>
 
