@@ -28,6 +28,26 @@ The application is built using Node.js and utilizes Mongo db for persisting data
 Following are the list of stories that have been implemented in the prototype
 
 
+## User Stories
+
+Following is a list of all the user stories that were identified for the project
+
+
+|Project	|Key	        |Summary                                                                                           |
+|-----------|---------------|--------------------------------------------------------------------------------------------------|
+|Agile BPA	|[AGILEBPA-36](https://xfinion.atlassian.net/browse/AGILEBPA-36)    |As a user I want to know the privacy polcy of the website                                         |     
+|Agile BPA	|[AGILEBPA-32](https://xfinion.atlassian.net/browse/AGILEBPA-32)    |As a user I want to see a system/error message when I type an incorrect url                       |                  
+|Agile BPA	|[AGILEBPA-31](https://xfinion.atlassian.net/browse/AGILEBPA-31)    |As a user I want to see metrics on medication usage                                               |
+|Agile BPA	|[AGILEBPA-30](https://xfinion.atlassian.net/browse/AGILEBPA-30)    |As a user I want to make the medication list url/id hard to guess/secure                          |               
+|Agile BPA	|[AGILEBPA-22](https://xfinion.atlassian.net/browse/AGILEBPA-22)    |As a user I want to see a paginated search result                                                 | 
+|Agile BPA	|[AGILEBPA-12](https://xfinion.atlassian.net/browse/AGILEBPA-12)    |As a user I want the ability to use the application on my mobile device                           |              
+|Agile BPA	|[AGILEBPA-10](https://xfinion.atlassian.net/browse/AGILEBPA-10)    |As a user I want to see a message when search does not return any results                         |                
+|Agile BPA	|[AGILEBPA-7](https://xfinion.atlassian.net/browse/AGILEBPA-7)     |As a user I want a perma link to the medication list                                              |
+|Agile BPA	|[AGILEBPA-6](https://xfinion.atlassian.net/browse/AGILEBPA-6)     |As a user I want to view the Help information for using the application                           |              
+|Agile BPA	|[AGILEBPA-5](https://xfinion.atlassian.net/browse/AGILEBPA-5)     |As a user I want the ability to search for medication                                             |
+|Agile BPA	|[AGILEBPA-4](https://xfinion.atlassian.net/browse/AGILEBPA-4)	    |As a user I want to select the medications from the search result and populate it in my list      |                                   
+|Agile BPA	|[AGILEBPA-2](https://xfinion.atlassian.net/browse/AGILEBPA-2)	    |As a user I want to be able to save the list of medications I have selected                       |                  
+|Agile BPA	|[AGILEBPA-1](https://xfinion.atlassian.net/browse/AGILEBPA-1)	    |As a user I want to know what the application does                                                |
 
 
 
