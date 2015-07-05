@@ -4,14 +4,5 @@ layout: default
 title: How we built it
 ---
 
-
-* [Vision](#vision)
-* [User Stories](#user-stories)
-
-### <a name="vision"></a>Vision ###
-
-### <a name="user-stories"></a>User Stories ###
-
-My medication list allows you to keep a list of all the medication you are currently taking and share it with your medical provider using a hyperlink.The hyper link is located at the bottom of the page and is available after you have created a list of your medicatuions and clicked the save button.You can access additional help associated with this application by clicking on the help button or sending us an email at support@xfinion.com You can also call us at 301.801.4897 Monday to Friday between the hours of 8am and 6pm.Thank you using My Medication List. You can review our privacy policy here
-
+The team brainstormed on possible ideas and approaches for the prototype documented here. While the idea of ingesting the data from API service and listing it sounded attractive as it would have allowed the development team to focus on meeting the criteria's for the award due to the limited amount of time available for the prototype. The development team eventually decided to create a innovative application of the data available from the API service as it would align with the spirit of the RFQ and also showcase the innovation aspect of the company. 
 
