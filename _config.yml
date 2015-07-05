@@ -66,6 +66,9 @@ navigation:
 - text: RFQ Evidence
   url: rfq-evaluation-criteria-evidence/
   internal: true
+- text: Open License
+  url: open-license/
+  internal: true
 
 repos:
 - name: Guides Template

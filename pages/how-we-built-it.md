@@ -21,5 +21,5 @@ The next phase of the product would provide notifications on recalls and would a
 We started working on the prototype and in parallel worked on the CI and deployment requirements for the application. We tried out couple of frameworks and deployment options that would make the entire solution work according to the requirements of the RFQ. We use jira, confluence and github for all our agile projects and started with the same tools but had to switch to github issues and github pages after reading thru the final modification of the RFQ. We also utilized the 18f-guides-template for building this documentation. About July 2nd 2015, we had our entire end to end solution working with the integration and deployment workflow. Putting the documentation together seemed to take as much time as building the prototype. Throughout the project we've had to make difficult decisions in terms of choosing options that are best and right for the project (somthing we would want if someone else was building it for us) vs merely fulfilling the rfq requirements. We are very happy with the choices we made more so because we stayed true to the reasons on why we started our company. And we would like to keep it that way.
 
 
-## Final words
-The best is yet to come. Keep shipping!!
+## Parting words
+Keep calm and keep shipping!!
