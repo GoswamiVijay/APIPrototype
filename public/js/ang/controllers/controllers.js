@@ -8,7 +8,7 @@ var app=angular.module('myApp.controllers', ['uiGmapgoogle-maps','ui-rangeSlider
 //capcah codes 
     $scope.response = null;
     $scope.widgetId = null;
-    $scope.AppDevelopmentMode = false;
+    $scope.enableCaptcha = true;
     $scope.TopSearchedMedications = [];
     
     $scope.model = {
@@ -32,7 +32,7 @@ var app=angular.module('myApp.controllers', ['uiGmapgoogle-maps','ui-rangeSlider
           console.log(data);    
           if(data.success)
           {
-            $scope.AppDevelopmentMode = (data.applicationConfig.applicationMode === 'develop') ? false : true ;
+            $scope.enableCaptcha = data.applicationConfig.enableCaptcha;
             $scope.model.key = data.applicationConfig.captchaSiteKey;
           }
         }).error(function(err){ console.log(err); });       
@@ -63,7 +63,7 @@ var app=angular.module('myApp.controllers', ['uiGmapgoogle-maps','ui-rangeSlider
             alert('Please add some medications.');
             return;
         }
-        if($scope.AppDevelopmentMode)
+        if($scope.enableCaptcha)
         {
             //validateCapcha
             if($scope.response)

@@ -10,7 +10,7 @@ module.exports = function routes()
     this.get('/testApplicationConfig', 'api#testApplicationConfig');
     
   	this.get('/applicationConfig', function(req, res){
-    	var config = {captchaSiteKey:applicationConfig.captcha.siteKey,applicationMode:applicationConfig.application.mode};
+    	var config = {enableCaptcha:applicationConfig.application.enableCaptcha,captchaSiteKey:applicationConfig.captcha.siteKey,applicationMode:applicationConfig.application.mode};
         return res.json({success: true, applicationConfig:config});
 	});
 

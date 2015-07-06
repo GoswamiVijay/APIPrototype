@@ -22,6 +22,7 @@ applicationConfig.captcha.secretKey = captchSecretKey;
 applicationConfig.captcha.siteKey = captchSiteKey;
 applicationConfig.openFDA.searchResultLimit = 50;
 applicationConfig.application.mode = applicationMode;
+applicationConfig.application.enableCaptcha = false;
 
 module.exports = applicationConfig;
 
