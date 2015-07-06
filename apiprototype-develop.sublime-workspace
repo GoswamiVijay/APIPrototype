@@ -1,0 +1,740 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"res",
+				"result"
+			],
+			[
+				"da",
+				"databaseServer"
+			],
+			[
+				"fbi",
+				"fbipersons"
+			],
+			[
+				"Crime",
+				"CrimeFinder"
+			],
+			[
+				"C",
+				"CrimeFinder"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"contents": "Searching 9344 files for \"Data Saved\"\n\n/Users/vijaygoswami/APIPrototype/public/js/ang/controllers/controllers.js:\n  253           setTimeout(function()\n  254          { \n  255:             alert('Data saved successfully');\n  256           }, 500);\n  257            \n\n1 match in 1 file\n",
+			"settings":
+			{
+				"buffer_size": 285,
+				"line_ending": "Unix",
+				"name": "Find Results",
+				"scratch": true
+			}
+		},
+		{
+			"file": "public/js/ang/controllers/controllers.js",
+			"settings":
+			{
+				"buffer_size": 0,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": ".gitignore",
+			"settings":
+			{
+				"buffer_size": 0,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "Dockerfile",
+			"settings":
+			{
+				"buffer_size": 0,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"contents": "{\n  \"AWSEBDockerrunVersion\": 2,\n  \"volumes\": [\n    {\n      \"name\": \"APIPrototype\",\n      \"host\": {\n        \"sourcePath\": \"/var/app/current\"\n      }\n    },\n    {\n      \"name\": \"nginx-proxy-conf\",\n      \"host\": {\n        \"sourcePath\": \"/var/app/current/Docker-nginx\"\n      }\n    }  \n  ],\n  \"containerDefinitions\": [\n    {\n      \"name\": \"mymedlookupweb1\",\n      \"image\": \"goswamivijay/apiprototype-web-prod\",\n      \"essential\": true,\n      \"memory\": 1024,\n      \"portMappings\": [\n        {\n          \"hostPort\": 4040,\n          \"containerPort\": 4000\n        }\n      ],\n      \"mountPoints\": [\n        {\n          \"sourceVolume\": \"APIPrototype\",\n          \"containerPath\": \"/src\",\n          \"readOnly\": true\n        }\n      ]\n    },\n    {\n      \"name\": \"mymedlookupweb2\",\n      \"image\": \"goswamivijay/apiprototype-web-prod\",\n      \"essential\": true,\n      \"memory\": 1024,\n      \"portMappings\": [\n        {\n          \"hostPort\": 4050,\n          \"containerPort\": 4000\n        }\n      ],\n      \"mountPoints\": [\n        {\n          \"sourceVolume\": \"APIPrototype\",\n          \"containerPath\": \"/src\",\n          \"readOnly\": true\n        }\n      ]\n    },\n    {\n      \"name\": \"nginx-proxy\",\n      \"image\": \"goswamivijay/apiprototype-nginx-prod\",\n      \"essential\": true,\n      \"memory\": 1024,\n      \"portMappings\": [\n        {\n          \"hostPort\": 80,\n          \"containerPort\": 80\n        }\n      ],\n      \"links\": [\n        \"mymedlookupweb1\",\n        \"mymedlookupweb2\"\n      ],\n      \"mountPoints\": [\n        {\n          \"sourceVolume\": \"nginx-proxy-conf\",\n          \"containerPath\": \"/etc/nginx\",\n          \"readOnly\": true\n        },\n        {\n          \"sourceVolume\": \"awseb-logs-nginx-proxy\",\n          \"containerPath\": \"/var/log/nginx\"\n        }\n      ]\n    }\n  ]\n}",
+			"file": "Dockerrun.aws.json",
+			"file_size": 1760,
+			"file_write_time": 1436205297000000,
+			"settings":
+			{
+				"buffer_size": 1760,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "pages/design.md",
+			"settings":
+			{
+				"buffer_size": 3013,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "index.md",
+			"settings":
+			{
+				"buffer_size": 5290,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "pages/how-we-built-it.md",
+			"settings":
+			{
+				"buffer_size": 4904,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "pages/development.md",
+			"settings":
+			{
+				"buffer_size": 9719,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "pages/rfq-evaluation-criteria-evidence.md",
+			"settings":
+			{
+				"buffer_size": 11591,
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 392.0,
+		"selected_items":
+		[
+			[
+				"pac",
+				"Preferences: Browse Packages"
+			]
+		],
+		"width": 467.0
+	},
+	"console":
+	{
+		"height": 0.0
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/Users/vijaygoswami/APIPrototype/.gitignore",
+		"/subl",
+		"/.gitignore",
+		"/Users/vijaygoswami/APIPrototype/README.md",
+		"/Users/vijaygoswami/APIPrototype/test/apiTest.js",
+		"/Users/vijaygoswami/APIPrototype/test/helloTest.js",
+		"/Users/vijaygoswami/APIPrototype/app/controllers/apiController.js",
+		"/Users/vijaygoswami/APIPrototype/config/applicationConfig.js",
+		"/Users/vijaygoswami/APIPrototype/config/routes.js",
+		"/Users/vijaygoswami/APIPrototype/public/home.html",
+		"/Users/vijaygoswami/APIPrototype/package.json",
+		"/Users/vijaygoswami/APIPrototype/pages/methodology.md",
+		"/Users/vijaygoswami/APIPrototype/pages/how-we-built-it.md",
+		"/Users/vijaygoswami/APIPrototype/pages/design.md",
+		"/Users/vijaygoswami/APIPrototype/_includes/footer.html",
+		"/Users/vijaygoswami/APIPrototype/pages/open-license.md",
+		"/Users/vijaygoswami/APIPrototype/pages/open-license",
+		"/Users/vijaygoswami/Documents/GitHubProjects/APIPrototype/app/controllers/apiController.js",
+		"/Users/vijaygoswami/Documents/GitHubProjects/APIPrototype/setEnvVar-integrationDev.sh",
+		"/Users/vijaygoswami/Documents/GitHubProjects/APIPrototype/setEnvVar-integrationTest.sh",
+		"/Users/vijaygoswami/Documents/GitHubProjects/APIPrototype/setEnvVar-localDev.sh",
+		"/Users/vijaygoswami/Documents/GitHubProjects/APIPrototype/config/initializers/04_database.js",
+		"/Users/vijaygoswami/Documents/GitHubProjects/APIPrototype/Dockerrun.aws.json",
+		"/Users/vijaygoswami/Documents/GitHubProjects/APIPrototype/ebEnvVariables.config",
+		"/Users/vijaygoswami/Documents/GitHubProjects/APIPrototype/README.md",
+		"/Users/vijaygoswami/Documents/GitHubProjects/APIPrototype/.gitignore",
+		"/Users/vijaygoswami/Documents/GitHubProjects/APIPrototype/public/home.html",
+		"/Users/vijaygoswami/Documents/GitHubProjects/APIPrototype/public/partials/home.html",
+		"/Users/vijaygoswami/Documents/GitHubProjects/APIPrototype/public/privacy.html",
+		"/Users/vijaygoswami/Documents/GitHubProjects/APIPrototype/app/models/mymed.js",
+		"/Users/vijaygoswami/Documents/GitHubProjects/APIPrototype/config/applicationConfig.js",
+		"/Users/vijaygoswami/Documents/GitHubProjects/APIPrototype/public/js/ang/controllers/controllers.js",
+		"/Users/vijaygoswami/Documents/GitHubProjects/APIPrototype/Docker Instructions",
+		"/Users/vijaygoswami/Documents/GitHubProjects/APIPrototype/config/routes.js",
+		"/Users/vijaygoswami/Documents/GitHubProjects/APIPrototype/package.json",
+		"/Users/vijaygoswami/Documents/GitHubProjects/APIPrototype/config/settings.json",
+		"/Users/vijaygoswami/Documents/GitHubProjects/APIPrototype/config/configSettings.js",
+		"/Users/vijaygoswami/Documents/GitHubProjects/APIPrototype/public/js/angular-recaptcha.min.js",
+		"/Users/vijaygoswami/Documents/GitHubProjects/APIPrototype/Dockerfile",
+		"/Users/vijaygoswami/Documents/GitHubProjects/APIPrototype/config/initializers/00_generic.js",
+		"/Users/vijaygoswami/Documents/GitHubProjects/APIPrototype/public/js/ang/app.js",
+		"/Users/vijaygoswami/Documents/GitHubProjects/APIPrototype/setEnvVar-production.sh",
+		"/Users/vijaygoswami/Documents/GitHubProjects/APIPrototype/Dockerfile-localDev",
+		"/Users/vijaygoswami/Documents/GitHubProjects/APIPrototype/Docker-nginx/nginx.conf",
+		"/Users/vijaygoswami/Documents/GitHubProjects/APIPrototype/docker-compose.yml",
+		"/Users/vijaygoswami/Documents/GitHubProjects/APIPrototype/Dockerfile-nginx",
+		"/Users/vijaygoswami/Documents/GitHubProjects/APIPrototype/nginx.conf",
+		"/Users/vijaygoswami/Documents/GitHubProjects/APIPrototype/Docker-nginx/Dockerfile",
+		"/Users/vijaygoswami/Documents/GitHubProjects/APIPrototype/Docker/Web Application/Dockerfile",
+		"/Users/vijaygoswami/Documents/GitHubProjects/APIPrototype/Docker/Docker Instructions",
+		"/Users/vijaygoswami/Documents/GitHubProjects/APIPrototype/app-Dockerfile",
+		"/Users/vijaygoswami/Documents/dockerDemo/src/Dockerfile",
+		"/Users/vijaygoswami/Documents/dockerDemo/src/index.js",
+		"/Users/vijaygoswami/Documents/dockerDemo/src/package.json",
+		"/Users/vijaygoswami/Documents/GitHubProjects/APIPrototype/mymed.js",
+		"/Users/vijaygoswami/Documents/GitHubProjects/APIPrototype/Docker/MongoDb/Dockerfile",
+		"/Users/vijaygoswami/Documents/GitHubProjects/APIPrototype/Docker/MongoDb/docker-entrypoint.sh",
+		"/Users/vijaygoswami/Documents/GitHubProjects/APIPrototype/mymed-fullmeanstack/test/helloTest.js",
+		"/Users/vijaygoswami/Documents/GitHubProjects/APIPrototype/mymed-fullmeanstack/app/controllers/apiController.js",
+		"/Users/vijaygoswami/Documents/GitHubProjects/APIPrototype/mymed-fullmeanstack/public/partials/home.html",
+		"/Users/vijaygoswami/Documents/GitHubProjects/APIPrototype/mymed-fullmeanstack/public/js/ang/controllers/controllers.js",
+		"/Users/vijaygoswami/Documents/GitHubProjects/APIPrototype/mymed-fullmeanstack/helloTest.js",
+		"/Users/vijaygoswami/Documents/GitHubProjects/APIPrototype/mymed-fullmeanstack/package.json",
+		"/Users/vijaygoswami/Documents/GitHubProjects/APIPrototype/mymed-fullmeanstack/config/initializers/02_views.js",
+		"/Users/vijaygoswami/Documents/GitHubProjects/APIPrototype/mymed-fullmeanstack/mymed.js",
+		"/Users/vijaygoswami/Documents/GitHubProjects/APIPrototype/mymed-fullmeanstack/app/models/mymed.js",
+		"/Users/vijaygoswami/Documents/GitHubProjects/APIPrototype/mymed-fullmeanstack/public/home.html",
+		"/Users/vijaygoswami/Documents/GitHubProjects/APIPrototype/mymed-fullmeanstack/config/routes.js",
+		"/Library/WebServer/Documents/sample.json",
+		"/Users/vijaygoswami/Documents/author/crx-quickstart/repository/cluster.properties",
+		"/Users/vijaygoswami/.profile",
+		"/Library/WebServer/Documents/iosdemo1/demo1/app.json",
+		"/Users/vijaygoswami/.bashrc",
+		"/Library/WebServer/Documents/mysenchaprojects/myfirstapp/app.json",
+		"/Users/vijaygoswami/.bash_profile",
+		"/Users/vijaygoswami/.bashp_rofile",
+		"/Users/vijaygoswami/.bashprofile",
+		"/Library/WebServer/Documents/ftst2/lab/lab9-2/app.json",
+		"/Library/WebServer/Documents/CitySearch/metadata/view/Main",
+		"/Library/WebServer/Documents/ftst2/lab/lab9-2/index.html",
+		"/Library/WebServer/Documents/ftst2/lab/lab7-3/app/view/Main.js",
+		"/Library/WebServer/Documents/ftst2/snippets/lab6-3.js",
+		"/Library/WebServer/Documents/ftst2/lab/lab7-3/resources/sass/app.scss",
+		"/Library/WebServer/Documents/ftst2/lab/lab8-1/app.js",
+		"/Library/WebServer/Documents/ftst2/lab/lab8-1/app/profile/BigPhone.js",
+		"/Library/WebServer/Documents/ftst2/lab/lab8-1/app/profile/Tablet.js",
+		"/Library/WebServer/Documents/ftst2/lab/lab8-2/app/profile/Phone.js",
+		"/Library/WebServer/Documents/ftst2/lab/lab8-2/app/store/NewsMenuItems.js",
+		"/Library/WebServer/Documents/ftst2/lab/lab8-2/app/store/MenuOptions.js",
+		"/Library/WebServer/Documents/ftst2/lab/lab8-3/app/controller/phone/Main.js",
+		"/Library/WebServer/Documents/ftst2/lab/lab9-1/app/model/Confession.js",
+		"/Library/WebServer/Documents/ftst2/lab/lab9-1/app/controller/Confessions.js",
+		"/Library/WebServer/Documents/ftst2/lab/lab9-2/app.js",
+		"/Library/WebServer/Documents/ftst2/build/production/CrimeFinder/app.js",
+		"/Library/WebServer/Documents/ftst2/build/production/CrimeFinder/archive/app.js/a332bf5e00f31d022890ecfd4aa98607167fff87",
+		"/Library/WebServer/Documents/ftst2/build/production/CrimeFinder/archive/app.js/c35b8d050cf9d4a65d927bc910fd1b561ffc97d7",
+		"/Library/WebServer/Documents/ftst2/challenge/5/app/controller/Courses.js",
+		"/Library/WebServer/Documents/ftst2/challenge/6/app/controller/Courses.js",
+		"/Library/WebServer/Documents/ftst2/challenge/7/app/controller/Courses.js",
+		"/Library/WebServer/Documents/ftst2/challengesolution/4/app/controller/Courses.js",
+		"/Library/WebServer/Documents/ftst2/challengesolution/5/app/controller/Courses.js",
+		"/Library/WebServer/Documents/ftst2/challengesolution/6/app/controller/Courses.js",
+		"/Library/WebServer/Documents/ftst2/lab/final/app/controller/Confessions.js",
+		"/Library/WebServer/Documents/ftst2/lab/final/app/controller/CrimeReports.js",
+		"/Library/WebServer/Documents/ftst2/lab/final/app/store/Statistics.js",
+		"/Library/WebServer/Documents/ftst2/lab/final/app/view/media/Video.js",
+		"/Library/WebServer/Documents/ftst2/lab/final/archive/app.js/27618ee2dd33ce438cea94da7856f327149b59a2",
+		"/Library/WebServer/Documents/ftst2/lab/final/archive/app.js/79786eca1764817a50606ec952d6af66c39a83e4",
+		"/Library/WebServer/Documents/ftst2/lab/final/archive/app.js/fcd60a8dbc5c776b8b2901503112d814e1dac0be",
+		"/Library/WebServer/Documents/ftst2/lab/lab5-7/app/controller/Confessions.js",
+		"/Library/WebServer/Documents/ftst2/lab/lab6-1/app/controller/Confessions.js",
+		"/Library/WebServer/Documents/ftst2/lab/lab6-3/app/controller/Confessions.js",
+		"/Library/WebServer/Documents/ftst2/lab/lab6-3/app/view/media/Video.js",
+		"/Library/WebServer/Documents/ftst2/lab/lab6-5/app/controller/Confessions.js",
+		"/Library/WebServer/Documents/ftst2/lab/lab6-5/app/view/media/Video.js",
+		"/Library/WebServer/Documents/ftst2/lab/lab6_2/app/controller/Confessions.js",
+		"/Library/WebServer/Documents/ftst2/lab/lab6_2/metadata/controller/Confessions",
+		"/Library/WebServer/Documents/ftst2/lab/lab6_4/app/controller/Confessions.js",
+		"/Library/WebServer/Documents/ftst2/lab/lab6_4/app/view/media/Video.js",
+		"/Library/WebServer/Documents/ftst2/lab/lab6_4/metadata/controller/Confessions",
+		"/Library/WebServer/Documents/ftst2/lab/lab6_4/metadata/view/media.Video",
+		"/Library/WebServer/Documents/ftst2/lab/lab6_6/app/controller/Confessions.js",
+		"/Library/WebServer/Documents/ftst2/lab/lab6_6/app/store/Statistics.js",
+		"/Library/WebServer/Documents/ftst2/lab/lab6_6/app/view/media/Video.js",
+		"/Library/WebServer/Documents/ftst2/lab/lab6_6/metadata/controller/Confessions",
+		"/Library/WebServer/Documents/ftst2/lab/lab6_6/metadata/store/Statistics",
+		"/Library/WebServer/Documents/ftst2/lab/lab6_6/metadata/view/media.Video",
+		"/Library/WebServer/Documents/ftst2/lab/lab7-1/app/controller/Confessions.js"
+	],
+	"find":
+	{
+		"height": 35.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+			"/Users/vijaygoswami/APIPrototype",
+			"/Users/vijaygoswami/Documents/GitHubProjects/APIPrototype",
+			"/Users/vijaygoswami/Documents/GitHubProjects/APIPrototype/mymed-fullmeanstack",
+			"/Users/vijaygoswami/projects/DoS-CA-STMA/SourceCode",
+			"/Users/vijaygoswami/projects/DoS-CA-STMA/SourceCod",
+			"/Library/WebServer/Documents/ftst2",
+			"/Library/WebServer/Documents/ftst2/lab"
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"\"",
+			"Data Saved",
+			"consol",
+			"});\n",
+			"saveDataToDb",
+			"generateUniqueId",
+			"expect",
+			"var th = this;",
+			"thos",
+			"th.",
+			"\"Post\"",
+			"favicon",
+			"Content-Type",
+			"apiController",
+			"getSearchResults",
+			"angular.bootstrap",
+			"search",
+			"search.query",
+			"model",
+			"vc-recaptcha",
+			"help",
+			"btnhelp",
+			"home",
+			"getData",
+			"ReCapchaSecretKey",
+			"apiurl",
+			"settings",
+			"favicon.png",
+			"http://www.google.com/recaptcha/api.js?onload=vcRecaptchaApiLoaded&render=explicit",
+			"fonts.googleapis.com/",
+			"apiurl",
+			"https://www.google.com",
+			"vcRecaptcha",
+			"sitekey",
+			"https://www.google.com",
+			"capcha",
+			"g-recaptcha",
+			"data-sitekey=",
+			"cap",
+			"partials",
+			"widgetId",
+			"My Medication List",
+			"request(",
+			"apiurl",
+			"getSearchResults",
+			"host :",
+			"http://",
+			"process.nextTick",
+			"/etc/nginx/nginx.conf",
+			"My Medication List",
+			"mymedurl",
+			"mongo_instance_001",
+			"4000",
+			"saveData",
+			"btnSave",
+			"saveData",
+			"mymedurl",
+			"saveData",
+			"updateData",
+			"routes",
+			"updateData",
+			"updatedata",
+			"mymedurl",
+			"My Medication List",
+			"gradle",
+			"native",
+			"countryListUrl",
+			"countries.json",
+			"state.gov",
+			"http://senchatraining.com/",
+			"onMainMenuButtonTap",
+			"video'",
+			"routesini",
+			"http://senchatraining.com/ftst2assets/accident.m4v",
+			"http://senchatraining.com/ftst2assets/podcast.mp3",
+			"/podcast.mp3",
+			"http://senchatraining.com/ftst2assets/podcast.mp3"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"",
+			"http://www.senchatraining.com/",
+			"http://www.senchatraining.com/ftst2assets/accident.m4v ",
+			"http://www.senchatraining.com/ftst2assets/podcast.mp3"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 9,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"settings":
+					{
+						"buffer_size": 285,
+						"regions":
+						{
+							"match":
+							{
+								"flags": 112,
+								"regions":
+								[
+									[
+										196,
+										206
+									]
+								],
+								"scope": ""
+							}
+						},
+						"selection":
+						[
+							[
+								209,
+								209
+							]
+						],
+						"settings":
+						{
+							"detect_indentation": false,
+							"output_tag": 1,
+							"result_base_dir": "",
+							"result_file_regex": "^([A-Za-z\\\\/<].*):$",
+							"result_line_regex": "^ +([0-9]+):",
+							"scroll_past_end": true,
+							"syntax": "Packages/Default/Find Results.hidden-tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "public/js/ang/controllers/controllers.js",
+					"settings":
+					{
+						"buffer_size": 0,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 3451.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": ".gitignore",
+					"settings":
+					{
+						"buffer_size": 0,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "Dockerfile",
+					"settings":
+					{
+						"buffer_size": 0,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "Dockerrun.aws.json",
+					"settings":
+					{
+						"buffer_size": 1760,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1760,
+								1760
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JSON.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "pages/design.md",
+					"settings":
+					{
+						"buffer_size": 3013,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								3009,
+								3009
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Markdown/Markdown.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 355.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "index.md",
+					"settings":
+					{
+						"buffer_size": 5290,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2937,
+								2937
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Markdown/Markdown.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 399.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "pages/how-we-built-it.md",
+					"settings":
+					{
+						"buffer_size": 4904,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								4904,
+								4904
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Markdown/Markdown.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 250.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 8,
+					"file": "pages/development.md",
+					"settings":
+					{
+						"buffer_size": 9719,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								754,
+								754
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Markdown/Markdown.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 9,
+					"file": "pages/rfq-evaluation-criteria-evidence.md",
+					"settings":
+					{
+						"buffer_size": 11591,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1255,
+								1166
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Markdown/Markdown.tmLanguage",
+							"word_wrap": false
+						},
+						"translation.x": 3872.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 0.0
+	},
+	"input":
+	{
+		"height": 31.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"replace":
+	{
+		"height": 64.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"selected_items":
+		[
+		],
+		"width": 380.0
+	},
+	"show_minimap": false,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 279.0,
+	"status_bar_visible": true
+}

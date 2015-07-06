@@ -16,6 +16,9 @@ All of the tools and technologies required to develop the application are avaial
 
 The development workstation can be either Mac or Windows based. The team uses bothe, Apple Mac (Mac) and Windows workstation for developing the application. A Mac is preferred due to low friction in getting the prerequisites installed, availability of package manager for installing applications. The following instructions assume you have a Mac based workstation. Instructions that are windows specific will be pointed out (???todo???)
 
+*If you find yourself having to use sudo for running node, please see this page on how to resolve the issue http://stackoverflow.com/questions/16151018/npm-throws-error-without-sudo*
+
+
 ### Basic setup 
 0.  Install XCode and OS X Command Line Tools
 reference - https://developer.apple.com/xcode/downloads/
@@ -60,7 +63,7 @@ $ gem install jekyll
 $ gem install kramdown
 ```
 
-9. Install grunt
+9. Install grunt's command line interface
 
 ```
 $ npm install -g grunt-cli
@@ -70,8 +73,6 @@ reference - https://github.com/cfpb/DOCter/blob/gh-pages/README.md
 
 Optional - You can use [sublime](http://www.sublimetext.com/) , [TextWrangler](http://www.barebones.com/products/textwrangler/) or [webstorm](https://www.jetbrains.com/webstorm/)
 
-
-*If you find yourself having to use sudo for running node, please see this page on how to resolve the issue http://stackoverflow.com/questions/16151018/npm-throws-error-without-sudo*
 
 If you haven't done so already, please create an account on github, dockerhub 
 The project administrator should also add you to the project team on github, dockerhub, codeship, Jira, confluence and Amazon Cloud
@@ -129,7 +130,14 @@ $ sudo mongod
 ```
 
 2.  Run the application
-In a new terminal window, navigate to the folder where you have cloned the repository and run the following command
+In a new terminal window, navigate to the folder where you have cloned the repository.
+Run the following command to update the node modules used in the project
+
+```
+$ npm install
+```
+
+To run the application, run the nodemon command. nodemon will watch file changes and restart the application.
 
 ```
 $ nodemon
