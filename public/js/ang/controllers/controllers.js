@@ -193,7 +193,10 @@ var app=angular.module('myApp.controllers', ['uiGmapgoogle-maps','ui-rangeSlider
           {
               $scope.results.push($scope.AllResults[recordStart]);
           }
-          $scope.$apply();
+          setTimeout(function()
+          { 
+            $scope.$apply();  
+         }, 500);
       }
   };
   
@@ -237,16 +240,20 @@ var app=angular.module('myApp.controllers', ['uiGmapgoogle-maps','ui-rangeSlider
     $http.post('/saveData',{data: $scope.selectedresults})
     .success(function(data){
       if(data.success){
-        $scope.results = [];
-        $scope.AllResults = [];
-        $scope.paginateResults();  
-        $scope.search.query = '';
         $scope.hostname = $window.location.host;
         $scope.protocol = $window.location.protocol;
         var url = $scope.protocol+"//"+$scope.hostname+"/?"+data.id;
         $("#mymedurl").attr('href', url);
         $("#mymedurl").text(url);
-        alert('Data saved successfully');
+
+        $scope.AllResults = [];
+        $scope.paginateResults();  
+        $scope.search.query = '';
+
+         setTimeout(function()
+        { 
+            alert('Data saved successfully');
+         }, 500);
           
       }
       else{

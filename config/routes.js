@@ -18,12 +18,13 @@ module.exports = function routes()
     	res.sendfile('./public/partials/help.html');
 	});
 
-  
-
 	this.get('/', function(req, res) {
     	res.sendfile('./public/home.html');
 	});
-
-  
-
+	this.get('/*', function(req, res){
+	    if(res.status(404))
+        {
+            res.sendfile('./public/partials/error.html');    
+        }
+	});
 }
