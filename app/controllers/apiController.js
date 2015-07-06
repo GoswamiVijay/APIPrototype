@@ -78,7 +78,7 @@ apiController.validateCapcha = function(res,req)
     }
   );    
 }
-
+/*
 apiController.saveData = function(res,req) {
   var th = this;
   var data = th.req.body.data;
@@ -92,6 +92,8 @@ apiController.saveData = function(res,req) {
       }
     });
 }
+*/
+
 
 apiController.updateData = function(res,req) {
   var th = this;
@@ -106,28 +108,87 @@ apiController.updateData = function(res,req) {
   });
 }
 
+
+apiController.saveData = function(res,req) {
+  var th = this;
+  
+  var recordId = apiController.generateUniqueId();
+  var saveResult = apiController.saveDataToDb(recordId, th.req.body, function(result) {
+  if(result) {
+    th.res.json({success: true, id: recordId});    
+  }
+  else{
+    th.res.json({success: false, id: ''});
+  }
+  });
+}
+
+  apiController.saveDataToDb = function(recordId, data, callback) {
+  
+  var newmymed = new mymed({"recordId": recordId, "drugJson" : data}); 
+  newmymed.save(function (err) {
+      if(err) {
+          callback(false);
+      } else {
+        callback(true);
+      }
+    });
+
+}
+
+apiController.generateUniqueId = function() {
+  var uniqueId = uuid.v4();
+  return uniqueId;
+}
+
+
 apiController.getData = function(res,req) {
   var th = this;
   var id = th.req.param('id');
+  var saveResult = apiController.getDatafromDb(id,  function(result, r) {
+  if(result) {
+    th.res.json({success: true, result: r});
+  }
+  else{
+    th.res.json({success: false, result: []});
+  }
+  });
+}
+
+apiController.getDatafromDb = function(id, callback) {
   mymed.findOne({"recordId": id}, function(e,r){
     if(r){
-      th.res.json({success: true, result: r});
+      callback(true, r);      
     }
     else{
-      th.res.json({success: false, result: []});
+      callback(false);      
     }
   });
 }
 
 apiController.getTopSearchKeywords = function(res,req) {
   var th = this;
-  searchKeywords.find().sort({searchcount: -1}).limit(5).exec(function(e,r){
+
+  var saveResult = apiController.getTopSearchKeywordsFromDb(function(result, r) {
+  if(result) {
+    th.res.json({success: true, result: r});
+  }
+  else{
+    th.res.json({success: false, result: []});
+  }
+  });
+}
+
+apiController.getTopSearchKeywordsFromDb = function(callback) {
+searchKeywords.find().sort({searchcount: -1}).limit(5).exec(function(e,r){
     if(r){
-      th.res.json({success: true, result: r});
+      callback(true, r);
     }
     else{
-      th.res.json({success: false, result: []});
+      callback(false, null);
     }
   });
 }
+
+
 module.exports = apiController;

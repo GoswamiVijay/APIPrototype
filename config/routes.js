@@ -5,9 +5,10 @@ module.exports = function routes()
   	this.get('/getData','api#getData');
     this.get('/getTopSearchKeywords','api#getTopSearchKeywords');
   	this.post('/saveData','api#saveData');
-	this.post('/validateCapcha','api#validateCapcha');
+	  this.post('/validateCapcha','api#validateCapcha');
   	this.post('/updateData','api#updateData');
-
+    this.get('/testApplicationConfig', 'api#testApplicationConfig');
+    
   	this.get('/applicationConfig', function(req, res){
     	var config = {captchaSiteKey:applicationConfig.captcha.siteKey,applicationMode:applicationConfig.application.mode};
         return res.json({success: true, applicationConfig:config});
@@ -17,8 +18,12 @@ module.exports = function routes()
     	res.sendfile('./public/partials/help.html');
 	});
 
+  
+
 	this.get('/', function(req, res) {
     	res.sendfile('./public/home.html');
 	});
+
+  
 
 }
