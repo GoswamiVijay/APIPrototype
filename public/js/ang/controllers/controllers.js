@@ -8,6 +8,9 @@ var app=angular.module('myApp.controllers', ['uiGmapgoogle-maps','ui-rangeSlider
 //capcah codes 
     $scope.response = null;
     $scope.widgetId = null;
+    $scope.enableCaptcha = true;
+    $scope.TopSearchedMedications = [];
+    
     $scope.model = {
         key: '6Lf3GgkTAAAAAM-KwKq3KxS4-7g40bbLA7jWEyBv'
     };
@@ -19,48 +22,70 @@ var app=angular.module('myApp.controllers', ['uiGmapgoogle-maps','ui-rangeSlider
         console.info('Created widget ID: %s', widgetId);
         $scope.widgetId = widgetId;
     };
+    
+        //Get App settings 
+    $scope.GetApplicationConfig = function()
+    {
+        $http.get('/applicationConfig')
+        .success(function(data)
+        {
+          console.log(data);    
+          if(data.success)
+          {
+            $scope.enableCaptcha = data.applicationConfig.enableCaptcha;
+            $scope.model.key = data.applicationConfig.captchaSiteKey;
+          }
+        }).error(function(err){ console.log(err); });       
+    };
+    $scope.GetApplicationConfig();
+
+    //Get Top Medications 
+    $scope.GetTopSearchedMedications = function()
+    {
+        $http.get('/getTopSearchKeywords')
+        .success(function(data)
+        {
+          console.log(data);    
+          if(data.success)
+          {
+            $scope.TopSearchedMedications = data.result;
+          }
+        }).error(function(err){ console.log(err); }); 
+    };
+    $scope.GetTopSearchedMedications();
+    
+    
     $scope.submitCapcha = function () 
     {
         var valid;
-        /**
-         * SERVER SIDE VALIDATION
-         *
-         * You need to implement your server side validation here.
-         * Send the reCaptcha response to the server and use some of the server side APIs to validate it
-         * See https://developers.google.com/recaptcha/docs/verify
-         */
         if($scope.selectedresults.length == 0)
         {
             alert('Please add some medications.');
             return;
         }
-        //validateCapcha
-        if($scope.response)
+        if($scope.enableCaptcha)
         {
-            $http.post('/validateCapcha',{data: $scope.response})
-            .success(function(data){
-            if(data.success)
+            //validateCapcha
+            if($scope.response)
             {
-                //alert('Sucess');
-                $scope.saveData();
-            }
-            else
+                $http.post('/validateCapcha',{data: $scope.response})
+                .success(function(data){
+                    if(data.success) { $scope.saveData(); }
+                    else{ vcRecaptchaService.reload($scope.widgetId); }
+                }).error(function(err)
+                {
+                    console.log(err);
+                    vcRecaptchaService.reload($scope.widgetId);    
+                });
+            }else
             {
-                //alert('Error occured');
-                vcRecaptchaService.reload($scope.widgetId);
+                alert('Please confirm.You are not a robot?');    
             }
-        })
-        .error(function(err)
-        {
-            console.log(err);
-            vcRecaptchaService.reload($scope.widgetId);    
-        });
         }else
         {
-            alert('Please confirm.You are not a robot?');    
-        }
+            $scope.saveData();
+        }    
     };
-    
 
   $rootScope.showLoading = false;
   $scope.search = {}; 
@@ -113,7 +138,9 @@ var app=angular.module('myApp.controllers', ['uiGmapgoogle-maps','ui-rangeSlider
       else
       {
         $scope.pageNumber = 0;  
+        $scope.results = [];  
         $scope.AllResults = [];
+        $scope.paginateResults();
         $scope.message = "No matching results found.";
         $rootScope.showLoading = false;
       }
@@ -123,9 +150,37 @@ var app=angular.module('myApp.controllers', ['uiGmapgoogle-maps','ui-rangeSlider
     });
   }
   
+  $scope.TotalPages =function()
+  {
+    return Math.ceil($scope.AllResults.length/$scope.NumberOfRecords);                
+  }
+  
+  $scope.NextRecord = function()
+  {
+      $('#searchContainer').scrollTop(0);
+      if($scope.pageNumber >= $scope.TotalPages())
+      {
+          return;
+      }
+      $scope.pageNumber = $scope.pageNumber + 1;
+      $scope.paginateResults();
+  };
+    
+  $scope.PreviousRecord = function()
+  {
+      $('#searchContainer').scrollTop(0);
+      if($scope.pageNumber < 1){
+          return;
+      }
+      
+      $scope.pageNumber = $scope.pageNumber - 1;
+      $scope.paginateResults();
+  };
+    
   //Paginate the medications  
   $scope.paginateResults = function()
   {
+      $scope.results = [];
       if($scope.results.length < $scope.AllResults.length)
       {
           var recordStart = $scope.pageNumber * $scope.NumberOfRecords;
@@ -138,7 +193,10 @@ var app=angular.module('myApp.controllers', ['uiGmapgoogle-maps','ui-rangeSlider
           {
               $scope.results.push($scope.AllResults[recordStart]);
           }
-          $scope.$apply();
+          setTimeout(function()
+          { 
+            $scope.$apply();  
+         }, 500);
       }
   };
   
@@ -163,7 +221,8 @@ var app=angular.module('myApp.controllers', ['uiGmapgoogle-maps','ui-rangeSlider
   $scope.remove = function(obj){
     var oldResult = ($scope.results ? $scope.results : []);
     var resultToSave =  ($scope.selectedresults ? $scope.selectedresults : []);
-    if(resultToSave.length > 0){
+    if(resultToSave.length > 0)
+    {
       var newArray = resultToSave.filter(function (el) {
         return el.id !== obj.id;
       });
@@ -171,23 +230,34 @@ var app=angular.module('myApp.controllers', ['uiGmapgoogle-maps','ui-rangeSlider
       $scope.results = oldResult;
       $scope.selectedresults = newArray;
     }
+    if(oldResult.length > 0)
+    {
+        $scope.message = "";
+    }
   }
 
   $scope.saveData = function(){
     $http.post('/saveData',{data: $scope.selectedresults})
     .success(function(data){
       if(data.success){
-        $scope.results = [];
-        $scope.search.query = '';
         $scope.hostname = $window.location.host;
         $scope.protocol = $window.location.protocol;
         var url = $scope.protocol+"//"+$scope.hostname+"/?"+data.id;
         $("#mymedurl").attr('href', url);
         $("#mymedurl").text(url);
-        alert('Data saved successfully');
+
+        $scope.AllResults = [];
+        $scope.paginateResults();  
+        $scope.search.query = '';
+
+         setTimeout(function()
+        { 
+            alert('Data saved successfully, please bookmark the link to your saved list. ');
+         }, 500);
+          
       }
       else{
-        alert('Error occured');
+        alert('We are sorry, there was an error saving the list. Please try saving again. If the problem persists, contact vijay@xfinion.com');
       }
     })
     .error(function(err){
@@ -206,10 +276,16 @@ var app=angular.module('myApp.controllers', ['uiGmapgoogle-maps','ui-rangeSlider
 
     if( scrollPosition == divTotalHeight )
     {
-      $scope.pageNumber = $scope.pageNumber + 1;    
-      $scope.paginateResults();
+      //$scope.pageNumber = $scope.pageNumber + 1;    
+      //$scope.paginateResults();
     }
   });
+
+  $scope.selectedMedication = {};    
+  $scope.showMedicationInfo = function(medication)    
+  {
+      $scope.selectedMedication = medication;
+  };
   
 }); 
 
