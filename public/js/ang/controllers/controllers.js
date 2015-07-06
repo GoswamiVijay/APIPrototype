@@ -252,12 +252,12 @@ var app=angular.module('myApp.controllers', ['uiGmapgoogle-maps','ui-rangeSlider
 
          setTimeout(function()
         { 
-            alert('Data saved successfully');
+            alert('Data saved successfully, please bookmark the link to your saved list. ');
          }, 500);
           
       }
       else{
-        alert('Error occured');
+        alert('We are sorry, there was an error saving the list. Please try saving again. If the problem persists, contact vijay@xfinion.com');
       }
     })
     .error(function(err){
