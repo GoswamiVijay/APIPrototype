@@ -27,7 +27,31 @@
 			"file": "_config.yml",
 			"settings":
 			{
-				"buffer_size": 1163,
+				"buffer_size": 0,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "index.md",
+			"settings":
+			{
+				"buffer_size": 0,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "pages/rfq-evaluation-criteria-evidence.md",
+			"settings":
+			{
+				"buffer_size": 0,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "pages/miscellaneous.md",
+			"settings":
+			{
+				"buffer_size": 0,
 				"line_ending": "Unix"
 			}
 		}
@@ -60,6 +84,12 @@
 	},
 	"file_history":
 	[
+		"/Users/vijaygoswami/APIPrototype/pages/methodology.md",
+		"/Users/vijaygoswami/APIPrototype/pages/how-we-built-it.md",
+		"/Users/vijaygoswami/APIPrototype/pages/design.md",
+		"/Users/vijaygoswami/APIPrototype/_includes/footer.html",
+		"/Users/vijaygoswami/APIPrototype/pages/open-license.md",
+		"/Users/vijaygoswami/APIPrototype/pages/open-license",
 		"/Users/vijaygoswami/Documents/GitHubProjects/APIPrototype/app/controllers/apiController.js",
 		"/Users/vijaygoswami/Documents/GitHubProjects/APIPrototype/setEnvVar-integrationDev.sh",
 		"/Users/vijaygoswami/Documents/GitHubProjects/APIPrototype/setEnvVar-integrationTest.sh",
@@ -181,13 +211,7 @@
 		"/Library/WebServer/Documents/ftst2/lab/lab8-2/app/controller/Confessions.js",
 		"/Library/WebServer/Documents/ftst2/lab/lab8-2/app/view/media/Video.js",
 		"/Library/WebServer/Documents/ftst2/lab/lab8-3/app/controller/Confessions.js",
-		"/Library/WebServer/Documents/ftst2/lab/lab8-3/app/view/media/Video.js",
-		"/Library/WebServer/Documents/ftst2/lab/lab9-1/app/view/media/Video.js",
-		"/Library/WebServer/Documents/ftst2/lab/lab9-2-broken/app/controller/Confessions.js",
-		"/Library/WebServer/Documents/ftst2/lab/lab9-2-broken/app/controller/CrimeReports.js",
-		"/Library/WebServer/Documents/ftst2/lab/lab9-2-broken/app/store/Statistics.js",
-		"/Library/WebServer/Documents/ftst2/lab/lab9-2-broken/app/view/media/Video.js",
-		"/Library/WebServer/Documents/ftst2/lab/lab9-2/.sencha_backup/CrimeFinder/2.3.0/app/controller/Confessions.js"
+		"/Library/WebServer/Documents/ftst2/lab/lab8-3/app/view/media/Video.js"
 	],
 	"find":
 	{
@@ -293,7 +317,6 @@
 	"groups":
 	[
 		{
-			"selected": 0,
 			"sheets":
 			[
 				{
@@ -301,15 +324,15 @@
 					"file": "_config.yml",
 					"settings":
 					{
-						"buffer_size": 1163,
+						"buffer_size": 0,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1162,
-								1162
+								0,
+								0
 							]
 						],
 						"settings":
@@ -319,7 +342,87 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 130.0,
+						"translation.y": 370.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "index.md",
+					"settings":
+					{
+						"buffer_size": 0,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Markdown/Markdown.tmLanguage",
+							"word_wrap": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 116.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "pages/rfq-evaluation-criteria-evidence.md",
+					"settings":
+					{
+						"buffer_size": 0,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Markdown/Markdown.tmLanguage",
+							"word_wrap": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "pages/miscellaneous.md",
+					"settings":
+					{
+						"buffer_size": 0,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Markdown/Markdown.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -383,6 +486,6 @@
 	"show_open_files": true,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 367.0,
+	"side_bar_width": 384.0,
 	"status_bar_visible": true
 }
