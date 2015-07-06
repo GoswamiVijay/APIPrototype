@@ -22,7 +22,18 @@ More details can be found [here](https://goswamivijay.github.io/APIPrototype/how
 
 After the RFQ was released, the development team brainstormed the idea for the prototype. After the product idea was decided on, the team looked for a appropriate name and chose a domain that best represented the idea. We also bought a SSL certificate for the site [HTTPS by default](https://www.whitehouse.gov/sites/default/files/omb/memoranda/2015/m-15-13.pdf). 
 
-The team came up with initial stories for the prototype and to release a minimum vialble product. We also started working on setting up continuous integration and choosing the cloud platform for the prototype. We initially used Digital Ocean as the integration server. After the first sprint, we moved all of the infrastructure including domain name to Amazon Cloud (AWS). We utilized AWS Elastic Beanstalk and Amazon EC2 Container service for deploying containers that are hosted on DockerHub. We progressively enhanced the applciation by implementing more stories. We use Agile methodology for all our projects and have standardized on Jira (for sprints and issue tracking), Confluence (for documentation), Github (artifact/source code repository) and AWS cloud for infrastructure. After Mod 5 of the RFQ was published we moved the issues to github and started strategizing on how best to put the documentation on Github. We did some research and came across the [18f guides template](https://pages.18f.gov/guides-template/) which we used for putting all the documentation. 
+Mr. Vijay Goswami was assigned the leader and assigned responsibility for delivering the project. Virendra Chouhan and Alok Patil were assigned as developers on the team. 
+
+The prototype utilizes the following open source technologies. More details can be found [here](https://goswamivijay.github.io/APIPrototype/methodology/#play-8)
+1.  Node.js
+2.  Docker
+3.  MongoDB
+4.  mongoose
+5.  Mocha
+6.  Bootstrap
+7.  Expressjs
+
+The team came up with initial stories for the prototype and to release a minimum vialble product. We also started working on setting up continuous integration and choosing the cloud platform for the prototype. We initially used Digital Ocean as the integration server. After the first sprint, we moved all of the infrastructure including domain name to Amazon Cloud (AWS). We utilized AWS Elastic Beanstalk and Amazon EC2 Container service for deploying containers that are hosted on DockerHub. We progressively enhanced the applciation based on feedback from designated internal users and implementing the stories that came out of the feedback. We utilized Codeship for continuois integration (running unit tests and eployment). We use Agile methodology for all our projects and have standardized on Jira (for sprints and issue tracking), Confluence (for documentation), Github (artifact/source code repository) and AWS cloud for infrastructure. After Mod 5 of the RFQ was published we moved the issues to github and started strategizing on how best to put the documentation on Github. We did some research and came across the [18f guides template](https://pages.18f.gov/guides-template/) which we used for putting all the documentation. 
 
 To setup the development environment and run the application locally you need to do the following
 1. Install node.js
@@ -57,6 +68,7 @@ Detailed instructions on using docker images for testing can be found [here](htt
 Our development methodology is available [here](https://goswamivijay.github.io/APIPrototype/methodology/)
 
 Approach criteria evidence is availalbe [here](https://goswamivijay.github.io/APIPrototype/rfq-evaluation-criteria-evidence/)
+
 
 
 
