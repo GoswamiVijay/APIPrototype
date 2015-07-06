@@ -33,7 +33,7 @@ describe("ConfigController", function(){
 
 	
 
-	describe("testGetTopKeywords", function() {
+describe.skip("testGetTopKeywords", function() {
       it("returns false for keyword search result", function(done) {
        var th = this;
         apiController.getTopSearchKeywordsFromDb(function(result, r) {
