@@ -2,4 +2,5 @@ APIPrototype.sublime-project
 APIPrototype.sublime-workspace
 apiprototype-dev.sublime-project
 apiprototype-dev.sublime-workspace
+node_modules/
 .elasticbeanstalk/
