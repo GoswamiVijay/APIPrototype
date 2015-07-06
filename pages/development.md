@@ -12,6 +12,8 @@ title: Development
 * [Building and running docker images](#building-docker-images)
 
 ### <a name="setting-up-development-workstation"></a>Setting up development workstation
+All of the tools and technologies required to develop the application are avaialble free of charge and/or open sourced. The following setup instructions provide the links to where the tools and frameworks can be obtained.
+
 The development workstation can be either Mac or Windows based. The team uses bothe, Apple Mac (Mac) and Windows workstation for developing the application. A Mac is preferred due to low friction in getting the prerequisites installed, availability of package manager for installing applications. The following instructions assume you have a Mac based workstation. Instructions that are windows specific will be pointed out (???todo???)
 
 ### Basic setup 

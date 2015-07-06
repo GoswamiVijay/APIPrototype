@@ -35,7 +35,7 @@ Following is a list of all the user stories that were identified for the project
 
 |Project	|Key	        |Summary                                                                                           |
 |-----------|---------------|--------------------------------------------------------------------------------------------------|
-|Agile BPA	|[AGILEBPA-36](https://xfinion.atlassian.net/browse/AGILEBPA-36)    |As a user I want to know the privacy polcy of the website                                         |     
+|Agile BPA	|[AGILEBPA-36](https://xfinion.atlassian.net/browse/AGILEBPA-36)    |As a user I want to know the privacy policy of the website                                         |     
 |Agile BPA	|[AGILEBPA-32](https://xfinion.atlassian.net/browse/AGILEBPA-32)    |As a user I want to see a system/error message when I type an incorrect url                       |                  
 |Agile BPA	|[AGILEBPA-31](https://xfinion.atlassian.net/browse/AGILEBPA-31)    |As a user I want to see metrics on medication usage                                               |
 |Agile BPA	|[AGILEBPA-30](https://xfinion.atlassian.net/browse/AGILEBPA-30)    |As a user I want to make the medication list url/id hard to guess/secure                          |               

@@ -22,4 +22,9 @@ We started working on the prototype and in parallel worked on the CI and deploym
 
 
 ## Parting words
+It's been a fun 2 weeks working on the prototype and we enjoyed every bit of it. We wish there were more of these. We've put all this information with the intention that it will help future RFQ that use this approach for getting proposals. Some of the areas of improvement we would suggest are
+1. Provide more time for the deliverable - I guess the inital RFQ assumed that resources will be dedicated full time in responding to the RFQ which is a little challenging for small businesses
+2. Provide more specifics - Many production systems started as a proof of concept or prototype and were switched to production when management liked what they saw. It is not clear on how good the prototype needs to be. 
+
+Above all 
 Keep calm and keep shipping!!

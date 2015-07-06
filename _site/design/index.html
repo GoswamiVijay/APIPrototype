@@ -131,6 +131,40 @@
           <h1>Design</h1>
           <p>My Medication List is a two tier application consisting of web and database components deployed on different servers. The web component uses nodejs framework with additional modules for implementing server and client side code. The database component uses Mongo db for persisting data. </p>
 
+<p>The web component of the application utilizes the following technologies/frameworks
+1.  node.js 
+2.  expressjs
+3.  bootstrap 
+4.  angular.js 
+5.  MongoDB
+6.  mocha
+7.  loclmotive
+8.  mongoose
+9.  requirejs
+10. node-mocks-http</p>
+
+<p>The application implements the following endpoints. All of the endpoints are implemented in the apiController.js (app/controllers folder)</p>
+
+<ol>
+<li><p>/getSearchResults - invoked when the user enters a search term and hits the search button. The implementation logic makes a call to the OpenFDA API endpoint to get matching results. If atleast one result is returned by the OpenFDA API, the search term is added to frequently searched terms list which is displayed along the &quot;Top Searched Medications&quot; label. This function needs refactoring to separate the API call and the adding of search keyword to frequently searched items</p></li>
+<li><p>/getData - This function is invoked when the user uses the url that was generated as part of a save medication action. The saveData function generates a unique id which is a reference to the medication list in the database. This id is passed to the /getData endpoint. The implemented function does a lookup with the provided id and returns matching results if found.</p></li>
+<li><p>/getTopSearchKeywords - This function is called by the mainpage of the application to populate the &quot;Top Searched Medications&quot; label. This function gets the top 5 search keywords based on the searchcount value. The searchcount value is populated as part of /getSearchResults call and tracks the number of times the search was done with that term.</p></li>
+<li><p>/saveData - This function gets invoked when the save action is performed. The saveData function generates a unique id using the uuid module and saves the medication list in the database. The uuid is returned in the response.</p></li>
+<li><p>/validateCapcha - This function is invoked when the user checks the I&#39;m not a robot checkbox (reCaptcha). The function sends the secret key and users reCaptcha response to google/reCaptcha endpoint.</p></li>
+<li><p>/updateData and /testApplicationConfig as not used and will be removed</p></li>
+<li><p>/applicationConfig - Provides the environment config values to front end code</p></li>
+<li><p>/help - Returns the Help text for display in the popup menu when the user clicks on the Help button</p></li>
+<li><p>/* - invoked when a request is made to an endpoint that does not exist.</p></li>
+</ol>
+
+<p>home.html - This is themain container that includes the header, footer and the ui-view container.</p>
+
+<p>partial/home.html - Implements the main view of the application that provides search and save functions</p>
+
+<p>Application configuration values are read from applicationConfig.js</p>
+
+<p>The application listens on port 4000.</p>
+
         </section>
 
       </div><!-- /.wrap content -->
