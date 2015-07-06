@@ -75,7 +75,14 @@
         <p><a id="mymedurl" href="#" target="_blank"></a></p>
       </div>
       <div class="col-md-4">
-        <div 
+
+<!--        
+Chrome is complaining about this error
+
+Uncaught SecurityError: Blocked a frame with origin "https://www.google.com" from accessing a frame with origin "http://localhost:4000".  The frame requesting access has a protocol of "https", the frame being accessed has a protocol of "http". Protocols must match.
+(anonymous function) @ VM807:1
+
+           <div 
             
                 ng-show="AppDevelopmentMode"
                 vc-recaptcha
@@ -85,6 +92,7 @@
                 on-create="setWidgetId(widgetId)"
                 on-success="setResponse(response)"
             ></div>
+-->            
       </div>  
      <div class="col-md-1">
         <button id="btnSave" style="margin-top:17px;" type="button" class="btn btn-primary" ng-click="submitCapcha();">Save</button>

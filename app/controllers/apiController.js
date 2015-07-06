@@ -68,11 +68,9 @@ apiController.validateCapcha = function(res,req)
       {
         if (!error && response.statusCode == 200) 
         {
-            console.log(body)
             return th.res.json({success: true});
         }else
         {
-            console.log(error)
             return th.res.json({success: false});
         }
     }
