@@ -1,16 +1,23 @@
 <div class="container" ng-init="init()">
     <div class="row">
       <div class="col-md-9">
-        <h1>My Medication List</h1>
+        <a href="/" style="text-decoration:none"><h1>My Medication List</h1></a>
       </div>
       <div class="col-md-3">
-        <button id="btnhelp" type="submit" class="btn btn-primary" data-toggle="modal" data-target="#myModal" style="float:right; margin-top:15px;">Help</button>
+        <a id="btnhelp" target="_blank" href="/help" class="btn btn-primary" style="float:right; margin-top:15px;">Help</a>
       </div>
     </div>
       <div class="row">
       <p>My medication list allows you to keep a list of all the medication you are currently taking and share it with your medical provider using a hyperlink.The hyper link is located at the bottom of the page and is available after you have created a list of your medicatuions and clicked the save button.You can access additional help  associated with this application by clicking on the help button or sending us an email at support@xfinion.com You can also call us at 301.801.4897 Monday to Friday between the hours of 8am and 6pm.Thank you using My Medication List. You can review our privacy policy <a href="#" id="btnprivacy" data-toggle="modal" data-target="#privacyModal" >here</a></p>
-    </div>  
-      <div class="row" >
+    </div> 
+    <div class="row">
+     <h3 style="font-size:14px;margin:0px;">Top Searched Medications</h3> 
+     <div style="display:inline;margin-top:-10px;margin-bottom:10px;" ng-repeat="medication in TopSearchedMedications">
+         <a style="display:inline" ng-click="search.query=medication.tag">{{medication.tag}},</a>
+     </div>
+    </div>
+     
+      <div class="row" style="margin-top:10px;">
         <form class="form-inline" ng-submit="performsearch();">
           <div class="form-group">           
               <input type="text" placeholder="Search" id="input-search" class="form-control" style="width:350px;" ng-model="search.query">
@@ -28,7 +35,9 @@
               <b>Product Type:</b> {{ r.openfda.product_type[0]}}<br/>
               <b>Manufacturer:</b> {{ r.openfda.manufacturer_name[0]}} <br/>
               <b>Brand:</b> {{ r.openfda.brand_name[0]}} 
-              <a href="javascript:void(0);" style="float:right; cursor:pointer;" ng-click="add(r)">Add</a>
+              <a href="javascript:void(0);" style="float:right; cursor:pointer;padding-left:10px;" ng-click="add(r)">Add</a>
+            
+              <a href="javascript:void(0);" style="float:right; cursor:pointer;" data-toggle="modal" data-target="#MedicationModel" ng-click="showMedicationInfo(r)">View Info </a>
             </p>
            </div>         
             <p ng-show="message">{{message}}</p>
@@ -44,11 +53,22 @@
               <b>Product Type:</b> {{ sr.openfda.product_type[0]}}<br/>
               <b>Manufacturer:</b> {{ sr.openfda.manufacturer_name[0]}} <br/>
               <b>Brand:</b> {{ sr.openfda.brand_name[0]}} 
-              <a href="javascript:void(0);" style="float:right; cursor:pointer;" ng-click="remove(sr)">Remove</a>
+              <a href="javascript:void(0);" style="float:right; cursor:pointer;padding-left:10px;" ng-click="remove(sr)">Remove</a>
+              <a href="javascript:void(0);" style="float:right; cursor:pointer;" data-toggle="modal" data-target="#MedicationModel" ng-click="showMedicationInfo(sr)">View Info </a>
             </p>
           </section>
         </div>
     </div>
+        <div ng-show="TotalPages() > 0">
+            <button ng-disabled="pageNumber == 0" ng-click="PreviousRecord()">
+                Previous
+            </button>
+                {{pageNumber+1}}/{{TotalPages()}}
+            <button ng-disabled="pageNumber >= TotalPages() - 1" ng-click="NextRecord();">
+                Next
+            </button>
+        </div>
+
     <hr />
     <section class="col-md-12">
       <div class="col-md-7">
@@ -56,6 +76,8 @@
       </div>
       <div class="col-md-4">
         <div 
+            
+                ng-show="AppDevelopmentMode"
                 vc-recaptcha
                 theme="'light'"
                 key="model.key"
@@ -70,7 +92,35 @@
       </section>
       <br /><br />
   </div>
-
+  <div class="modal fade" id="MedicationModel" modal="showModal" close="cancel()">
+    <div class="modal-dialog">
+      <div class="modal-content">       
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title">Medication Info</h4>
+        </div>        
+        <div class="modal-body">
+            <p><b>Substance name :</b> {{selectedMedication.openfda.substance_name[0]}}</p>
+            <p><b>Product type :</b> {{selectedMedication.openfda.product_type[0]}}</p>
+            <p><b>Manufacturer name :</b> {{selectedMedication.openfda.manufacturer_name[0]}}</p>
+            <p><b>Brand name :</b> {{selectedMedication.openfda.brand_name[0]}}</p>
+            <p><b>Pharm class moa :</b> {{selectedMedication.openfda.pharm_class_moa[0]}}</p>
+            <p><b>Pharm class epc :</b> {{selectedMedication.openfda.pharm_class_epc[0]}}</p>
+            <p><b>Generic name :</b> {{selectedMedication.openfda.generic_name[0]}}</p>
+            <p><b>Spl product data elements :</b> {{selectedMedication.spl_product_data_elements[0]}}</p>
+            <p><b>Warnings :</b> {{selectedMedication.warnings[0]}}</p>
+            <p><b>Indications and usage :</b> {{selectedMedication.indications_and_usage[0]}}</p>
+            <p><b>Keep out of reach of children :</b> {{selectedMedication.keep_out_of_reach_of_children[0]}}</p>
+            <p><b>Dosage and administration :</b> {{selectedMedication.dosage_and_administration[0]}}</p>
+            <p><b>Purpose :</b> {{selectedMedication.purpose[0]}}</p>
+            <p><b>Pregnancy or breast feeding :</b> {{selectedMedication.pregnancy_or_breast_feeding[0]}}</p>
+            <p><b>Active ingredient :</b> {{selectedMedication.active_ingredient[0]}}</p>
+            <p><b>Inactive ingredient :</b> {{selectedMedication.inactive_ingredient[0]}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  
   <div class="modal fade" id="myModal">
     <div class="modal-dialog">
       <div class="modal-content">       

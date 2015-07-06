@@ -16,7 +16,10 @@ config(function($stateProvider, $urlRouterProvider, $locationProvider, $httpProv
   //$urlRouterProvider.otherwise('index');
   $stateProvider
   // Pages Handled Ny HomeController
- 
+   .state('help', {
+      url: "/help",
+      templateUrl: "/partials/help.html"
+  })
   .state('index', {
       url: "/:id",
       templateUrl: "/partials/home.html",
