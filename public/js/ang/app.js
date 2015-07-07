@@ -9,8 +9,7 @@ angular.module('myApp', [
   'myApp.controllers',
   'myApp.angulardirectives',
   'myApp.customedirectives',
-  'vcRecaptcha'
-  
+  'noCAPTCHA'
 ]).
 config(function($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider,uiGmapGoogleMapApiProvider) {
   //$urlRouterProvider.otherwise('index');

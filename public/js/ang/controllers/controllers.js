@@ -2,27 +2,30 @@
 
 var app=angular.module('myApp.controllers', ['uiGmapgoogle-maps','ui-rangeSlider']) 
 
-.controller('MainCtrl', function ($rootScope, $scope, $window, $location, $http, $anchorScroll, sharedProperties, uiGmapGoogleMapApi, uiGmapIsReady,$http,$filter,vcRecaptchaService) 
+.controller('MainCtrl', function ($rootScope, $scope, $window, $location, $http, $anchorScroll, sharedProperties, uiGmapGoogleMapApi, uiGmapIsReady,$http,$filter,$document,$compile) 
 {
-
-//capcah codes 
-    $scope.response = null;
-    $scope.widgetId = null;
-    $scope.AppDevelopmentMode = false;
-    $scope.TopSearchedMedications = [];
-    
     $scope.model = {
         key: '6Lf3GgkTAAAAAM-KwKq3KxS4-7g40bbLA7jWEyBv'
     };
-    $scope.setResponse = function (response) {
-        console.info('Response available');
-        $scope.response = response;
-    };
-    $scope.setWidgetId = function (widgetId) {
-        console.info('Created widget ID: %s', widgetId);
-        $scope.widgetId = widgetId;
+
+//capcah codes 
+    $scope.AppDevelopmentMode = false;
+    $scope.TopSearchedMedications = [];
+    
+    $scope.gRecaptchaResponse = '';
+    $scope.$watch('gRecaptchaResponse', function (){
+        $scope.expired = false;
+    });
+    $scope.expiredCallback = function expiredCallback(){
+        $scope.expired = true;
     };
     
+    $scope.captchaControl = {};
+    $scope.resetCaptcha = function(){
+        if($scope.captchaControl.reset){
+          $scope.captchaControl.reset();  
+        }
+    };
         //Get App settings 
     $scope.GetApplicationConfig = function()
     {
@@ -34,6 +37,14 @@ var app=angular.module('myApp.controllers', ['uiGmapgoogle-maps','ui-rangeSlider
           {
             $scope.AppDevelopmentMode = (data.applicationConfig.applicationMode === 'develop') ? false : true ;
             $scope.model.key = data.applicationConfig.captchaSiteKey;
+            if($scope.AppDevelopmentMode)
+            {
+                var html = "<no-captcha site-key="+$scope.model.key+" theme='light' g-recaptcha-response='gRecaptchaResponse'   control='captchaControl'></no-captcha>";
+              
+                var element = angular.element($document[0].getElementById('capchaElement'));
+                element.append(html);
+                $compile( element.contents() )($scope);  
+            }
           }
         }).error(function(err){ console.log(err); });       
     };
@@ -65,17 +76,18 @@ var app=angular.module('myApp.controllers', ['uiGmapgoogle-maps','ui-rangeSlider
         }
         if($scope.AppDevelopmentMode)
         {
-            //validateCapcha
-            if($scope.response)
+            if($scope.gRecaptchaResponse)
             {
-                $http.post('/validateCapcha',{data: $scope.response})
+                $http.post('/validateCapcha',{data: $scope.gRecaptchaResponse})
                 .success(function(data){
                     if(data.success) { $scope.saveData(); }
-                    else{ vcRecaptchaService.reload($scope.widgetId); }
+                    else{ 
+                        $scope.resetCaptcha();
+                    }
                 }).error(function(err)
                 {
                     console.log(err);
-                    vcRecaptchaService.reload($scope.widgetId);    
+                    $scope.resetCaptcha();
                 });
             }else
             {
@@ -249,7 +261,6 @@ var app=angular.module('myApp.controllers', ['uiGmapgoogle-maps','ui-rangeSlider
         $scope.AllResults = [];
         $scope.paginateResults();  
         $scope.search.query = '';
-
          setTimeout(function()
         { 
             alert('Data saved successfully');

@@ -74,17 +74,12 @@
       <div class="col-md-7">
         <p><a id="mymedurl" href="#" target="_blank"></a></p>
       </div>
-      <div class="col-md-4">
-        <div 
-            
-                ng-show="AppDevelopmentMode"
-                vc-recaptcha
-                theme="'light'"
-                key="model.key"
-                type=""    
-                on-create="setWidgetId(widgetId)"
-                on-success="setResponse(response)"
-            ></div>
+      <div class="col-md-4" id="capchaElement">
+<!--
+      //capcah control will include at runtime after getting app settings 
+       <no-captcha site-key="model.key" theme='light' g-recaptcha-response="gRecaptchaResponse" control="captchaControl">
+       </no-captcha>
+-->
       </div>  
      <div class="col-md-1">
         <button id="btnSave" style="margin-top:17px;" type="button" class="btn btn-primary" ng-click="submitCapcha();">Save</button>
