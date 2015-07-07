@@ -14,7 +14,7 @@ title: Development
 ### <a name="setting-up-development-workstation"></a>Setting up development workstation
 All of the tools and technologies required to develop the application are avaialble free of charge and/or open sourced. The following setup instructions provide the links to where the tools and frameworks can be obtained.
 
-The development workstation can be either Mac or Windows based. The team uses bothe, Apple Mac (Mac) and Windows workstation for developing the application. A Mac is preferred due to low friction in getting the prerequisites installed, availability of package manager for installing applications. The following instructions assume you have a Mac based workstation. Instructions that are windows specific will be pointed out (???todo???)
+The development workstation can be either Mac or Windows based. The team uses bothe, Apple Mac (Mac) and Windows workstation for developing the application. A Mac is preferred due to low friction in getting the prerequisites installed, availability of package manager for installing applications. The following instructions assume you have a Mac based workstation. 
 
 *If you find yourself having to use sudo for running node, please see this page on how to resolve the issue http://stackoverflow.com/questions/16151018/npm-throws-error-without-sudo*
 
@@ -100,7 +100,7 @@ The master branch is used for releasing to production. Please do not check in co
 To clone the develop branch of the repository on your desktop use the following command from Terminal 
 
 ```
-$ clone https://github.com/GoswamiVijay/APIPrototype.git
+$ git clone -b develop https://github.com/GoswamiVijay/APIPrototype.git
 ```
 
 To checkout the develop branch
@@ -144,7 +144,7 @@ $ nodemon
 ```
 
 ## <a name="building-docker-images"></a>Building and running docker images
-The following instructions for building the docker images assume you have checked out the develop branch on your workstation and in terminal/command prompt in that folder. If you are running boot2docker, it is assumed you are in the boot2docker shell (run boot2docker from Application folder on mac). Substitute your account name with goswamivijay when building or running the images
+The following instructions for building the docker images assume you have checked out the develop branch on your workstation and in terminal/command prompt in that folder. It's recommended but not required to create an account on [docker hub](https://hub.docker.com/account/signup/) so you can push your images to docker for others to test. If you are running boot2docker, it is assumed you are in the boot2docker shell (run boot2docker from Application folder on mac or windows). Substitute your account name with goswamivijay when building or running the images
 
 __Build mongo db image__
 
