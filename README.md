@@ -1,4 +1,9 @@
-## 18F Guides Template
+## API Prototype Documentation
+
+This repo contains all of the documentation associated with the Agile BPA proposal.
+We used https://pages.18f.gov/guides-template/ which provided everything neccessary for adding the documentation.
+
+The following information/documentation from the original repo is kept as is for reference
 
 This is a skeleton repo containing the
 [CFPB/DOCter](https://github.com/CFPB/DOCter)-based
