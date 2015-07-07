@@ -9,7 +9,7 @@ var app=angular.module('myApp.controllers', ['uiGmapgoogle-maps','ui-rangeSlider
     };
 
 //capcah codes 
-    $scope.AppDevelopmentMode = false;
+    $scope.enableCaptcha = false;
     $scope.TopSearchedMedications = [];
     
     $scope.gRecaptchaResponse = '';
@@ -35,9 +35,9 @@ var app=angular.module('myApp.controllers', ['uiGmapgoogle-maps','ui-rangeSlider
           console.log(data);    
           if(data.success)
           {
-            $scope.AppDevelopmentMode = (data.applicationConfig.applicationMode === 'develop') ? false : true ;
+            $scope.enableCaptcha = data.applicationConfig.enableCaptcha;
             $scope.model.key = data.applicationConfig.captchaSiteKey;
-            if($scope.AppDevelopmentMode)
+            if($scope.enableCaptcha)
             {
                 var html = "<no-captcha site-key="+$scope.model.key+" theme='light' g-recaptcha-response='gRecaptchaResponse'   control='captchaControl'></no-captcha>";
               
@@ -74,7 +74,7 @@ var app=angular.module('myApp.controllers', ['uiGmapgoogle-maps','ui-rangeSlider
             alert('Please add some medications.');
             return;
         }
-        if($scope.AppDevelopmentMode)
+        if($scope.enableCaptcha)
         {
             if($scope.gRecaptchaResponse)
             {
